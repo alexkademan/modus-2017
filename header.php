@@ -16,7 +16,13 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
-	<?php wp_head(); ?>
+	<?php
+	wp_head();
+	$main_css = get_webkit_asset('css', 'main');
+	if($main_css != '') {
+		echo '<link rel="stylesheet"  href="' . $main_css . '" type="text/css" media="all" />';
+	}
+	?>
 </head>
 <body <?php body_class(); ?>>
 <div id="page" class="site">

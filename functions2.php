@@ -74,3 +74,37 @@ function find_previous_and_next_posts($all_cat_posts, $current_post_id) {
 
   return $prev_next;
 }
+
+
+
+function get_webkit_asset($dir, $filename) {
+
+  // takes directory, name without the hash, and returns a URL for the href.
+  $assets_dir = '/_assets/build/static/';
+  $webkit_dir = get_template_directory() . $assets_dir;
+  $directory = $webkit_dir . $dir;
+  $this_file = '';
+  $webkit_link = '';
+
+  $all_files = scandir($directory);
+
+  if(is_array($all_files)) {
+    foreach ($all_files as $value) {
+      if($value != '.' && $value != '..') {
+        $value_arr = explode('.', $value);
+        if(
+          $value_arr[0] == $filename &&
+          $value_arr[count($value_arr) - 1] != 'map'
+        ) {
+          $this_file = $value;
+        }
+      };
+    }
+  }
+  if($this_file != '') {
+    $webkit_link = get_bloginfo('stylesheet_directory') . $assets_dir;
+    $this_file = $webkit_link . $dir . '/' . $this_file;
+  }
+
+  return $this_file;
+}

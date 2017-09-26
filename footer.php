@@ -8,7 +8,7 @@
  *
  * @package _s
  */
-
+echo '<div id="root"></div>';
 echo '</div>'; // #content
 echo '<span class="centered-section">';
 echo '<footer id="colophon" class="site-footer">';
@@ -30,5 +30,11 @@ echo  '</footer>'; // #colophon
 echo '</div>'; //#centered-section
 echo '</div>'; //#page
 wp_footer();
+
+$main_js = get_webkit_asset('js', 'main');
+if($main_js != '') {
+  echo '<script type="text/javascript" src="' . $main_js . '"></script>';
+}
+
 echo  '</body>';
 echo '</html>';

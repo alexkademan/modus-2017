@@ -1,0 +1,116 @@
+$size-phone-up: '(min-width: 450px)';
+$size-tablet-up: '(min-width: 768px)';
+$grid-margin-main: 1.5rem;
+
+// Breakpoints
+$width-medium: pem(641);
+$width-small:  pem(640);
+
+$max-width: pem(1240);
+$small-size: pem(720);
+$large-size: pem(1140);
+
+$col-reading-width: pem(580);
+
+$medium-breakpoint: 'min-width: ' + $small-size;
+$large-breakpoint: 'min-width: ' + $large-size;
+
+$main-layout-grid: (
+  columns: 2,
+  gutter: $grid-margin-main,
+);
+$main-layout-grid-footer: (
+  columns: 2,
+  gutter: $grid-margin-main,
+  media: $size-phone-up,
+);
+
+body {
+  background-color: lighten($light-gray, 8%);
+}
+
+.site {
+  display: block;
+  clear: both;
+  float: left;
+  width: 100%;
+  background-color: $white;
+}
+
+.centered-section,
+.centered-single-column {
+  @include grid-container;
+  display: block;
+  clear: both;
+  max-width: pem(1200);
+  margin: 0 auto;
+}
+
+.centered-single-column {
+  max-width: pem(1000);
+}
+
+.full-section {
+  @include grid-container;
+  display: block;
+  clear: both;
+  max-width: pem(1200);
+  margin: 0 auto;
+}
+
+.site-header,
+.entry-header,
+.entry-content {
+  @include grid-column(2, $main-layout-grid);
+}
+
+.site-footer {
+
+  padding: $grid-margin-main 0;
+
+  .company-info,
+  .copyright {
+    @include grid-media($main-layout-grid-footer) {
+      @include grid-column(1);
+      text-align: left;
+    }
+    @include grid-column(2, $main-layout-grid);
+    text-align: center;
+    padding-bottom: $grid-margin-main;
+  }
+
+  .company-info {
+    @include grid-media($main-layout-grid-footer) {
+      text-align: right;
+    }
+  }
+}
+
+.post-navigation {
+  &,
+  a {
+    display: block;
+    float: left;
+    clear: both;
+    width: 100%;
+    position: relative;
+  }
+
+  .next {
+    text-align: right;
+  }
+
+  a {
+    @media($medium-breakpoint) {
+      width: 50%;
+    };
+    clear: none;
+    background: $light-gray;
+    padding: $grid-margin-main;
+    transition: background .2s ease;
+
+    &:hover {
+      background: darken($light-gray, 5%);
+    }
+  }
+}
