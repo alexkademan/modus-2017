@@ -1,0 +1,21 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+_assets/node_modules
+
+# testing
+_assets/coverage
+
+# production
+_assets/build
+
+# misc
+.DS_Store
+_assets/.env.local
+_assets/.env.development.local
+_assets/.env.test.local
+_assets/.env.production.local
+
+_assets/npm-debug.log*
+_assets/yarn-debug.log*
+_assets/yarn-error.log*

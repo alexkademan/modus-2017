@@ -1,0 +1,19 @@
+html {
+  background: #FFF;
+  font: 16px Arial;
+}
+
+.App {
+  // text-align: center;
+}
+
+@import 'components/Excel';
+@import 'components/Form';
+@import 'components/FormInput';
+@import 'components/Logo';
+@import 'components/button';
+@import 'components/Suggest';
+@import 'components/Rating';
+@import 'components/Actions';
+@import 'components/Dialog';
+@import 'components/Whinepad';

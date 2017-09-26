@@ -1,0 +1,18 @@
+.site-header {
+  .logo {
+    display: block;
+    float: left;
+    clear: none;
+    max-width: pem(350);
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .site-description {
+    display: block;
+    float: left;
+    clear: both;
+  }
+}
