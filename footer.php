@@ -8,7 +8,7 @@
  *
  * @package _s
  */
-echo '<div id="root"></div>';
+// echo '<div id="root"></div>';
 echo '</div>'; // #content
 echo '<span class="centered-section">';
 echo '<footer id="colophon" class="site-footer">';

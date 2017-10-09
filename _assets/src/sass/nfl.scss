@@ -1,0 +1,31 @@
+// @import 'notes';
+$ugly-pink: #fcf;
+$white: #fff;
+
+@import 'bourbon/bourbon';
+@import 'neat/neat';
+
+body {
+  // background-color: $ugly-pink;
+  background-color: $white;
+}
+
+.nfl-scores {
+  @include grid-container;
+}
+
+.nfl-game {
+  @include grid-column(12);
+
+  .away,
+  .home {
+    @include grid-column(4);
+    background-color: $ugly-pink;
+  }
+  .vs {
+    @include grid-column(1);
+  }
+  .clock {
+    @include grid-column(3);
+  }
+}

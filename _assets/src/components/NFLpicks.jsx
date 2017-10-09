@@ -3,8 +3,12 @@ import axios from 'axios';
 
 import NFLActions from '../flux/NFLActions';
 import NFLStore from '../flux/NFLStore';
-
+import NFLTeams from '../NFLTeams2017';
+// import NFLSeason from '../NFLSeason2017';
 import NFLGames from './NFLGames';
+import '../sass/nfl.scss';
+
+NFLStore.init(NFLTeams);
 
 type State = {
   addnew: boolean,

@@ -8,13 +8,15 @@ const emitter = new EventEmitter();
 
 const NFLStore = {
   init() {
-    const storage = 'localStorage' in window
-      ? localStorage.getItem('nfl')
-      : null;
+    // console.log(teams);
 
-    if (!storage) {
-      console.log('we need the nfl thing thing. to go into local storage');
-    }
+    // const storage = 'localStorage' in window
+    //   ? localStorage.getItem('nfl')
+    //   : null;
+
+    // if (!storage) {
+    //   console.log('we need the nfl thing thing. to go into local storage');
+    // }
   },
 
   getData(): Array<Object> {

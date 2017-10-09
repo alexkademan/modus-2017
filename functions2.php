@@ -80,7 +80,7 @@ function find_previous_and_next_posts($all_cat_posts, $current_post_id) {
 function get_webkit_asset($dir, $filename) {
 
   // takes directory, name without the hash, and returns a URL for the href.
-  $assets_dir = '/_assets/build/static/';
+  $assets_dir = '/webpack/static/';
   $webkit_dir = get_template_directory() . $assets_dir;
   $directory = $webkit_dir . $dir;
   $this_file = '';

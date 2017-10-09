@@ -10,25 +10,22 @@ function NFLGame(props: Props) {
   // props.game = NFLStore.getWeeksGames();
   if (props.gameID) {
     const game = NFLStore.getSingleGame(props.gameID);
-    console.log(game.away.abbr);
-    console.log(game.home.abbr);
-    // import logoAway from '../NFLLogos/' + game.away.abbr + '.png';
-
+    // console.log(game);
     return (
-      <section>
-        <div className="away">
+      <div>
+        <td className="away">
           {game.away.abbr}, {game.away.score.T}
-        </div>
-        <div className="vs">
+        </td>
+        <td>
           vs
-        </div>
-        <div className="home">
+        </td>
+        <td className="home">
           {game.home.abbr}, {game.home.score.T}
-        </div>
-        <div className="clock">
+        </td>
+        <td>
           {game.qtr} {game.clock}
-        </div>
-      </section>
+        </td>
+      </div>
     );
   }
 }
