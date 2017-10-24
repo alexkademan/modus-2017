@@ -232,7 +232,7 @@ module.exports = {
             {
               loader: 'style-loader',
               query: {
-                sourceMap: true,
+                sourceMap: false,
               },
             },
           ],
@@ -241,7 +241,7 @@ module.exports = {
               loader: 'css-loader',
               query: {
                 modules: false,
-                sourceMap: true,
+                sourceMap: false,
                 importLoaders: 1,
                 minimize: true,
                 url: false,
@@ -250,13 +250,13 @@ module.exports = {
             {
               loader: 'postcss-loader',
               query: {
-                sourceMap: true
+                sourceMap: false
               }
             },
             {
               loader: 'sass-loader',
               query: {
-                sourceMap: true,
+                sourceMap: false,
                 sourceMapContents: true,
               }
             },
@@ -294,8 +294,42 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       inject: true,
+      template: paths.homeHtml,
+      filename: 'homepage.html',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true,
+      },
+    }),
+    new HtmlWebpackPlugin({
+      inject: true,
       template: paths.footerHtml,
       filename: 'footer-script.html',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true,
+      },
+    }),
+    new HtmlWebpackPlugin({
+      inject: true,
+      template: paths.nflHtml,
+      filename: 'nfl.html',
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -380,7 +414,7 @@ module.exports = {
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
 
     // added for SASS pre-processor:
-    new ExtractTextPlugin('css/main.[hash:8].css'),
+    // new ExtractTextPlugin('css/main.[hash:8].css'),
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.

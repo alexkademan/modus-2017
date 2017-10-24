@@ -6,7 +6,7 @@ import NFLStore from '../flux/NFLStore';
 import NFLTeams from '../NFLTeams2017';
 // import NFLSeason from '../NFLSeason2017';
 import NFLGames from './NFLGames';
-import '../sass/nfl.scss';
+import '../sass/NFL/nfl.scss';
 
 NFLStore.init(NFLTeams);
 

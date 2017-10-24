@@ -58,6 +58,7 @@
 			</span><!-- .site-branding -->
 
 			<nav id="site-navigation" class="main-navigation">
+				<h1 class="hid">Site Navigation</h1>
 				<?php
 					wp_nav_menu( array(
 						'theme_location' => 'menu-1',

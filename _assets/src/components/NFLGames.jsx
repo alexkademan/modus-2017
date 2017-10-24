@@ -30,46 +30,22 @@ class NFLGames extends Component {
   render() {
     if (!this.state.weeksGames) {
       return (
-        <div className="nfl-games">
+        <div className="nfl-week">
           no games.
         </div>
       );
     }
     return (
-      <div>
-        {/* <table className="nfl-games">
-          <thead>
-            <tr>
-              <td>
-                Week of NFL:
-              </td>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.weeksGames.map((game) => {
-              // console.log(game.gameID);
-              return (
-                <tr className="nfl-game" key={game.gameID}>
-                  <NFLGameOLD gameID={game.gameID} />
-                </tr>
-              );
-            }, this)}
-          </tbody>
-        </table> */}
-
-
-        <ul className="nfl-week">
-          {this.state.weeksGames.map((game) => {
-            // console.log(game.gameID);
-            return (
-              <li className="nfl-game" key={game.gameID}>
-                <NFLGame gameID={game.gameID} />
-              </li>
-            );
-          }, this)}
-        </ul>
-
-      </div>
+      <ul className="nfl-week">
+        {this.state.weeksGames.map((game) => {
+          // console.log(game.gameID);
+          return (
+            <li className="nfl-game" key={game.gameID}>
+              <NFLGame gameID={game.gameID} />
+            </li>
+          );
+        }, this)}
+      </ul>
     );
   }
 }

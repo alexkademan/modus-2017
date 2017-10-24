@@ -3,20 +3,13 @@ import { EventEmitter } from 'fbemitter';
 
 let data;
 let weeksGames;
-// let schema;
+let teams;
 const emitter = new EventEmitter();
 
 const NFLStore = {
-  init() {
+  init(allTeams: Array<Object>) {
+    teams = allTeams;
     // console.log(teams);
-
-    // const storage = 'localStorage' in window
-    //   ? localStorage.getItem('nfl')
-    //   : null;
-
-    // if (!storage) {
-    //   console.log('we need the nfl thing thing. to go into local storage');
-    // }
   },
 
   getData(): Array<Object> {
@@ -27,13 +20,29 @@ const NFLStore = {
     return weeksGames;
   },
 
-  getSingleGame(gameID) {
+  getSingleGame(gameID): Array<Object> {
     let thisGame = '';
     for (let i = 0; weeksGames.length > i; i += 1) {
       if (weeksGames[i].gameID === gameID) {
         thisGame = weeksGames[i];
       }
     }
+
+    teams.forEach((team) => {
+      if (
+        team.code === thisGame.away.abbr ||
+        team.codeAlt === thisGame.away.abbr
+      ) {
+        thisGame.awayTeam = team;
+      } else if (
+        team.code === thisGame.home.abbr ||
+        team.codeAlt === thisGame.home.abbr
+      ) {
+        thisGame.homeTeam = team;
+      }
+    });
+
+    // console.log(thisGame);
     return thisGame;
   },
 
