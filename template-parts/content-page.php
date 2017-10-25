@@ -25,6 +25,17 @@ if(get_the_ID() === 10) {
 } else {
 	echo '<span class="centered-section">';
 	echo '<div class="entry-content">';
+
+	$user = wp_get_current_user();
+
+	if (current_user_can('administrator')) {
+		$user = wp_get_current_user();
+		if($user->user_email == 'alex@designbymodus.com') {
+			echo 'howdy.';
+		};
+	}
+
+	if(is_admin()) { echo 'is_admin'; }
 	the_content();
 	echo '</div>';
 	echo '</span>';

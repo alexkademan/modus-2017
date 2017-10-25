@@ -1,0 +1,45 @@
+$color-white-alpha: rgba(255, 255, 255, .4);
+$color-gray-alpha: rgba(0, 0, 0, .7);
+$color-gray-alpha-light: rgba(0, 0, 0, .4);
+$white: #fff;
+$gray: #ccc;
+$black: #000;
+$red: #c00;
+
+.react-diagnostic {
+  position: fixed;
+  left: 2px;
+  top: 34px; // to go below WP admin bar
+  background: $color-gray-alpha;
+  color: $white;
+  padding: .5em .75em;
+  font-family: Helvetica, Arial, sans-serif;
+  border-radius: .25em;
+  box-shadow: 5px 5px 10px $color-gray-alpha-light;
+
+  header {
+    display: block;
+    float: left;
+    clear: both;
+    width: 100%;
+    border-bottom: 1px solid $color-white-alpha;
+    margin-bottom: .5em;
+
+    i {
+      font-size: 1.2em;
+      display: block;
+      float: right;
+      padding: 0 0 .25em .5em;
+      cursor: pointer;
+      transition: .2s;
+
+      &:hover {
+        color: $red;
+      }
+    }
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+}

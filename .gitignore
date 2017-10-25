@@ -19,3 +19,5 @@ _assets/.env.production.local
 _assets/npm-debug.log*
 _assets/yarn-debug.log*
 _assets/yarn-error.log*
+
+webpack

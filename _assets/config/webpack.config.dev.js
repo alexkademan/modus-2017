@@ -145,6 +145,7 @@ module.exports = {
           /\.gif$/,
           /\.jpe?g$/,
           /\.png$/,
+          /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
         ],
         loader: require.resolve('file-loader'),
         options: {
@@ -155,7 +156,12 @@ module.exports = {
       // smaller than specified limit in bytes as data URLs to avoid requests.
       // A missing `test` is equivalent to a match.
       {
-        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+        test: [
+          /\.bmp$/,
+          /\.gif$/,
+          /\.jpe?g$/,
+          /\.png$/,
+        ],
         loader: require.resolve('url-loader'),
         options: {
           limit: 10000,
@@ -253,7 +259,7 @@ module.exports = {
           ]
 
         }),
-      }
+      },
       // ** STOP ** Are you adding a new loader?
       // Remember to add the new extension(s) to the "file" loader exclusion list.
     ],
@@ -273,11 +279,6 @@ module.exports = {
       inject: true,
       template: paths.homeHtml,
       filename: 'homepage.html',
-    }),
-    new HtmlWebpackPlugin({
-      inject: true,
-      template: paths.nflHtml,
-      filename: 'nfl.html',
     }),
     // Add module names to factory functions so they appear in browser profiler.
     new webpack.NamedModulesPlugin(),

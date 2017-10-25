@@ -1,14 +1,10 @@
 import React from 'react';
-import './sass/style.scss';
-
-import NFLpicks from './components/NFLpicks';
-
 
 const App = function App() {
   return (
     <div>
       <div className="nfl">
-        <NFLpicks />
+        this is the nfl thing...
       </div>
     </div>
   );

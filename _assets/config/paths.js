@@ -44,7 +44,6 @@ module.exports = {
   appHtml: resolveApp('public/index.html'),
   homeHtml: resolveApp('public/homepage.html'),
   footerHtml: resolveApp('public/footer_scripts.html'),
-  nflHtml: resolveApp('public/nfl.html'),
   appIndexJs: resolveApp('src/index.jsx'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),

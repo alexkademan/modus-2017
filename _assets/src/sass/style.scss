@@ -7,6 +7,9 @@
 @import 'base/base';
 
 @import 'mixins/mixins-master';
+// @import 'font-awesome/font-awesome';
+
+@import 'font-awesome/font-awesome';
 
 // /*--------------------------------------------------------------
 // # Navigation
@@ -27,8 +30,3 @@
 // # Content
 // --------------------------------------------------------------*/
 @import 'site/site';
-
-
-body {
-  font-family: 'Roboto Slab', sans-serif;
-}
