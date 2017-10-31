@@ -13,12 +13,14 @@ class Diagnostic extends React.Component {
       window: DocumentStore.getWindowSize(),
       isAdmin: props.user,
       wholeLayout: props.wholeLayout, // DOM element for size of page.
+      modal: DocumentStore.getModalState(),
     };
 
-    DocumentStore.addListener('change', () => {
+    DocumentStore.addListener('toggleModal', () => {
       this.setState({
-        weeksGames: DocumentStore.getWindowSize(),
+        modal: DocumentStore.getModalState(),
       });
+      this.toggleModal();
     });
 
     this.updateDimensions = this.updateDimensions.bind(this);
@@ -31,6 +33,15 @@ class Diagnostic extends React.Component {
   }
 
   updateDimensions() {
+    let scrollDir = 'none';
+    if (this.state.window.scrollY < window.scrollY) {
+      scrollDir = 'down';
+    } else if (this.state.window.scrollY > window.scrollY) {
+      scrollDir = 'up';
+    } else {
+      scrollDir = 'none';
+    }
+
     const newWindowInfo = {
       width: window.innerWidth,
       height: window.innerHeight,
@@ -38,9 +49,27 @@ class Diagnostic extends React.Component {
       scrollY: window.scrollY,
       layoutHeight: this.state.wholeLayout.clientHeight,
       layoutWidth: this.state.wholeLayout.clientWidth,
+      scrollDirection: scrollDir,
     };
     this.setState({ window: newWindowInfo });
     DocumentStore.setDocInfo(newWindowInfo);
+  }
+
+  toggleModal() {
+    const el = this.state.wholeLayout;
+    const className = 'modal-background';
+
+    if (this.state.modal) {
+      // add blur effect to page!!!
+      // https://jaketrent.com/post/addremove-classes-raw-javascript/
+      if (!el.classList.contains(className)) {
+        // add that class...
+        el.classList.add(className);
+      }
+    } else if (el.classList.contains(className)) {
+      // remove blur effect from page!!!
+      el.classList.remove(className);
+    }
   }
 
   render() {

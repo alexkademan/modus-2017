@@ -1,5 +1,5 @@
 // Typography
-$base-font-family: 'Roboto Slab', sans-serif;;
+$base-font-family: 'Roboto Slab', sans-serif;
 $heading-font-family: $base-font-family;
 
 // Line height
@@ -14,11 +14,23 @@ $base-z-index: 0;
 
 // Colors
 $blue: #1565c0;
+$gray: #ccc;
 $dark-gray: #333;
 $medium-gray: #999;
 $light-gray: #ddd;
 $black: #000;
 $white: #fff;
+
+$modus-orange: rgb(241, 93, 34);
+$orange: $modus-orange;
+$modus-brown: rgb(84, 48, 26);
+$brown: $modus-brown;
+
+$color-modal-background: rgba(0, 0, 0, .7);
+// $color-modal-background: rgba(244, 210, 176, .3);
+// $color-modal-background: rgba(255, 255, 255, .3);
+// $color-modal-main-nav: rgba(244, 210, 176, .3);
+$color-modal-main-nav: rgba(241, 93, 34, .85);
 
 // Font Colors
 $base-font-color: $dark-gray;
@@ -33,7 +45,7 @@ $base-background-color: #fff;
 $secondary-background-color: tint($base-border-color, 75%);
 
 // Focus
-$focus-outline-color: transparentize($action-color, 0.4);
+$focus-outline-color: transparentize($action-color, .4);
 $focus-outline-width: 3px;
 $focus-outline: $focus-outline-width solid $focus-outline-color;
 $focus-outline-offset: 2px;

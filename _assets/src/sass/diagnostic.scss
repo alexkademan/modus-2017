@@ -5,16 +5,24 @@ $white: #fff;
 $gray: #ccc;
 $black: #000;
 $red: #c00;
+$green: #0c0;
 
-.react-diagnostic {
+
+.react-diagnostic,
+.react-diagnostic-off {
   position: fixed;
+  z-index: 9999;
   left: 2px;
   top: 34px; // to go below WP admin bar
   background: $color-gray-alpha;
   color: $white;
-  padding: .5em .75em;
   font-family: Helvetica, Arial, sans-serif;
   border-radius: .25em;
+}
+
+.react-diagnostic {
+  padding: .5em .75em;
+  min-width: 180px;
   box-shadow: 5px 5px 10px $color-gray-alpha-light;
 
   header {
@@ -41,5 +49,27 @@ $red: #c00;
 
   p {
     margin-bottom: 0;
+  }
+
+  .modal {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.react-diagnostic-off {
+  width: 35px;
+  height: 32px;
+  padding: .25em;
+  text-align: center;
+  transition: background .2s linear;
+
+  &:hover {
+    background: $green;
+  }
+
+  &,
+  i {
+    cursor: pointer;
   }
 }

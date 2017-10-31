@@ -1,0 +1,89 @@
+
+$hamburger-line-thickness: .333em;
+$hamburger-spacing: 8px;
+
+.main-nav-button {
+  position: fixed;
+  z-index: 500;
+  right: 5px;
+  top: 5px;
+  cursor: pointer;
+  padding: 2.25em 1.75em;
+  border-radius: 50%;
+  background: $orange;
+  font-size: 7px;
+  transition: transform ease-out 200ms;
+  transition-timing-function: cubic-bezier(.175, .885, .32, 1.275);
+  transition-duration: 400ms;
+  transform: scale(1.1, 1.1) translate3d(0, 0, 0);
+  // transition: top .25s ease-in-out;
+
+  &:hover {
+    transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+  }
+
+  .hamburger {
+    display: block;
+    width: 4em;
+    height: 3em;
+    position: relative;
+  }
+
+  span {
+    background-color: $white;
+    display: block;
+    position: absolute;
+    height: $hamburger-line-thickness;
+    border-radius: .333em;
+    width: 100%;
+
+    top: 50%;
+    left: 50%;
+    margin-left: -50%;
+    margin-top: -$hamburger-line-thickness / 2;
+    transition: transform 200ms;
+
+    &:nth-child(1) {
+      transform: translate3d(0, -$hamburger-spacing, 0);
+    }
+
+    &:nth-child(2) {
+      transform: translate3d(0, 0, 0);
+    }
+
+    &:nth-child(3) {
+      transform: translate3d(0, $hamburger-spacing, 0);
+    }
+  }
+
+  // open ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  &.open {
+    background: $white;
+    transition-timing-function: linear;
+    transition-duration: 200ms;
+    transform: scale(.8, .8) translate3d(0, 0, 0);
+
+    span {
+      background-color: $orange;
+
+      &:nth-child(1) {
+        transform: translate3d(0, 0, 0) rotate(45deg);
+      }
+
+      &:nth-child(2) {
+        top: 2.6em;
+        position: relative;
+        opacity: 0;
+      }
+
+      &:nth-child(3) {
+        transform: translate3d(0, 0, 0) rotate(-45deg);
+      }
+    }
+  }
+
+  &.hide-button {
+    top: -60px;
+    transition: top .25s ease-in-out;
+  }
+}

@@ -1,0 +1,24 @@
+.modal-content {
+  display: block;
+  max-width: 95%;
+  width: 50em;
+  // background: $brown;
+  margin: 1em auto;
+  color: $orange;
+
+}
+
+.main-nav {
+  .site-nav {
+    display: block;
+    margin: 10vh auto;
+    width: 50em;
+    max-width: 80%;
+
+    a {
+      display: block;
+      color: $white;
+      font-size: 3em;
+    }
+  }
+}

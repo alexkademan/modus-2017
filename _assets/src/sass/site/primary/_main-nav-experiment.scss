@@ -1,0 +1,93 @@
+// @import "compass/css3";
+
+//vars
+// $fg: $orange;
+$bg: #3f51b5;
+$pi: 3.14;
+
+$line-width: 25px;
+$height: 3px;
+
+//config
+$menu-items: 5;
+$open-distance: 115px;
+$opening-angle: $pi - .2;
+$hamburger-spacing: 8px;
+
+.menu-btn {
+  position: fixed;
+  right: 50px;
+  top: 50px;
+}
+
+.menu-open {
+  display:  none;
+}
+
+.menu-open-button {
+  background: $orange;
+  border-radius: 100%;
+  width: 80px;
+  height: 80px;
+  margin-left: -40px;
+  position: absolute;
+  top: 20px;
+  color: $white;
+  text-align: center;
+  line-height: 80px;
+  z-index: 2;
+  transition: transform ease-out 200ms;
+  transition-timing-function: cubic-bezier(.175, .885, .32, 1.275);
+  transition-duration: 400ms;
+  transform: scale(1.1, 1.1) translate3d(0, 0, 0);
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+  }
+
+  span {
+    width: $line-width;
+    height: $height;
+    background: $white;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -$line-width / 2;
+    margin-top: -$height / 2;
+    transition: transform 200ms;
+
+    &:nth-child(1) {
+      transform: translate3d(0, -$hamburger-spacing, 0);
+    }
+
+    &:nth-child(2) {
+      transform: translate3d(0, 0, 0);
+    }
+
+    &:nth-child(3) {
+      transform: translate3d(0, $hamburger-spacing, 0);
+    }
+  }
+}
+
+.menu-open:checked + .menu-open-button {
+  transition-timing-function: linear;
+  transition-duration: 200ms;
+  transform: scale(0.8,0.8) translate3d(0,0,0);
+
+  span {
+    &:nth-child(1) {
+      transform: translate3d(0, 0, 0) rotate(45deg);
+    }
+
+    &:nth-child(2) {
+      transform: translate3d(0, 0, 0) scale(.1, 1);
+    }
+
+    &:nth-child(3) {
+      transform: translate3d(0, 0, 0) rotate(-45deg);
+    }
+  }
+}

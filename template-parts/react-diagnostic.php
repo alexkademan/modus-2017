@@ -1,13 +1,12 @@
 <?php
 
-$diagnostic_class = 'hid';
+$diagnostic_class = '';
 
 if (current_user_can('administrator')) {
   $user = wp_get_current_user();
   if($user->user_email == 'alex@designbymodus.com') {
-    $diagnostic_class = 'is_admin';
+    $diagnostic_class = 'is-admin';
   }
 }
 
-echo '<div id="react-diagnostic" class="' . $diagnostic_class . '">'; // for stats when logged in.
-echo '</div>';
+echo '<div id="react-div" class="' . $diagnostic_class . '"></div>';
