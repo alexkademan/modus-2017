@@ -8,6 +8,7 @@
  *
  * @package _s
  */
+echo '<div id="doggos" class="doggos"></div>';
 // echo '<div id="root"></div>';
 echo '</div>'; // #content
 echo '<div class="centered-section">';
@@ -33,6 +34,8 @@ echo '</div>'; //#whole-layout
 
 get_template_part( 'template-parts/react', 'diagnostic' );
 wp_footer();
+
+echo get_template_part( 'template-parts/react', 'varsJSON' );
 
 $main_js = get_webkit_asset('js', 'main');
 if($main_js != '') {

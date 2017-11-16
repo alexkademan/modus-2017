@@ -18,6 +18,7 @@ class Modal extends React.Component {
       this.setState({
         modal: DocumentStore.getModalState(),
         modalInfo: DocumentStore.getModalInfo(),
+        modalParentName: DocumentStore.getmodalParentName(),
       });
       this.bgFade();
     });
@@ -50,15 +51,23 @@ class Modal extends React.Component {
   }
 
   handleClick(e) {
-    if (this.modalNode && e.target.classList.contains('site-modal')) {
+    if (
+      (this.modalNode && e.target.classList.contains('site-modal')) ||
+      (this.modalNode && e.target.classList.contains('site-nav'))
+    ) {
       DocumentStore.toggleModal();
     }
   }
 
   handleKeyboard(e) {
     if (e.code === 'KeyM') {
-      // DocumentStore.setModalInfo('main-nav');
       DocumentStore.toggleModal('main-nav');
+    }
+    if (e.code === 'KeyP') {
+      DocumentStore.toggleModal('dog-modal');
+    }
+    if (e.code === 'KeyN') {
+      DocumentStore.toggleModal();
     }
     if (this.state.modal && e.code === 'Escape') {
       DocumentStore.toggleModal();
@@ -66,10 +75,8 @@ class Modal extends React.Component {
   }
 
   render() {
-    let modalName = 'site-modal-container';
-    if (this.state.modalInfo) {
-      modalName += ` ${this.state.modalInfo}`;
-    }
+    const modalName = `site-modal-container ${this.state.modalParentName}`;
+    let modalInlineStyle;
 
     // set up the sate for the fade in/out:
     let modalStyle = 'site-modal';
@@ -82,13 +89,24 @@ class Modal extends React.Component {
     }
 
     if (
+      this.state.modalFader === 'fade-out-start' ||
+      this.state.modalFader === 'fade-out'
+    ) {
+      const topDistance = DocumentStore.getPageScrollStatus();
+      modalInlineStyle = { top: `${topDistance}px` };
+    }
+
+    if (
       this.state.modal ||
       this.state.modalFader === 'fade-out-start' ||
       this.state.modalFader === 'fade-out'
     ) {
       return (
-        <div className={modalName}>
-          <span className={modalStyle} ref={(modalNode) => { this.modalNode = modalNode; }}>
+        <div className={modalName} style={modalInlineStyle}>
+          <span
+            className={modalStyle}
+            ref={(modalNode) => { this.modalNode = modalNode; }}
+          >
             <ModalContent />
           </span>
         </div>

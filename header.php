@@ -25,7 +25,10 @@
 	}
 	?>
 </head>
-<body <?php body_class(); ?>>
+<body <?php body_class() ?>>
+	<?php
+
+	?>
 <div id="page" class="whole-layout">
 	<div class="site">
 		<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', '_s' ); ?></a>
@@ -59,7 +62,7 @@
 					endif; ?>
 				</span><!-- .site-branding -->
 
-				<nav id="site-navigation" class="main-navigation">
+				<nav id="site-navigation" class="main-navigation hid">
 					<h1 class="hid">Site Navigation</h1>
 					<?php
 						wp_nav_menu( array(

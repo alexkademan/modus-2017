@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import DiagnosticPanel from './components/DiagnosticPanel';
 import DocumentStore from './flux/documentStore';
-import './sass/diagnostic.scss';
+// import './sass/diagnostic.scss';
 
 class Diagnostic extends React.Component {
 
@@ -14,6 +14,7 @@ class Diagnostic extends React.Component {
       isAdmin: props.user,
       wholeLayout: props.wholeLayout, // DOM element for size of page.
       modal: DocumentStore.getModalState(),
+      layoutScrollY: 0,
     };
 
     DocumentStore.addListener('toggleModal', () => {
@@ -24,35 +25,26 @@ class Diagnostic extends React.Component {
     });
 
     this.updateDimensions = this.updateDimensions.bind(this);
-    window.addEventListener('resize', this.updateDimensions);
-    window.addEventListener('scroll', this.updateDimensions);
   }
 
   componentDidMount() {
     this.updateDimensions();
+    window.addEventListener('resize', this.updateDimensions);
+    window.addEventListener('scroll', this.updateDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateDimensions);
+    window.removeEventListener('scroll', this.updateDimensions);
   }
 
   updateDimensions() {
-    let scrollDir = 'none';
-    if (this.state.window.scrollY < window.scrollY) {
-      scrollDir = 'down';
-    } else if (this.state.window.scrollY > window.scrollY) {
-      scrollDir = 'up';
-    } else {
-      scrollDir = 'none';
-    }
-
-    const newWindowInfo = {
-      width: window.innerWidth,
-      height: window.innerHeight,
-      scrollX: window.scrollX,
-      scrollY: window.scrollY,
-      layoutHeight: this.state.wholeLayout.clientHeight,
-      layoutWidth: this.state.wholeLayout.clientWidth,
-      scrollDirection: scrollDir,
-    };
-    this.setState({ window: newWindowInfo });
-    DocumentStore.setDocInfo(newWindowInfo);
+    DocumentStore.configureDocInfo(
+      this.state.wholeLayout.clientWidth,
+      this.state.wholeLayout.clientHeight,
+    );
+    this.setState({ window: DocumentStore.getDocInfo() });
+    if (this.state.modal) { this.modalBackgroundOn(); }
   }
 
   toggleModal() {
@@ -60,16 +52,36 @@ class Diagnostic extends React.Component {
     const className = 'modal-background';
 
     if (this.state.modal) {
-      // add blur effect to page!!!
-      // https://jaketrent.com/post/addremove-classes-raw-javascript/
       if (!el.classList.contains(className)) {
-        // add that class...
+        DocumentStore.setPageScrollStatus(this.state.window.scrollY);
+        this.setState({
+          layoutScrollY: DocumentStore.getPageScrollStatus(),
+        });
+        this.modalBackgroundOn();
+        window.scrollTo(0, 0);
+        // add blur effect to page:
+        // https://jaketrent.com/post/addremove-classes-raw-javascript/
         el.classList.add(className);
       }
     } else if (el.classList.contains(className)) {
-      // remove blur effect from page!!!
+      this.modalBackgroundOff();
+      // remove blur effect from page:
       el.classList.remove(className);
     }
+  }
+
+  modalBackgroundOn() {
+    const modalHeight = this.state.window.height + this.state.layoutScrollY;
+    let bgStyle = 'position: fixed; left: 0; top: 0; overflow: hidden;';
+    bgStyle += ` margin-top: -${this.state.layoutScrollY}px;`;
+    bgStyle += ` width: ${this.state.window.width}px;`;
+    bgStyle += ` height: ${modalHeight}px;`;
+    this.state.wholeLayout.setAttribute('style', bgStyle);
+  }
+
+  modalBackgroundOff() {
+    this.state.wholeLayout.setAttribute('style', '');
+    window.scrollTo(this.state.window.scrollX, this.state.layoutScrollY);
   }
 
   render() {

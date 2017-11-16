@@ -7,13 +7,13 @@ $black: #000;
 $red: #c00;
 $green: #0c0;
 
-
 .react-diagnostic,
 .react-diagnostic-off {
   position: fixed;
-  z-index: 9999;
+  z-index: 502;
   left: 2px;
   top: 34px; // to go below WP admin bar
+  display: block;
   background: $color-gray-alpha;
   color: $white;
   font-family: Helvetica, Arial, sans-serif;

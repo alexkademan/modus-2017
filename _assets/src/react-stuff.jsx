@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Diagnostic from './Diagnostic';
 import Modal from './components/Modal';
 import MainNavButton from './components/MainNavButton';
+import DocumentStore from './flux/documentStore';
 
 class ReactStuff extends React.Component {
 
@@ -13,15 +14,27 @@ class ReactStuff extends React.Component {
     this.state = {
       isAdmin: props.user,
       wholeLayout: props.wholeLayout, // DOM element for size of page.
+      siteInfo: props.phpVars,
     };
+
+    // pull in the JSON that I sent from WP's PHP templates
+    if (
+      this.state.siteInfo &&
+      this.state.siteInfo.mainnav
+    ) {
+      DocumentStore.setPageNavigation(this.state.siteInfo.mainnav);
+    }
   }
 
   render() {
     return (
       <div className="reactStuff">
-        <MainNavButton />
         <Modal />
-        <Diagnostic user={this.state.isAdmin} wholeLayout={this.state.wholeLayout} />
+        <MainNavButton />
+        <Diagnostic
+          user={this.state.isAdmin}
+          wholeLayout={this.state.wholeLayout}
+        />
       </div>
     );
   }
@@ -30,11 +43,13 @@ class ReactStuff extends React.Component {
 ReactStuff.propTypes = {
   user: PropTypes.bool,
   wholeLayout: PropTypes.shape({}),
+  phpVars: PropTypes.shape({}),
 };
 
 ReactStuff.defaultProps = {
   user: false,
   wholeLayout: '',
+  phpVars: false,
 };
 
 export default ReactStuff;

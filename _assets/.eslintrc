@@ -10,8 +10,8 @@
   "rules": {
 
   "indent": ["error", 2],
-# "no-return-assign": 0,
-#   "comma-dangle": 0,
+  # "no-return-assign": 0,
+  # "comma-dangle": 0,
   "no-underscore-dangle": 0,
   "arrow-body-style": 0,
   "no-console": 0,

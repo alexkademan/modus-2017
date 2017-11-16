@@ -1,9 +1,12 @@
-
 import { EventEmitter } from 'fbemitter';
 
 let windowStats;
 let toggleModal = false; // show or hide modal
+let modalFader = false;
 let modalInfo = false; // name of modal in question.
+let modalParentName = false; // name of modal parent.
+let pagesArray = false; // array for page navigation.
+let pageStatus = false;
 const emitter = new EventEmitter();
 
 const DocumentStore = {
@@ -16,14 +19,31 @@ const DocumentStore = {
     return windowStats;
   },
 
-  toggleModal(modalName = false) {
+  toggleModal(modalName = 'default') {
     if (toggleModal) {
       toggleModal = false;
+      modalInfo = false;
+      modalFader = true;
     } else {
       toggleModal = true;
       modalInfo = modalName;
+      modalParentName = modalName;
     }
     emitter.emit('toggleModal');
+  },
+
+  getModalFader() {
+    // copy current value for return:
+    const returnVal = modalFader;
+
+    // set to false for next query after a few miliseconds:
+    // because the window continues changing.
+    if (modalFader) {
+      setTimeout(() => {
+        modalFader = false;
+      }, 100);
+    }
+    return returnVal;
   },
 
   getModalState() {
@@ -34,14 +54,64 @@ const DocumentStore = {
     return modalInfo;
   },
 
+  getmodalParentName() {
+    return modalParentName;
+  },
+
   setModalInfo(newModal) {
     modalInfo = newModal;
-    return newModal;
   },
 
   setDocInfo(newInfo) {
     windowStats = newInfo;
     emitter.emit('change');
+  },
+
+  configureDocInfo(layoutWidth, layoutHeight) {
+    let scrollDir = 'none';
+
+    if (windowStats.scrollY < window.scrollY) {
+      scrollDir = 'down';
+    } else if (windowStats.scrollY > window.scrollY) {
+      scrollDir = 'up';
+    } else {
+      scrollDir = 'none';
+    }
+
+    const newWindowInfo = {
+      width: window.innerWidth,
+      height: window.innerHeight,
+      scrollX: window.scrollX,
+      scrollY: window.scrollY,
+      scrollDirection: scrollDir,
+      layoutHeight,
+      layoutWidth,
+    };
+
+    windowStats = newWindowInfo;
+    emitter.emit('change');
+  },
+
+  getDocInfo(): Array<Object> {
+    return windowStats;
+  },
+
+  getPageNavigation(): Array<Object> {
+    return pagesArray;
+  },
+
+  setPageNavigation(newPagesArray) {
+    pagesArray = newPagesArray;
+    emitter.emit('nav-change');
+  },
+
+  setPageScrollStatus(newStatus) {
+    pageStatus = newStatus;
+    emitter.emit('pageStatChange');
+  },
+
+  getPageScrollStatus() {
+    return pageStatus;
   },
 
   addListener(eventType: string, fn: Function) {

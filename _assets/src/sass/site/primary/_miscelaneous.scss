@@ -1,3 +1,15 @@
+@media($wordpress-small-size) {
+
+  // remove the WP admin-bar on smallest screens:
+  #wpadminbar {
+    display: none;
+  }
+
+  html {
+    margin-top: 0 !important;
+  }
+}
+
 .hid {
   display: none;
 }

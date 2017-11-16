@@ -14,6 +14,8 @@ $col-reading-width: pem(580);
 
 $medium-breakpoint: 'min-width: ' + $small-size;
 $large-breakpoint: 'min-width: ' + $large-size;
+$wordpress-small-size: 'max-width: 782px';
+$wordpress-large-size: 'min-width: 783px';
 
 $main-layout-grid: (
   columns: 2,
@@ -31,6 +33,7 @@ body {
 
 .site {
   display: block;
+  position: relative;
   clear: both;
   float: left;
   width: 100%;

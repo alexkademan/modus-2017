@@ -1,0 +1,68 @@
+.main-nav {
+  .site-nav {
+    display: block;
+    float: left;
+    clear: none;
+    margin: 0 auto;
+    padding: 10vh 0;
+    // width: 50em;
+    // max-width: 80%;
+    width: 100%;
+
+    li,
+    a > span,
+    a {
+      display: block;
+      float: left;
+      clear: both;
+    }
+
+    ul {
+      display: block;
+      clear: none;
+      margin: 0 auto;
+      width: 50em;
+      max-width: 80%;
+    }
+
+    a > span {
+      padding: 0 0 .25em;
+      margin: 0;
+      background: transparent;
+      position: relative;
+
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 4px;
+        background: $white;
+        transition: width .125s ease-in-out;
+        border-radius: 8px;
+      }
+    }
+
+    li {
+      width: 100%;
+    }
+
+    a {
+      width: 100%;
+      color: $white;
+      text-decoration: none;
+      font-size: 3em;
+      padding: .25em 0;
+      line-height: 1em;
+
+      &:hover {
+        text-decoration: underline;
+
+        span:after {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

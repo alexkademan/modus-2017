@@ -1,6 +1,7 @@
 import React from 'react';
 import DocumentStore from '../flux/documentStore';
 import MainNav from './MainNav';
+import DogModal from './DogModal';
 
 class ModalController extends React.Component {
   constructor() {
@@ -10,38 +11,34 @@ class ModalController extends React.Component {
       modal: DocumentStore.getModalState(),
       modalInfo: DocumentStore.getModalInfo(),
     };
+
+    this.updateWindow = this.updateWindow.bind(this);
   }
 
   componentDidMount() {
-    document.addEventListener('click', this.handleClick);
+    window.addEventListener('resize', this.updateWindow);
+    window.addEventListener('scroll', this.updateWindow);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('click', this.handleClick);
+    window.removeEventListener('resize', this.updateWindow);
+    window.removeEventListener('scroll', this.updateWindow);
   }
 
-  handleClick(e) {
-    if (this.node && e.target.className === 'site-modal') {
-      console.log('node exists...');
-    }
-  }
-
-  renderDefault() {
-    console.log(this.state.modalInfo);
-    return (
-      <div>
-        this is the default modal render method.
-      </div>
-    );
+  updateWindow() {
+    this.setState({ window: DocumentStore.getWindowSize() });
   }
 
   render() {
-    // console.log(this.state.modalInfo);
     if (this.state.modal) {
-      if (this.state.modalInfo === 'main-nav') {
+      switch (this.state.modalInfo) {
+      case 'main-nav':
         return <MainNav />;
+      case 'dog-modal':
+        return <DogModal />;
+      default:
+        return (<div className="default-modal">Default Modal.</div>);
       }
-      return this.renderDefault();
     }
     return false;
   }

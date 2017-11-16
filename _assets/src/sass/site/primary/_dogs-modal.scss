@@ -1,0 +1,25 @@
+.dog-modal {
+  color: $black;
+
+  .site-modal,
+  .site-modal-transparent-out {
+    background: $color-dog-modal;
+  }
+
+  .dog {
+    display: block;
+    clear: none;
+    margin: 20vh auto;
+    width: 50em;
+    max-width: 80%;
+    color: $black;
+
+    img {
+      width: 100%;
+    }
+
+    p {
+      text-align: center;
+    }
+  }
+}

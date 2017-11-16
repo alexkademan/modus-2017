@@ -2,11 +2,29 @@
 $hamburger-line-thickness: .333em;
 $hamburger-spacing: 8px;
 
-.main-nav-button {
+.main-nav-button-div {
   position: fixed;
+  right: 9px;
+  top: 8px;
   z-index: 500;
-  right: 5px;
-  top: 5px;
+  transition: top .25s ease-in-out;
+
+  &.hide-button {
+    top: -60px;
+  }
+
+  @media($wordpress-large-size) {
+    .admin-bar & {
+      top: 40px;
+
+      &.hide-button {
+        top: -92px;
+      }
+    }
+  }
+}
+
+.main-nav-button {
   cursor: pointer;
   padding: 2.25em 1.75em;
   border-radius: 50%;
@@ -16,7 +34,6 @@ $hamburger-spacing: 8px;
   transition-timing-function: cubic-bezier(.175, .885, .32, 1.275);
   transition-duration: 400ms;
   transform: scale(1.1, 1.1) translate3d(0, 0, 0);
-  // transition: top .25s ease-in-out;
 
   &:hover {
     transform: scale(1.2, 1.2) translate3d(0, 0, 0);
@@ -80,10 +97,5 @@ $hamburger-spacing: 8px;
         transform: translate3d(0, 0, 0) rotate(-45deg);
       }
     }
-  }
-
-  &.hide-button {
-    top: -60px;
-    transition: top .25s ease-in-out;
   }
 }

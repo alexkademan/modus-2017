@@ -8,7 +8,7 @@ class DiagnosticPanel extends React.Component {
 
     this.state = {
       window: DocumentStore.getWindowSize(),
-      showPanel: false,
+      showPanel: true,
       modal: DocumentStore.getModalState(),
       modalName: DocumentStore.getModalInfo(),
     };
