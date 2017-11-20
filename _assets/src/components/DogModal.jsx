@@ -15,10 +15,11 @@ class DogModal extends React.Component {
     return (
       <div className="dog">
         <img
-          src="http://stories.barkpost.com/wp-content/uploads/2013/02/tumblr_mg6b5xgrQb1rls0kbo1_500.gif"
+          src="https://i.imgur.com/caHgBhc.gif"
           alt="cute cat and doggo"
         />
         <p>This is where the cute dog pics go.</p>
+        <p>Modus Design, Inc. is a dog friendly environment.</p>
       </div>
     );
   }

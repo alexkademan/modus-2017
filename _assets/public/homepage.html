@@ -63,6 +63,45 @@
         </div></span></article></main>
 
         <div id="doggos" class="doggos"></div>
+
+        <div class="gooey">
+
+          <nav class="menu">
+            <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open"/>
+            <label class="menu-open-button" for="menu-open">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27.2 56.6">
+                <path class="st0" d="M12.5.2s-2.7 10 5.5 19.6C28.7 32.2 28.8 41.1 24.7 48c-5.6 9.7-18 13.2-24.1-.8 0 0-3-8.9 4.1-18.3 0 0-3.8 23.1 10 19.9 2.5-.6 10-9.4 2.1-19.9C11.9 22.3 1.4 13.1 12.5.2z"/>
+              </svg>
+            </label>
+
+            <a href="#" class="menu-item"><i class="fa fa-facebook-square fa-2x"></i></a>
+            <a href="#" class="menu-item"><i class="fa fa-linkedin-square fa-2x"></i></a>
+            <a href="#" class="menu-item"><i class="fa fa-instagram fa-2x"></i></a>
+            <a href="#" class="menu-item"><i class="fa fa-paw fa-2x"></i></a>
+
+          </nav>
+
+          <!-- filters -->
+          <svg version="1.1">
+            <defs>
+              <filter id="shadowed-goo">
+                <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+                <feGaussianBlur in="goo" stdDeviation="3" result="shadow" />
+                <feColorMatrix in="shadow" mode="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 -0.2" result="shadow" />
+                <feOffset in="shadow" dx="1" dy="1" result="shadow" />
+                <feComposite in2="shadow" in="goo" result="goo" />
+                <feComposite in2="goo" in="SourceGraphic" result="mix" />
+              </filter>
+              <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+                <feComposite in2="goo" in="SourceGraphic" result="mix" />
+              </filter>
+            </defs>
+          </svg>
+        </div>
+
       </div>
 
 
