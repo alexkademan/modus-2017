@@ -1,64 +1,50 @@
+
 //vars
 $fg: $modus-orange;
 $bg: #673ab7;
 $pi: 3.14;
 
 //config
-$menu-items: 4;
+$menu-items: 3;
 $open-distance: 105px;
 $opening-angle: $pi * 2;
 
+$btn-diameter: 80px;
+
+$width: 25px;
+$height: 3px;
+
+.gooey-filter {
+  width: 0;
+  height: 0;
+  position: absolute;
+  overflow: hidden;
+}
+
 .gooey {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 0;
+  background: #fcf;
+  width: auto;
 
   %goo {
     filter: url('#shadowed-goo');
     // debug
-    // background:rgba(255,0,0,0.2);
-  }
-
-  %ball {
-    background: $fg;
-    border-radius: 100%;
-    width: 80px;
-    height: 80px;
-    margin-left: -40px;
-    position: absolute;
-    top: 20px;
-    color: $white;
-    text-align: center;
-    line-height: 80px;
-    transform: translate3d(0, 0, 0);
-    transition: transform ease-out 200ms;
-  }
-
-  .menu-open {
-    display: none;
-  }
-
-  .hamburger {
-    $width: 25px;
-    $height: 3px;
-    width: $width;
-    height: $height;
-    background: $white;
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -$width / 2;
-    margin-top: -$height / 2;
-    transition: transform 200ms;
+    // background: rgba(255, 0, 0, .2);
   }
 
   .menu {
     @extend %goo;
-    $width: 650px;
-    $height: 150px;
-    position: absolute;
-    left: 50%;
-    margin-left: -80px;
-    padding-top: 20px;
-    padding-left: 80px;
+    $width: 384px;
+    $height: 100px;
+    display: block;
+    float: left;
+    left: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-left: 50px;
     width: $width;
     height: $height;
     box-sizing: border-box;
@@ -66,11 +52,26 @@ $opening-angle: $pi * 2;
     text-align: left;
   }
 
+  .toggle-nav,
   .menu-item {
-    @extend %ball;
+    background: $fg;
+    border-radius: 100%;
+    width: $btn-diameter;
+    height: $btn-diameter;
+    margin-left: -40px;
+    position: absolute;
+    top: 7px;
+    color: $white;
+    text-align: center;
+    line-height: $btn-diameter;
+    transform: translate3d(0, 0, 0);
+    transition: transform ease-out 200ms;
+  }
 
+  .menu-item {
     i {
-      line-height: 80px; // override font-awesome's settings
+      line-height: $btn-diameter; // override font-awesome's settings
+      font-size: ($btn-diameter / 2);
     }
 
     &:hover {
@@ -84,13 +85,12 @@ $opening-angle: $pi * 2;
     }
   }
 
-  .menu-open-button {
-    @extend %ball;
+  .toggle-nav {
     z-index: 2;
     transition-timing-function: cubic-bezier(.175, .885, .32, 1.275);
     transition-duration: 400ms;
-    transform: scale(1.1, 1.1) translate3d(0, 0, 0);
-    border: pem(6) $modus-orange solid;
+    // transform: scale(1.1, 1.1) translate3d(0, 0, 0);
+    border: ($btn-diameter / 10) $modus-orange solid;
     cursor: pointer;
 
     background: $white;
@@ -102,29 +102,31 @@ $opening-angle: $pi * 2;
       width: 37%;
       margin: .3em 0 0 .15em;
     }
-  }
 
-  .menu-open-button:hover {
-    transform: scale(1.2, 1.2) translate3d(0, 0, 0);
-  }
-
-  .menu-open:checked+.menu-open-button {
-    background: $modus-orange;
-    transition-timing-function: linear;
-    transition-duration: 200ms;
-    transform: scale(.8, .8) translate3d(0, 0, 0);
-
-    & > svg {
-      fill: $white;
+    &:hover {
+      transform: scale(1.1, 1.1) translate3d(0, 0, 0);
     }
   }
 
-  .menu-open:checked~.menu-item {
-    transition-timing-function: cubic-bezier(.165, .84, .44, 1);
-    @for $i from 1 through $menu-items {
-      &:nth-child(#{$i+2}) {
-        transition-duration: 90ms + (80ms * $i);
-        transform: translate3d((80px*$i), 0, 0);
+  .visible {
+    .toggle-nav {
+      background: $modus-orange;
+      transition-timing-function: linear;
+      transition-duration: 200ms;
+      transform: scale(.8, .8) translate3d(0, 0, 0);
+
+      & > svg {
+        fill: $white;
+      }
+    }
+
+    .menu-item {
+      transition-timing-function: cubic-bezier(.165, .84, .44, 1);
+      @for $i from 0 through $menu-items {
+        &:nth-child(#{$i+2}) {
+          transition-duration: 90ms + (80ms * $i);
+          transform: translate3d(($btn-diameter * $i) + $btn-diameter, 0, 0);
+        }
       }
     }
   }

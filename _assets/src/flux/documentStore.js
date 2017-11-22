@@ -46,6 +46,11 @@ const DocumentStore = {
     return returnVal;
   },
 
+  getModalFaderStatus() {
+    // some other component needs to know if modal is closing:
+    return modalFader;
+  },
+
   getModalState() {
     return toggleModal;
   },
