@@ -15,11 +15,52 @@
     color: $black;
 
     img {
-      width: 100%;
+      display: block;
+      margin: 0 auto;
     }
 
+    h1,
     p {
       text-align: center;
     }
+
+    .pet-page {
+      display: block;
+      width: 1em;
+      margin: 0 auto;
+    }
+
+    .fa-arrow-left,
+    .fa-arrow-right {
+      position: absolute;
+      top: 50vh;
+      right: .125em;
+      color: $white;
+      background-color: $gray-opaque;
+      padding: .5em;
+      font-size: 4em;
+      margin-top: -2em;
+      line-height: 1em;
+      width: 1em;
+      height: 1em;
+      border-radius: 100%;
+      cursor: pointer;
+      transition: background .2s linear;
+
+      &:hover {
+        background-color: $gray-opaque-darker;
+      }
+
+      &::before {
+        font-size: .75em;
+        position: absolute;
+        left: .25em;
+        top: 0;
+      }
+    }
+  }
+
+  .fa-arrow-left {
+    left: .125em;
   }
 }

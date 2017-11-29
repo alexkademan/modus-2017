@@ -1,18 +1,14 @@
 
-//vars
-$fg: $modus-orange;
-$bg: #673ab7;
-$pi: 3.14;
-
 //config
 $menu-items: 3;
 $open-distance: 105px;
-$opening-angle: $pi * 2;
+$opening-angle: 3.14 * 2;
 
-$btn-diameter: 80px;
+$btn-diameter: 60px;
+$btn-padding: $btn-diameter * .125;
 
-$width: 25px;
-$height: 3px;
+$btn-diameter-medium: 80px;
+$btn-padding-medium: $btn-diameter-medium * .125;
 
 .gooey-filter {
   width: 0;
@@ -21,32 +17,24 @@ $height: 3px;
   overflow: hidden;
 }
 
-.gooey {
+.gooey-ui {
   position: relative;
   display: block;
+  float: left;
   margin: 0;
-  padding: 0;
-  background: #fcf;
-  width: auto;
+  padding: $btn-padding;
+  width: $btn-diameter + ($btn-padding * 2);
+  height: $btn-diameter + ($btn-padding * 2);
 
-  %goo {
+  .menu { // nav
     filter: url('#shadowed-goo');
-    // debug
-    // background: rgba(255, 0, 0, .2);
-  }
-
-  .menu {
-    @extend %goo;
-    $width: 384px;
-    $height: 100px;
-    display: block;
-    float: left;
+    position: absolute;
     left: 0;
-    margin-left: 0;
-    padding-top: 0;
-    padding-left: 50px;
-    width: $width;
-    height: $height;
+    top: 0;
+    margin: 0;
+    padding: $btn-padding;
+    width: $btn-diameter + ($btn-padding * 2);
+    height: $btn-diameter + ($btn-padding * 2);
     box-sizing: border-box;
     font-size: 20px;
     text-align: left;
@@ -54,13 +42,14 @@ $height: 3px;
 
   .toggle-nav,
   .menu-item {
-    background: $fg;
+    background: $modus-orange;
     border-radius: 100%;
     width: $btn-diameter;
     height: $btn-diameter;
-    margin-left: -40px;
+    margin-left: 0;
     position: absolute;
-    top: 7px;
+    left: $btn-padding;
+    top: $btn-padding;
     color: $white;
     text-align: center;
     line-height: $btn-diameter;
@@ -69,6 +58,8 @@ $height: 3px;
   }
 
   .menu-item {
+    cursor: pointer;
+
     i {
       line-height: $btn-diameter; // override font-awesome's settings
       font-size: ($btn-diameter / 2);
@@ -76,7 +67,7 @@ $height: 3px;
 
     &:hover {
       background: $white;
-      color: $fg;
+      color: $modus-orange;
     }
     @for $i from 1 through $menu-items {
       &:nth-child(#{$i + 2}) {
@@ -109,6 +100,8 @@ $height: 3px;
   }
 
   .visible {
+    width: ($btn-diameter * ($menu-items + 2)) + ($btn-padding * 2);
+
     .toggle-nav {
       background: $modus-orange;
       transition-timing-function: linear;
@@ -126,6 +119,49 @@ $height: 3px;
         &:nth-child(#{$i+2}) {
           transition-duration: 90ms + (80ms * $i);
           transform: translate3d(($btn-diameter * $i) + $btn-diameter, 0, 0);
+        }
+      }
+    }
+  }
+
+  @media($medium-breakpoint) {
+    padding: $btn-padding-medium;
+    width: $btn-diameter-medium + ($btn-padding-medium * 2);
+    height: $btn-diameter-medium + ($btn-padding-medium * 2);
+
+    .menu {
+      width: $btn-diameter-medium + ($btn-padding-medium * 2);
+      height: $btn-diameter-medium + ($btn-padding-medium * 2);
+    }
+
+    .toggle-nav,
+    .menu-item {
+      width: $btn-diameter-medium;
+      height: $btn-diameter-medium;
+      line-height: $btn-diameter-medium;
+      left: $btn-padding-medium;
+      top: $btn-padding-medium;
+    }
+
+    .menu-item {
+      i {
+        line-height: $btn-diameter-medium; // override font-awesome's settings
+        font-size: ($btn-diameter-medium / 2);
+      }
+    }
+
+    .toggle-nav {
+      border: ($btn-diameter-medium / 10) $modus-orange solid;
+    }
+
+    .visible {
+      width: ($btn-diameter-medium * ($menu-items + 2)) + ($btn-padding-medium * 2);
+
+      .menu-item {
+        @for $i from 0 through $menu-items {
+          &:nth-child(#{$i+2}) {
+            transform: translate3d(($btn-diameter-medium * $i) + $btn-diameter-medium, 0, 0);
+          }
         }
       }
     }

@@ -8,9 +8,12 @@
  *
  * @package _s
  */
-echo '<div id="doggos" class="doggos"></div>';
+// echo '<div id="doggos" class="doggos">doggos?</div>';
+// echo 'euh...';
+// echo '<div id="gooey-ui" class="gooey-ui"></div>';
 // echo '<div id="root"></div>';
 echo '</div>'; // #content
+echo '<div id="gooey-ui" class="gooey-ui"></div>';
 echo '<div class="centered-section">';
 echo '<footer id="colophon" class="site-footer">';
 

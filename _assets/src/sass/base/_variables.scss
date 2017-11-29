@@ -26,9 +26,12 @@ $orange: $modus-orange;
 $modus-brown: rgb(84, 48, 26);
 $brown: $modus-brown;
 
-$color-modal-background: rgba(0, 0, 0, .7);
-$color-modal-main-nav: rgba(241, 93, 34, .85);
-$color-dog-modal: rgba(255, 255, 255, .7);
+$gray-opaque: rgba(0, 0, 0, .1);
+$gray-opaque-darker: rgba(0, 0, 0, .7);
+
+$color-modal-background: rgba(0, 0, 0, .85);
+$color-modal-main-nav: rgba(241, 93, 34, .95);
+$color-dog-modal: rgba(255, 255, 255, .95);
 
 // Font Colors
 $base-font-color: $dark-gray;

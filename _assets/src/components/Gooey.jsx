@@ -81,6 +81,10 @@ class Gooey extends React.Component {
   }
 
   render() {
+    const linkFB = 'https://www.facebook.com/ModusDesignMKE/';
+    const linkLinkedin = 'https://www.linkedin.com/company/modus-design-incorporated/';
+    const linkInstaGram = 'https://www.instagram.com/explore/locations/301868796/modus-design-inc/';
+
     return (
       <nav
         ref={(node) => { this.node = node; }}
@@ -99,11 +103,29 @@ class Gooey extends React.Component {
           </svg>
         </a>
 
-        <a className="menu-item"><i className={this.state.fbClassName} /></a>
-        <a className="menu-item"><i className={this.state.linkedinClassName} /></a>
-        <a className="menu-item"><i className={this.state.instaClassName} /></a>
-        <a className="menu-item"><i className={this.state.pawClassName} /></a>
+        <a className="menu-item" href={linkFB}>
+          <i className={this.state.fbClassName} />
+        </a>
+        <a className="menu-item" href={linkLinkedin}>
+          <i className={this.state.linkedinClassName} />
+        </a>
+        <a className="menu-item" href={linkInstaGram}>
+          <i className={this.state.instaClassName} />
+        </a>
+        <a className="menu-item">
+          <i className={this.state.pawClassName} />
+        </a>
 
+        <svg version="1.1" className="gooey-filter">
+          <defs>
+            <filter id="shadowed-goo">
+              <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+              <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+              <feGaussianBlur in="goo" stdDeviation="3" result="shadow" />
+              <feComposite in2="goo" in="SourceGraphic" result="mix" />
+            </filter>
+          </defs>
+        </svg>
       </nav>
     );
   }

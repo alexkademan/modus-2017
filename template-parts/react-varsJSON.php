@@ -12,17 +12,31 @@ foreach (get_pages($get_array) as $key => $page) {
 }
 
 
-$args = array(
+$pets_args = array(
   'post_type'=> 'Pets',
   'order'    => 'ASC'
 );
 
-$dogs = new WP_Query( $args );
+$dogs = new WP_Query( $pets_args );
+// print_r($dogs);
+foreach($dogs->posts as $key => $post) {
+  $post->permalink = get_permalink($post->ID);
+
+  $thumb_ID = get_post_thumbnail_id($post->ID);
+  if (isset($thumb_ID)) {
+    $post->featured_img = wp_get_attachment_image_src($thumb_ID, 'original');
+  }
+
+  // print_r(wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'original'));
+
+  $all_dogs[$key] = $post;
+}
+// print_r($all_dogs);
 
 $react_stuff['mainnav'] = $all_pages;
-$react_stuff['dogs'] = $dogs->posts;
+$react_stuff['dogs'] = $all_dogs;
 
 echo '<script type="text/javascript">';
 echo 'window.reactData = ';
-print_r(json_encode($react_stuff));
+print(json_encode($react_stuff));
 echo '</script>';

@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactStuff from './react-stuff';
-import Dogs from './components/Dogs';
 import Gooey from './components/Gooey';
 
 import DocumentStatus from './documentStats';
@@ -13,8 +12,7 @@ DocumentStore.init(DocumentStatus);
 
 const reactDiv = document.getElementById('react-div');
 const wholeLayout = document.getElementById('page');
-const doggos = document.getElementById('doggos');
-const gooey = document.getElementById('gooey');
+const gooey = document.getElementById('gooey-ui');
 
 let phpVars = false;
 
@@ -36,10 +34,6 @@ if (reactDiv) {
       phpVars={phpVars}
     />, reactDiv,
   );
-}
-
-if (doggos && phpVars.dogs) {
-  ReactDOM.render(<Dogs phpVars={phpVars.dogs} />, doggos);
 }
 
 if (gooey && phpVars.dogs) {

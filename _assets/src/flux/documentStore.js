@@ -1,5 +1,7 @@
 import { EventEmitter } from 'fbemitter';
 
+import DocumentActions from './documentActions';
+
 let windowStats;
 let toggleModal = false; // show or hide modal
 let modalFader = false;
@@ -7,6 +9,8 @@ let modalInfo = false; // name of modal in question.
 let modalParentName = false; // name of modal parent.
 let pagesArray = false; // array for page navigation.
 let pageStatus = false;
+let randomDog = 0;
+let reactDogs;
 const emitter = new EventEmitter();
 
 const DocumentStore = {
@@ -20,6 +24,10 @@ const DocumentStore = {
   },
 
   toggleModal(modalName = 'default') {
+    reactDogs = window.reactData.dogs;
+    if (reactDogs && !toggleModal && modalName === 'dog-modal') {
+      randomDog = DocumentActions.randomNumber(reactDogs.length);
+    }
     if (toggleModal) {
       toggleModal = false;
       modalInfo = false;
@@ -30,6 +38,15 @@ const DocumentStore = {
       modalParentName = modalName;
     }
     emitter.emit('toggleModal');
+  },
+
+  getDogsArray() {
+    return reactDogs;
+  },
+
+  getRandomDog() {
+    // returns number value to use within array.
+    return randomDog;
   },
 
   getModalFader() {
