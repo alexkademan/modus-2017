@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import DocumentStore from '../flux/documentStore';
+import DocumentActions from '../flux/documentActions';
 
 class DogModal extends React.Component {
 
@@ -36,28 +37,24 @@ class DogModal extends React.Component {
 
   handleClick(e) {
     if (this.node && this.node.contains(e.target)) {
-      // console.log(e.target.className);
-      switch (e.target.className) {
-      case 'fa fa-arrow-right':
-        this.addOne();
-        break;
-      case 'fa fa-arrow-left':
-        this.removeOne();
-        break;
-      default:
+      console.log('clidked onoeitoeriu');
+      if (e.target.classList.contains('next')) {
+        this.nextOne();
+      } else if (e.target.classList.contains('prev')) {
+        this.prevOne();
       }
     }
   }
 
   handleKeyboard(e) {
     if (e.code === 'ArrowRight') {
-      this.addOne();
+      this.nextOne();
     } else if (e.code === 'ArrowLeft') {
-      this.removeOne();
+      this.prevOne();
     }
   }
 
-  addOne() {
+  nextOne() {
     if (this.state.currentPost === this.state.allPosts.length - 1) {
       this.setState({ currentPost: 0 });
     } else {
@@ -65,7 +62,7 @@ class DogModal extends React.Component {
     }
   }
 
-  removeOne() {
+  prevOne() {
     if (this.state.currentPost === 0) {
       this.setState({ currentPost: this.state.allPosts.length - 1 });
     } else {
@@ -73,39 +70,17 @@ class DogModal extends React.Component {
     }
   }
 
-  findImgSize(origWidth, origHeight) {
-    const window = this.state.window;
-    const totalWidth = window.width * 0.8;
-    const totalHeight = window.height * 0.6;
-
-    // const imgWidthOriginal = thisImg[1];
-    // const imgHeightOriginal = thisImg[2];
-
-    const ratioVertical = totalHeight / origHeight;
-    // const ratioHorizontal = totalHeight / imgHeightOriginal;
-
-    const size = [];
-    size.width = origWidth * ratioVertical;
-
-    if (size.width > totalWidth) {
-      // too wide for the space.
-      const ratioHorizontal = totalWidth / origWidth;
-
-      size.width = totalWidth;
-      size.height = origHeight * ratioHorizontal;
-    } else {
-      size.height = origHeight * ratioVertical;
-    }
-
-    return size;
-  }
-
   showFeaturedImage(thisDog) {
     if (thisDog.featured_img[0]) {
-      const size = this.findImgSize(
-        thisDog.featured_img[1],
-        thisDog.featured_img[2],
-      );
+      const imgWidth = thisDog.featured_img[1];
+      const imgHeight = thisDog.featured_img[2];
+
+      const totalWidth = this.state.window.width * 0.8;
+      const totalHeight = this.state.window.height * 0.6;
+
+      const size = DocumentActions.findImgSize(
+        imgWidth, imgHeight, totalWidth, totalHeight);
+
       return (
         <div>
           <img
@@ -117,12 +92,6 @@ class DogModal extends React.Component {
             }}
             alt={thisDog.post_title}
           />
-          <p>width: {thisDog.featured_img[1]}</p>
-          <p>height: {thisDog.featured_img[2]}</p>
-          <p>window width: {this.state.window.width}</p>
-          <p>window height: {this.state.window.height}</p>
-          <p>final width: {size.width}</p>
-          <p>final height: {size.height}</p>
         </div>
       );
     }
@@ -134,14 +103,22 @@ class DogModal extends React.Component {
     return (
       <div className="dog" ref={(node) => { this.node = node; }}>
         {this.showFeaturedImage(thisDog)}
-        <h1>{thisDog.post_title}</h1>
-        <p>{thisDog.post_content}</p>
         <a href={thisDog.permalink} className="pet-page">
-          <i className="fa fa-paw" />
+          <h1>
+            {thisDog.post_title} <i className="fa fa-paw" />
+          </h1>
         </a>
+        <p>{thisDog.post_content}</p>
+        <p>
+          <a href={thisDog.allDogsURL} className="allDogs">
+            See all the dogs of Modus!
+          </a>
+        </p>
 
-        <i className="fa fa-arrow-left" />
-        <i className="fa fa-arrow-right" />
+
+        <i className="fa fa-chevron-right prev" />
+        <i className="fa fa-arrow-right next" />
+        <button type="button" className="close-modal" />
       </div>
     );
   }

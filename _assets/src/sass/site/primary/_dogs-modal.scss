@@ -1,3 +1,6 @@
+$button-size: 50px;
+$button-size-medium: 60px;
+
 .dog-modal {
   color: $black;
 
@@ -19,48 +22,105 @@
       margin: 0 auto;
     }
 
+    h1 {
+      padding-top: .5em;
+    }
+
     h1,
     p {
       text-align: center;
     }
 
-    .pet-page {
-      display: block;
-      width: 1em;
-      margin: 0 auto;
+    a {
+      text-decoration: none;
     }
 
-    .fa-arrow-left,
-    .fa-arrow-right {
+    .pet-page {
+      width: 1em;
+    }
+
+    .prev,
+    .next {
       position: absolute;
       top: 50vh;
       right: .125em;
       color: $white;
       background-color: $gray-opaque;
-      padding: .5em;
-      font-size: 4em;
-      margin-top: -2em;
-      line-height: 1em;
-      width: 1em;
-      height: 1em;
+      width: $button-size;
+      height: $button-size;
+      margin-top: -($button-size * .5);
+
       border-radius: 100%;
       cursor: pointer;
       transition: background .2s linear;
 
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        width: 35%;
+        height: 3px;
+        border-radius: pem(22);
+        background: $white;
+      }
+
       &:hover {
         background-color: $gray-opaque-darker;
       }
+    }
 
+    .prev {
       &::before {
-        font-size: .75em;
-        position: absolute;
-        left: .25em;
-        top: 0;
+        bottom: 39%;
+        transform: rotate(30deg);
       }
+
+      &::after {
+        top: 39%;
+        transform: rotate(-30deg);
+      }
+
+      &::before,
+      &::after, {
+        right: 35%;
+        // transition: right .125s ease-in-out;
+      }
+
+      // &:hover {
+      //   &::before,
+      //   &::after, {
+      //     right: 44%;
+      //   }
+      // }
+    }
+
+    .next {
+      &::before {
+        top: 39%;
+        transform: rotate(30deg);
+      }
+
+      &::after {
+        bottom: 39%;
+        transform: rotate(-30deg);
+      }
+
+      &::before,
+      &::after, {
+        left: 35%;
+        // transition: left .125s ease-in-out;
+      }
+
+      // &:hover {
+      //   &::before,
+      //   &::after, {
+      //     left: 44%;
+      //   }
+      // }
     }
   }
 
-  .fa-arrow-left {
+  .prev {
     left: .125em;
   }
 }

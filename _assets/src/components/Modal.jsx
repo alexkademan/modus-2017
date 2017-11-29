@@ -53,8 +53,10 @@ class Modal extends React.Component {
   handleClick(e) {
     if (
       (this.modalNode && e.target.classList.contains('site-modal')) ||
-      (this.modalNode && e.target.classList.contains('site-nav'))
+      (this.modalNode && e.target.classList.contains('site-nav')) ||
+      (this.modalNode && e.target.classList.contains('close-modal'))
     ) {
+      console.log('toggle-toggle');
       DocumentStore.toggleModal();
     }
   }

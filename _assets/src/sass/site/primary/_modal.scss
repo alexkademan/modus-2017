@@ -5,3 +5,45 @@
   margin: 1em auto;
   color: $orange;
 }
+
+.close-modal {
+  position: absolute;
+  top: pem(8);
+  right: pem(8);
+  width: pem(35);
+  height: pem(35);
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+
+  &:hover {
+    background: transparent;
+  }
+
+  &::before,
+  &::after {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -50%;
+    width: 2px;
+    height: 100%;
+    background: $black;
+    content: '';
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+
+  @media($medium-breakpoint) {
+    width: pem(58);
+    height: pem(58);
+  }
+}
