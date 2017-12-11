@@ -32,11 +32,11 @@ class MainNavButton extends React.Component {
       window: DocumentStore.getWindowSize(),
       modal: DocumentStore.getModalState(),
       toggleButton: DocumentStore.getModalState(),
-      modalName: DocumentStore.getModalInfo(),
+      modalTitle: DocumentStore.getModalTitle(),
     });
     if (
       !this.state.modal &&
-      !DocumentStore.getModalFader()
+      DocumentStore.getModalFadeState() !== 3
     ) {
       // modal isn't open, nor was it JUST closed:
       if (
@@ -60,7 +60,7 @@ class MainNavButton extends React.Component {
 
   renderNavButton() {
     let nodeClass = 'main-nav-button';
-    if (DocumentStore.getModalInfo() === 'main-nav') {
+    if (DocumentStore.getModalTitle() === 'main-nav' && this.state.modal) {
       nodeClass += ' open';
     } else if (this.state.modal) {
       // modal is open and not to main navigation...

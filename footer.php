@@ -8,10 +8,7 @@
  *
  * @package _s
  */
-// echo '<div id="doggos" class="doggos">doggos?</div>';
-// echo 'euh...';
-// echo '<div id="gooey-ui" class="gooey-ui"></div>';
-// echo '<div id="root"></div>';
+
 echo '</div>'; // #content
 echo '<div id="gooey-ui" class="gooey-ui"></div>';
 echo '<div class="centered-section">';
@@ -31,9 +28,9 @@ get_template_part( 'template-parts/info', 'address' );
 echo	 '</div>';
 
 echo  '</footer>'; // #colophon
-echo '</div>'; //#centered-section
-echo '</div>'; //#page
-echo '</div>'; //#whole-layout
+echo '</div>'; // #centered-section
+echo '</div>'; // #page
+echo '</div>'; // #whole-layout
 
 get_template_part( 'template-parts/react', 'diagnostic' );
 wp_footer();

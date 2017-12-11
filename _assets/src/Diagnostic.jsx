@@ -25,17 +25,20 @@ class Diagnostic extends React.Component {
     });
 
     this.updateDimensions = this.updateDimensions.bind(this);
+    this.handleKeyboard = this.handleKeyboard.bind(this);
   }
 
   componentDidMount() {
     this.updateDimensions();
     window.addEventListener('resize', this.updateDimensions);
     window.addEventListener('scroll', this.updateDimensions);
+    document.addEventListener('keyup', this.handleKeyboard);
   }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateDimensions);
     window.removeEventListener('scroll', this.updateDimensions);
+    document.removeEventListener('keyup', this.handleKeyboard);
   }
 
   updateDimensions() {
@@ -45,6 +48,15 @@ class Diagnostic extends React.Component {
     );
     this.setState({ window: DocumentStore.getDocInfo() });
     if (this.state.modal) { this.modalBackgroundOn(); }
+
+    // if (this.state.window.scrollY) {
+    //   DocumentStore.set
+    // }
+    if (this.state.modal) {
+      DocumentStore.setModalScrollPosition(this.state.window.scrollY);
+    } else {
+      DocumentStore.setPageScrollPosition(this.state.window.scrollY);
+    }
   }
 
   toggleModal() {
@@ -67,6 +79,21 @@ class Diagnostic extends React.Component {
       this.modalBackgroundOff();
       // remove blur effect from page:
       el.classList.remove(className);
+    }
+  }
+
+  handleKeyboard(e) {
+    if (e.code === 'KeyM') {
+      DocumentStore.toggleModal('main-nav');
+    }
+    if (e.code === 'KeyP') {
+      DocumentStore.toggleModal('dog-modal');
+    }
+    if (e.code === 'KeyN') {
+      DocumentStore.toggleModal();
+    }
+    if (this.state.modal && e.code === 'Escape') {
+      DocumentStore.toggleModal();
     }
   }
 

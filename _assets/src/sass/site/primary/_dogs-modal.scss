@@ -4,8 +4,7 @@ $button-size-medium: 60px;
 .dog-modal {
   color: $black;
 
-  .site-modal,
-  .site-modal-transparent-out {
+  .site-modal {
     background: $color-dog-modal;
   }
 
@@ -122,5 +121,16 @@ $button-size-medium: 60px;
 
   .prev {
     left: .125em;
+  }
+
+  @media($medium-breakpoint) {
+    .dog {
+      .prev,
+      .next {
+        width: $button-size-medium;
+        height: $button-size-medium;
+        margin-top: -($button-size-medium * .5);
+      }
+    }
   }
 }

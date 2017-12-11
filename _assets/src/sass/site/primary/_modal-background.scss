@@ -1,4 +1,4 @@
-$bg-fade-time: .25s;
+ $bg-fade-time: .25s;
 
 // .whole-layout {
 //   transition: $bg-fade-time filter linear;
@@ -14,6 +14,16 @@ $bg-fade-time: .25s;
 //   transition: $bg-fade-time filter linear;
 // }
 
+.modal-bg {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  min-height: 100vh;
+  background: $color-modal-background;
+}
+
 .site-modal-container {
   position: absolute;
   z-index: 501;
@@ -26,8 +36,7 @@ $bg-fade-time: .25s;
   }
 }
 
-.site-modal,
-.site-modal-out {
+.site-modal {
   position: absolute;
   left: 0;
   top: 0;
@@ -48,14 +57,28 @@ $bg-fade-time: .25s;
 .site-modal,
 .site-modal-transparent-out {
   background-color: $color-modal-background;
-  color: $white;
+  // color: $white;
 
   .main-nav & {
-    background-color: $color-modal-main-nav;
+    // background-color: $color-modal-main-nav;
+    background-color: transparent;
   }
 }
 
 .site-modal-transparent-in {
   background-color: transparent !important;
   transition: background 0 linear;
+}
+
+.svg-background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+
+  .pattern-circle {
+    fill: $color-modal-main-nav;
+  }
 }

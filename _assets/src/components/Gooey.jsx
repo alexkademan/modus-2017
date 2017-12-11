@@ -65,8 +65,7 @@ class Gooey extends React.Component {
   canIClose() {
     if (
       this.state.menuVisible &&
-      !DocumentStore.getModalState() &&
-      !DocumentStore.getModalFaderStatus()
+      DocumentStore.getModalFadeState() === 0
     ) {
       this.setState({ menuVisible: false });
     }

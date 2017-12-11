@@ -8,9 +8,9 @@ class DiagnosticPanel extends React.Component {
 
     this.state = {
       window: DocumentStore.getWindowSize(),
-      showPanel: false,
+      showPanel: true,
       modal: DocumentStore.getModalState(),
-      modalName: DocumentStore.getModalInfo(),
+      modalName: DocumentStore.getModalTitle(),
     };
 
     DocumentStore.addListener('change', () => {
@@ -20,7 +20,7 @@ class DiagnosticPanel extends React.Component {
     DocumentStore.addListener('toggleModal', () => {
       this.setState({
         modal: DocumentStore.getModalState(),
-        modalName: DocumentStore.getModalInfo(),
+        modalName: DocumentStore.getModalTitle(),
       });
     });
 
@@ -88,6 +88,8 @@ class DiagnosticPanel extends React.Component {
           {this.state.window.layoutWidth} x {this.state.window.layoutHeight}
         </p>
         <p>scroll: {this.state.window.scrollY}</p>
+        <p>page scroll: {this.state.window.scrollPage}</p>
+        <p>modal scroll: {this.state.window.scrollModal}</p>
         <p>direction: {this.state.window.scrollDirection}</p>
         <p className="modal">modal: {this.state.modal ? 'on' : 'off'}</p>
         <p>modalName: {this.state.modalName ? this.state.modalName : 'none'}</p>

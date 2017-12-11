@@ -8,44 +8,30 @@ class ModalController extends React.Component {
   constructor() {
     super();
     this.state = {
-      window: DocumentStore.getWindowSize(),
       modal: DocumentStore.getModalState(),
-      modalInfo: DocumentStore.getModalInfo(),
+      modalTitle: DocumentStore.getModalTitle(),
     };
-
-    this.updateWindow = this.updateWindow.bind(this);
-  }
-
-  componentDidMount() {
-    window.addEventListener('resize', this.updateWindow);
-    window.addEventListener('scroll', this.updateWindow);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateWindow);
-    window.removeEventListener('scroll', this.updateWindow);
-  }
-
-  updateWindow() {
-    this.setState({ window: DocumentStore.getWindowSize() });
   }
 
   render() {
-    const dogs = DocumentStore.getDogsArray();
-
     if (this.state.modal) {
-      switch (this.state.modalInfo) {
+      switch (this.state.modalTitle) {
       case 'main-nav':
         return <MainNav />;
       case 'dog-modal':
+        // const dogs = DocumentStore.getDogsArray();
         return (
           <DogModal
-            allPosts={dogs}
-            currentPost={DocumentActions.randomNumber(dogs.length)}
+            allPosts={DocumentStore.getDogsArray()}
+            currentPost={DocumentActions.randomNumber(DocumentStore.getDogsArray().length)}
           />
         );
       default:
-        return (<div className="default-modal">Default Modal.</div>);
+        return (
+          <div className="default-modal">
+            Default Modal.
+          </div>
+        );
       }
     }
     return false;

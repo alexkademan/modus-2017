@@ -37,11 +37,13 @@ class DogModal extends React.Component {
 
   handleClick(e) {
     if (this.node && this.node.contains(e.target)) {
-      console.log('clidked onoeitoeriu');
       if (e.target.classList.contains('next')) {
         this.nextOne();
       } else if (e.target.classList.contains('prev')) {
         this.prevOne();
+      } else if (e.target.classList.contains('close-modal')) {
+        console.log(e.target.classList);
+        DocumentStore.toggleModal();
       }
     }
   }

@@ -4,9 +4,10 @@ import DocumentActions from './documentActions';
 
 let windowStats;
 let toggleModal = false; // show or hide modal
-let modalFader = false;
-let modalInfo = false; // name of modal in question.
-let modalParentName = false; // name of modal parent.
+let pageScrollPosition = 0;
+let modalScrollPosition = 0;
+let modalTitle = false; // name of modal parent.
+let modalFadeState = 0;
 let pagesArray = false; // array for page navigation.
 let pageStatus = false;
 let randomDog = 0;
@@ -24,20 +25,53 @@ const DocumentStore = {
   },
 
   toggleModal(modalName = 'default') {
+    if (modalName === 'dog-modal') { randomDog = this.randomizedDog(); }
+    if (modalFadeState !== 1 && modalFadeState !== 3) {
+      if (toggleModal) {
+        // turn OFF
+        toggleModal = false;
+        this.setModalFadeState(3);
+      } else {
+        // turn ON
+        toggleModal = true;
+        modalTitle = modalName;
+        this.setModalFadeState(1);
+      }
+      emitter.emit('toggleModal');
+    }
+  },
+
+  toggleModalListen() {
+    const token = emitter.emit('toggleModal');
+    return token;
+  },
+
+  getModalState() {
+    return toggleModal;
+  },
+
+  setModalFadeState(value) {
+    modalFadeState = value;
+    if (value === 0) {
+      modalTitle = false;
+    }
+    emitter.emit('modalFadeState');
+  },
+
+  getModalFadeState() {
+    return modalFadeState;
+  },
+
+  getModalTitle() {
+    return modalTitle;
+  },
+
+  randomizedDog() {
     reactDogs = window.reactData.dogs;
-    if (reactDogs && !toggleModal && modalName === 'dog-modal') {
-      randomDog = DocumentActions.randomNumber(reactDogs.length);
+    if (reactDogs && !toggleModal) {
+      return DocumentActions.randomNumber(reactDogs.length);
     }
-    if (toggleModal) {
-      toggleModal = false;
-      modalInfo = false;
-      modalFader = true;
-    } else {
-      toggleModal = true;
-      modalInfo = modalName;
-      modalParentName = modalName;
-    }
-    emitter.emit('toggleModal');
+    return false;
   },
 
   getDogsArray() {
@@ -47,46 +81,6 @@ const DocumentStore = {
   getRandomDog() {
     // returns number value to use within array.
     return randomDog;
-  },
-
-  getModalFader() {
-    // copy current value for return:
-    const returnVal = modalFader;
-
-    // set to false for next query after a few miliseconds:
-    // because the window continues changing.
-    if (modalFader) {
-      setTimeout(() => {
-        modalFader = false;
-      }, 100);
-    }
-    return returnVal;
-  },
-
-  getModalFaderStatus() {
-    // some other component needs to know if modal is closing:
-    return modalFader;
-  },
-
-  getModalState() {
-    return toggleModal;
-  },
-
-  getModalInfo() {
-    return modalInfo;
-  },
-
-  getmodalParentName() {
-    return modalParentName;
-  },
-
-  setModalInfo(newModal) {
-    modalInfo = newModal;
-  },
-
-  setDocInfo(newInfo) {
-    windowStats = newInfo;
-    emitter.emit('change');
   },
 
   configureDocInfo(layoutWidth, layoutHeight) {
@@ -109,6 +103,15 @@ const DocumentStore = {
       layoutHeight,
       layoutWidth,
     };
+
+    if (toggleModal) {
+      modalScrollPosition = newWindowInfo.scrollY;
+    } else {
+      pageScrollPosition = newWindowInfo.scrollY;
+    }
+
+    newWindowInfo.scrollModal = modalScrollPosition;
+    newWindowInfo.scrollPage = pageScrollPosition;
 
     windowStats = newWindowInfo;
     emitter.emit('change');
@@ -136,8 +139,22 @@ const DocumentStore = {
     return pageStatus;
   },
 
+  setPageScrollPosition(position) {
+    if (position === undefined) {
+      pageScrollPosition = 0;
+    }
+    pageScrollPosition = position;
+  },
+
+  getPageScrollPosition() {
+    return pageScrollPosition;
+  },
+
+  setModalScrollPosition(position) { modalScrollPosition = position; },
+  getModalScrollPosition() { return modalScrollPosition; },
+
   addListener(eventType: string, fn: Function) {
-    emitter.addListener(eventType, fn);
+    return emitter.addListener(eventType, fn);
   },
 };
 

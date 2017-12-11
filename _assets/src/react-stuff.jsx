@@ -15,6 +15,7 @@ class ReactStuff extends React.Component {
       isAdmin: props.user,
       wholeLayout: props.wholeLayout, // DOM element for size of page.
       siteInfo: props.phpVars,
+      modalFadeState: DocumentStore.getModalFadeState(),
     };
 
     // pull in the JSON that I sent from WP's PHP templates
@@ -24,12 +25,19 @@ class ReactStuff extends React.Component {
     ) {
       DocumentStore.setPageNavigation(this.state.siteInfo.mainnav);
     }
+
+    DocumentStore.addListener('modalFadeState', () => {
+      this.setState({
+        modalFadeState: DocumentStore.getModalFadeState(),
+        modalTitle: DocumentStore.getModalTitle(),
+      });
+    });
   }
 
   render() {
     return (
       <div className="reactStuff">
-        <Modal />
+        {this.state.modalFadeState === 0 ? '' : <Modal />}
         <MainNavButton />
         <Diagnostic
           user={this.state.isAdmin}

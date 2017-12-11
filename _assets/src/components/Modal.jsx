@@ -1,120 +1,98 @@
 import React from 'react';
 // import ReactDOM from 'react-dom';
 import DocumentStore from '../flux/documentStore';
+// import ModalBackgroundNav from './ModalBackgroundNav';
+import ModalBackground from './ModalBackground';
+import ModalBackgroundDefault from './ModalBackgroundDefault';
 import ModalContent from './ModalContent';
 
 class Modal extends React.Component {
   constructor() {
     super();
     this.state = {
-      window: DocumentStore.getWindowSize(),
       modal: DocumentStore.getModalState(),
       modalFader: 'off',
-      modalVisible: false,
-      modalInfo: DocumentStore.getModalInfo(),
+      modalTitle: DocumentStore.getModalTitle(),
+      emitToggle: '',
+      emitModal: '',
     };
-
-    DocumentStore.addListener('toggleModal', () => {
-      this.setState({
-        modal: DocumentStore.getModalState(),
-        modalInfo: DocumentStore.getModalInfo(),
-        modalParentName: DocumentStore.getmodalParentName(),
-      });
-      this.bgFade();
-    });
-
     this.handleClick = this.handleClick.bind(this);
-    this.handleKeyboard = this.handleKeyboard.bind(this);
   }
 
   componentDidMount() {
+    this.state.emitToggle = DocumentStore.addListener('toggleModal', () => {
+      this.setState({
+        modal: DocumentStore.getModalState(),
+        modalTitle: DocumentStore.getModalTitle(),
+        modalFadeState: DocumentStore.getModalFadeState(),
+      });
+    });
+
+    this.state.emitModal = DocumentStore.addListener('modalFadeState', () => {
+      this.setState({
+        modalFadeState: DocumentStore.getModalFadeState(),
+        modalTitle: DocumentStore.getModalTitle(),
+      });
+    });
     document.addEventListener('click', this.handleClick);
-    document.addEventListener('keyup', this.handleKeyboard);
   }
 
   componentWillUnmount() {
+    this.state.emitToggle.remove();
+    this.state.emitModal.remove();
     document.removeEventListener('click', this.handleClick);
-    document.removeEventListener('keyup', this.handleKeyboard);
-  }
-
-  bgFade() {
-    if (this.state.modal === true) {
-      this.setState({ modalFader: 'fade-in' });
-      setTimeout(() => { this.setState({ modalFader: 'off' }); }, 1);
-    } else {
-      this.setState({ modalFader: 'fade-out-start' });
-
-      // IMMEDIATELY change class to begin CSS transition.
-      setTimeout(() => { this.setState({ modalFader: 'fade-out' }); }, 1);
-      setTimeout(() => { this.setState({ modalFader: 'off' }); }, 250);
-    }
   }
 
   handleClick(e) {
     if (
       (this.modalNode && e.target.classList.contains('site-modal')) ||
       (this.modalNode && e.target.classList.contains('site-nav')) ||
-      (this.modalNode && e.target.classList.contains('close-modal'))
+      (this.modalNode && e.target.classList.contains('close-modal')) ||
+      (this.modalNode && e.target.classList.contains('svg-bg'))
     ) {
-      console.log('toggle-toggle');
-      DocumentStore.toggleModal();
-    }
-  }
-
-  handleKeyboard(e) {
-    if (e.code === 'KeyM') {
-      DocumentStore.toggleModal('main-nav');
-    }
-    if (e.code === 'KeyP') {
-      DocumentStore.toggleModal('dog-modal');
-    }
-    if (e.code === 'KeyN') {
-      DocumentStore.toggleModal();
-    }
-    if (this.state.modal && e.code === 'Escape') {
       DocumentStore.toggleModal();
     }
   }
 
   render() {
-    const modalName = `site-modal-container ${this.state.modalParentName}`;
-    let modalInlineStyle;
+    const modalName = `site-modal-container ${this.state.modalTitle}`;
+    const pageScroll = DocumentStore.getPageScrollPosition();
+    const modalScroll = DocumentStore.getModalScrollPosition();
+    const modalFadeState = DocumentStore.getModalFadeState();
+    const windowHeight = DocumentStore.getWindowSize().height;
+    const modalInlineStyle = [];
+    const modalFaderStyle = [];
 
-    // set up the sate for the fade in/out:
-    let modalStyle = 'site-modal';
-    if (this.state.modalFader === 'fade-in') {
-      modalStyle = 'site-modal site-modal-transparent-in';
-    } else if (this.state.modalFader === 'fade-out-start') {
-      modalStyle = 'site-modal-out site-modal-transparent-out';
-    } else if (this.state.modalFader === 'fade-out') {
-      modalStyle = 'site-modal-out';
+    if (modalFadeState === 1 || modalFadeState === 3) {
+      modalFaderStyle.background = 'transparent';
     }
 
-    if (
-      this.state.modalFader === 'fade-out-start' ||
-      this.state.modalFader === 'fade-out'
-    ) {
-      const topDistance = DocumentStore.getPageScrollStatus();
-      modalInlineStyle = { top: `${topDistance}px` };
+    if (modalFadeState === 3) {
+      // we're fading out now...
+      let top = 0;
+      if (pageScroll) { top = pageScroll; }
+      if (modalScroll) { top -= modalScroll; }
+
+      modalInlineStyle.top = `${top}px`;
+      modalFaderStyle.height = windowHeight + modalScroll;
     }
 
-    if (
-      this.state.modal ||
-      this.state.modalFader === 'fade-out-start' ||
-      this.state.modalFader === 'fade-out'
-    ) {
-      return (
-        <div className={modalName} style={modalInlineStyle}>
-          <span
-            className={modalStyle}
-            ref={(modalNode) => { this.modalNode = modalNode; }}
-          >
-            <ModalContent />
-          </span>
-        </div>
-      );
-    }
-    return false;
+    return (
+      <div className={modalName} style={modalInlineStyle}>
+        <span
+          className="site-modal"
+          ref={(modalNode) => { this.modalNode = modalNode; }}
+          style={modalFaderStyle}
+        >
+          {
+            this.state.modalTitle === 'main-nav' ?
+              <ModalBackground /> :
+              <ModalBackgroundDefault />
+          }
+          {this.state.modal ? <ModalContent /> : ''}
+        </span>
+      </div>
+    );
   }
 }
 
