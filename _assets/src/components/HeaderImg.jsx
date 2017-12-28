@@ -1,26 +1,30 @@
 // filter: https://codepen.io/andrewgibson/pen/oevQXm?editors=1100
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import DocumentStore from '../flux/documentStore';
 
 class HeaderImg extends React.Component {
-  constructor() {
-    super();
-
+  constructor(props) {
+    super(props);
+    console.log(props.imgInfo);
     this.state = {
-      mainImg: 'http://192.168.1.110/~Alex/new/modus2017/wordpress/wp-content/themes/modus-2017/images/modus-building-169x75.jpg',
-      pixelsWide: 169, // how many blocks wide is this?
+      ID: props.imgInfo.ID,
+      imgURL: props.imgInfo.url,
+      imgWidthOrig: props.imgInfo.width,
+      imgHeightOrig: props.imgInfo.height,
+      dotsWide: props.imgInfo.dots_wide,
+      headerColor: props.imgInfo.header_color,
     };
   }
 
   componentWillMount() {
-    this.updateDimensions();
+    this.checkDimensions();
   }
 
   componentDidMount() {
-    this.updateDimensions();
     this.state.emitter = DocumentStore.addListener('change', () => {
-      this.updateDimensions();
+      this.checkDimensions();
     });
   }
 
@@ -28,25 +32,41 @@ class HeaderImg extends React.Component {
     this.state.emitter.remove();
   }
 
-  updateDimensions() {
-    const newWidth = DocumentStore.getWindowWidth();
+  checkDimensions() {
+    const newWidth = DocumentStore.getLayoutWidth();
+    if (newWidth !== this.state.pageWidth) {
+      // page is either rendering, or been resized:
+      this.updateDimensions(newWidth);
+    }
+  }
+
+  updateDimensions(newWidth) {
+    // find the image's full height:
+    const ratio = newWidth / this.state.imgWidthOrig;
 
     this.setState({
       pageWidth: newWidth,
-      patternWidth: newWidth / this.state.pixelsWide,
+      patternWidth: newWidth / this.state.dotsWide,
+      imgWidth: (ratio * this.state.imgWidthOrig),
+      imgHeight: (ratio * this.state.imgHeightOrig),
     });
   }
 
   render() {
     const circleCenter = this.state.patternWidth / 2;
+    const bgStyle = { backgroundColor: this.state.headerColor };
     return (
-      <div className="header-image" ref={(node) => { this.node = node; }}>
+      <div
+        className="header-image"
+        ref={(node) => { this.node = node; }}
+        style={bgStyle}
+      >
         <img
-          src={this.state.mainImg}
+          src={this.state.imgURL}
           alt="Modus Design, Inc."
           className="placeholder"
         />
-        <svg width="100%">
+        <svg width={this.state.imgWidth} height={this.state.imgHeight}>
           <defs>
             <clipPath id="clip">
               <circle
@@ -76,8 +96,8 @@ class HeaderImg extends React.Component {
             </pattern>
             <mask id="mask">
               <rect
-                width="100%"
-                height="100%"
+                width={this.state.imgWidth}
+                height={this.state.imgHeight}
                 x="0"
                 y="0"
                 fill="url(#spots)"
@@ -85,9 +105,9 @@ class HeaderImg extends React.Component {
             </mask>
           </defs>
           <image
-            href={this.state.mainImg}
-            width="100%"
-            // height="762px"
+            href={this.state.imgURL}
+            width={this.state.imgWidth}
+            height={this.state.imgHeight}
             mask="url(#mask)"
           />
         </svg>
@@ -95,5 +115,20 @@ class HeaderImg extends React.Component {
     );
   }
 }
+
+HeaderImg.propTypes = {
+  imgInfo: PropTypes.shape({
+    ID: PropTypes.string,
+    url: PropTypes.string,
+    width: PropTypes.number,
+    height: PropTypes.number,
+    dots_wide: PropTypes.string,
+    header_color: PropTypes.string,
+  }),
+};
+
+HeaderImg.defaultProps = {
+  imgInfo: '',
+};
 
 export default HeaderImg;

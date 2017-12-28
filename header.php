@@ -75,5 +75,8 @@
 				<?php // get_search_form(); ?>
 			</header><!-- #masthead -->
 		</span>
+		<div id="page-header-image">
+			this is the header image on the page
+		</div>
 
 		<div id="content" class="site-content">

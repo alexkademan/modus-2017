@@ -42,7 +42,6 @@ if (gooey && phpVars.dogs) {
   ReactDOM.render(<Gooey phpVars={phpVars.dogs} />, gooey);
 }
 
-if (headerImg) {
-  console.log(phpVars.dot_header_image);
-  ReactDOM.render(<HeaderImg />, headerImg);
+if (headerImg && phpVars.dot_header_image) {
+  ReactDOM.render(<HeaderImg imgInfo={phpVars.dot_header_image} />, headerImg);
 }

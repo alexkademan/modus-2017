@@ -117,8 +117,8 @@ const DocumentStore = {
     return windowStats;
   },
 
-  getWindowWidth() {
-    return windowStats.width;
+  getLayoutWidth() {
+    return windowStats.layoutWidth;
   },
 
   getPageNavigation(): Array<Object> {
