@@ -6,7 +6,7 @@ class ModalBackground extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      window: DocumentStore.getDocInfo(),
+      window: DocumentStore.getWindowSize(),
       modal: DocumentStore.getModalState(),
       modalTitle: DocumentStore.getModalTitle(),
       modalFadeState: DocumentStore.getModalFadeState(),

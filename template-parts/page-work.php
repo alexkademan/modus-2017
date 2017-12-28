@@ -10,31 +10,29 @@ $all_work = get_posts(
 );
 
 if(is_array($all_work)) {
-  echo '<span class="centered-single-column">';
+  echo '<span class="centered-section no-padding">';
   echo '<ul class="work-items">';
 
   foreach ($all_work as $key => $job) {
 
     $job->meta = get_post_meta($job->ID);
 
-    if(isset($job->meta['_thumbnail_id'][0])) {
+    // print_r($job->meta);
+    // print_r($job->custom);
 
-      // this one has a featured image:
-      $thumbID = $job->meta['_thumbnail_id'][0];
-      $job->featured_image = wp_get_attachment_image_src($thumbID, 'full', true)[0];
-      $job->thumbnail = wp_get_attachment_image_src($thumbID)[0];
+    if (isset($job->meta['sample_image'])) {
+      $sample_img_id = $job->meta['sample_image'][0];
+      $job->thumbnail = wp_get_attachment_image_src($sample_img_id, 'full');
     } else {
-
-      // no featured image is set:
-      $job->featured_image = get_bloginfo('template_url') . '/images/placeholder-image.svg';
-      $job->thumbnail = get_bloginfo('template_url') . '/images/placeholder-image.svg';
-
+      // no thumbnail image is set:
+      $job->thumbnail = [];
+      $job->thumbnail[0] = get_bloginfo('template_url') . '/images/placeholder-image.svg';
     };
 
     echo '<li class="work-post">';
     echo '<a href="' . get_permalink($job->ID) . '">';
 
-    echo '<img src="' . $job->featured_image . '">';
+    echo '<img src="' . $job->thumbnail[0] . '">';
 
     echo '<hgroup>';
 
@@ -56,5 +54,6 @@ if(is_array($all_work)) {
   }
 
 
-  echo '</ul></span>';
+  echo '</ul>';
+  echo '</span>';
 };

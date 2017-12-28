@@ -6,7 +6,7 @@
  *
  * @package _s
  */
-
+$this_ID = get_the_id();
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -17,11 +17,13 @@
 	</span>
 <?php
 
-if(get_the_ID() === 10) {
-
+if($this_ID === 10) {
 	// 'work' page:
 	get_template_part( 'template-parts/page', 'work' );
 
+} elseif ($this_ID === 66) {
+  // 'pets' page:
+	get_template_part( 'template-parts/page', 'pets' );
 } else {
 	echo '<span class="centered-section">';
 	echo '<div class="entry-content">';

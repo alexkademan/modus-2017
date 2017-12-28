@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactStuff from './react-stuff';
 import Gooey from './components/Gooey';
+import HeaderImg from './components/HeaderImg';
 
 import DocumentStatus from './documentStats';
 import DocumentStore from './flux/documentStore';
@@ -13,6 +14,7 @@ DocumentStore.init(DocumentStatus);
 const reactDiv = document.getElementById('react-div');
 const wholeLayout = document.getElementById('page');
 const gooey = document.getElementById('gooey-ui');
+const headerImg = document.getElementById('page-header-image');
 
 let phpVars = false;
 
@@ -38,4 +40,9 @@ if (reactDiv) {
 
 if (gooey && phpVars.dogs) {
   ReactDOM.render(<Gooey phpVars={phpVars.dogs} />, gooey);
+}
+
+if (headerImg) {
+  console.log(phpVars.dot_header_image);
+  ReactDOM.render(<HeaderImg />, headerImg);
 }

@@ -6,17 +6,17 @@ class ModalBackground extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      window: DocumentStore.getDocInfo(),
+      window: DocumentStore.getWindowSize(),
       modal: DocumentStore.getModalState(),
       modalTitle: DocumentStore.getModalTitle(),
       modalFadeState: DocumentStore.getModalFadeState(),
       circleSize: 0,
-      circleMaxSize: 15,
-      increment: 0.4,
+      circleMaxSize: 5,
     };
   }
 
   componentDidMount() {
+    this.calcValues();
     this.fadeIn();
     this.state.emitter = DocumentStore.addListener('toggleModal', () => {
       this.runAnimation();
@@ -25,6 +25,24 @@ class ModalBackground extends React.Component {
 
   componentWillUnmount() {
     this.state.emitter.remove();
+  }
+
+  calcValues() {
+    let patternSize = 60;
+    if (this.state.window.width < 701) {
+      patternSize = 20;
+    } else if (this.state.window.width < 1100) {
+      patternSize = 40;
+    } else {
+      patternSize = 60;
+    }
+    const circleMaxSize = patternSize * 0.75;
+    this.setState({
+      patternSize,
+      circleMaxSize,
+      circleCenter: (patternSize * 0.5),
+      increment: (circleMaxSize / 40),
+    });
   }
 
   runAnimation() {
@@ -81,16 +99,16 @@ class ModalBackground extends React.Component {
           id="pattern-circles"
           x="0"
           y="0"
-          width="20"
-          height="20"
+          width={this.state.patternSize}
+          height={this.state.patternSize}
           patternUnits="userSpaceOnUse"
           patternContentUnits="userSpaceOnUse"
         >
           <circle
             id="pattern-circle"
             className="pattern-circle"
-            cx="10"
-            cy="10"
+            cx={this.state.circleCenter}
+            cy={this.state.circleCenter}
             r={this.state.circleSize}
           />
         </pattern>
@@ -108,6 +126,7 @@ class ModalBackground extends React.Component {
   }
 
   render() {
+    // this.calcValues(50);
     if (this.state.modalTitle === 'main-nav') {
       return this.mainNavPolkaDots();
     }

@@ -73,12 +73,16 @@ class MainNavButton extends React.Component {
     }
 
     return (
-      <div className={nodeContainerClass}>
-        <div className={nodeClass} ref={(node) => { this.node = node; }}>
-          <div className="hamburger">
-            <span />
-            <span />
-            <span />
+      <div className="main-nav-top">
+        <div className="main-nav-centerer">
+          <div className={nodeContainerClass}>
+            <div className={nodeClass} ref={(node) => { this.node = node; }}>
+              <div className="hamburger">
+                <span />
+                <span />
+                <span />
+              </div>
+            </div>
           </div>
         </div>
       </div>

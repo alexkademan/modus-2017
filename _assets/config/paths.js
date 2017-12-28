@@ -43,6 +43,7 @@ module.exports = {
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html'),
   homeHtml: resolveApp('public/homepage.html'),
+  workHtml: resolveApp('public/work.html'),
   footerHtml: resolveApp('public/footer_scripts.html'),
   appIndexJs: resolveApp('src/index.jsx'),
   appPackageJson: resolveApp('package.json'),

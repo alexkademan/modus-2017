@@ -1,4 +1,14 @@
 .site-footer {
+  display: block;
+  float: left;
+  clear: both;
+  width: 100%;
+  padding: ($grid-margin-main * .5) $grid-margin-main;
+
+  .right-col {
+    text-align: right;
+  }
+
   p {
     margin-bottom: 0;
   }

@@ -281,6 +281,11 @@ module.exports = {
       template: paths.homeHtml,
       filename: 'homepage.html',
     }),
+    new HtmlWebpackPlugin({
+      inject: true,
+      template: paths.workHtml,
+      filename: 'work.html',
+    }),
     // Add module names to factory functions so they appear in browser profiler.
     new webpack.NamedModulesPlugin(),
     // Makes some environment variables available to the JS code, for example:

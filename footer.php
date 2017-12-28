@@ -10,12 +10,20 @@
  */
 
 echo '</div>'; // #content
-echo '<div id="gooey-ui" class="gooey-ui"></div>';
+// echo '<div id="gooey-ui" class="gooey-ui"></div>';
 echo '<div class="centered-section">';
+echo '<div id="gooey-ui" class="gooey-ui"></div>';
 echo '<footer id="colophon" class="site-footer">';
 
-echo	 '<div class="copyright">';
+echo	 '<div class="left-col">';
+echo	   '<div class="gooey-placeholder"></div>';
 
+echo	 '</div>';
+
+echo	 '<div class="right-col">';
+get_template_part( 'template-parts/info', 'address' );
+
+echo	 '<div class="copyright">';
 echo '&copy; ' . date("Y");
 $company_name = func_get_single_custom_post('company_info', 'name');
 if(is_object($company_name) && $company_name->post_content !== '') {
@@ -23,8 +31,6 @@ if(is_object($company_name) && $company_name->post_content !== '') {
 }
 echo	 '</div>';
 
-echo	 '<div class="company-info">';
-get_template_part( 'template-parts/info', 'address' );
 echo	 '</div>';
 
 echo  '</footer>'; // #colophon

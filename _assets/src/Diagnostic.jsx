@@ -46,7 +46,7 @@ class Diagnostic extends React.Component {
       this.state.wholeLayout.clientWidth,
       this.state.wholeLayout.clientHeight,
     );
-    this.setState({ window: DocumentStore.getDocInfo() });
+    this.setState({ window: DocumentStore.getWindowSize() });
     if (this.state.modal) { this.modalBackgroundOn(); }
 
     // if (this.state.window.scrollY) {

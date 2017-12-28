@@ -10,6 +10,14 @@ $btn-padding: $btn-diameter * .125;
 $btn-diameter-medium: 80px;
 $btn-padding-medium: $btn-diameter-medium * .125;
 
+.gooey-placeholder {
+  display: block;
+  float: left;
+  clear: none;
+  width: $btn-diameter + ($btn-padding * 2);
+  height: $btn-diameter + ($btn-padding * 2);
+}
+
 .gooey-filter {
   width: 0;
   height: 0;
@@ -18,13 +26,18 @@ $btn-padding-medium: $btn-diameter-medium * .125;
 }
 
 .gooey-ui {
-  position: relative;
   display: block;
   float: left;
+  clear: both;
+  position: relative;
+  overflow: visible;
+  width: 0;
+  height: 0;
   margin: 0;
-  padding: $btn-padding;
-  width: $btn-diameter + ($btn-padding * 2);
-  height: $btn-diameter + ($btn-padding * 2);
+  background: $ugly-pink;
+  // padding: $btn-padding;
+  // width: $btn-diameter + ($btn-padding * 2);
+  // height: $btn-diameter + ($btn-padding * 2);
 
   .menu { // nav
     filter: url('#shadowed-goo');
@@ -123,11 +136,18 @@ $btn-padding-medium: $btn-diameter-medium * .125;
       }
     }
   }
+}
 
-  @media($medium-breakpoint) {
-    padding: $btn-padding-medium;
+@media($medium-breakpoint) {
+  .gooey-placeholder {
     width: $btn-diameter-medium + ($btn-padding-medium * 2);
     height: $btn-diameter-medium + ($btn-padding-medium * 2);
+  }
+
+  .gooey-ui {
+    // padding: $btn-padding-medium;
+    // width: $btn-diameter-medium + ($btn-padding-medium * 2);
+    // height: $btn-diameter-medium + ($btn-padding-medium * 2);
 
     .menu {
       width: $btn-diameter-medium + ($btn-padding-medium * 2);

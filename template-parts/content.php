@@ -27,7 +27,8 @@ echo '>';
 				<?php _s_posted_on(); ?>
 			</div><!-- .entry-meta -->
 			<?php
-			endif; ?>
+		endif; ?>
+
 		</header><!-- .entry-header -->
 	</span>
 <?php

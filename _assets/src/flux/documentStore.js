@@ -20,10 +20,6 @@ const DocumentStore = {
     windowStats = stats;
   },
 
-  getWindowSize(): Array<Object> {
-    return windowStats;
-  },
-
   toggleModal(modalName = 'default') {
     if (modalName === 'dog-modal') { randomDog = this.randomizedDog(); }
     if (modalFadeState !== 1 && modalFadeState !== 3) {
@@ -117,8 +113,12 @@ const DocumentStore = {
     emitter.emit('change');
   },
 
-  getDocInfo(): Array<Object> {
+  getWindowSize(): Array<Object> {
     return windowStats;
+  },
+
+  getWindowWidth() {
+    return windowStats.width;
   },
 
   getPageNavigation(): Array<Object> {

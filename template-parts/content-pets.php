@@ -9,22 +9,11 @@
 $this_ID = get_the_ID();
 $this_post = get_post($this_ID);
 $this_post->meta = get_post_meta($this_ID);
+// $this_post->featrued_img = get
 
-if (isset($this_post->meta['hero_image'])) {
-  $hero_ID = $this_post->meta['hero_image'][0];
-  $this_post->hero_image = wp_get_attachment_image_src($hero_ID, 'full');
-}
-
-$all_work = get_posts(
-  array(
-    'posts_per_page' => -1,
-    'post_type' => 'work',
-    'orderby' => 'menu_order',
-    'order' => 'ASC',
-  )
-);
-if(isset($all_work)) {
-	$prev_next = find_previous_and_next_posts($all_work, $this_post->ID);
+$thumb_ID = get_post_thumbnail_id($this_ID);
+if (isset($thumb_ID)) {
+  $this_post->featured_img = wp_get_attachment_image_src($thumb_ID, 'original');
 }
 
 echo '<article id="post-' . $this_ID . '" ';
@@ -44,8 +33,9 @@ echo '</span>';
 echo '<span class="centered-section">';
 echo '<div class="entry-content">';
 
-if (isset($this_post->hero_image)) {
-  echo '<img src="' . $this_post->hero_image[0] . '" alt="' . $this_post->post_title . '" />';
+if (isset($this_post->featured_img)) {
+  echo '<img src="' . $this_post->featured_img[0] . '" alt="' .
+      $this_post->post_title . '" />';
 }
 
 the_content( sprintf(
@@ -72,7 +62,19 @@ wp_link_pages( array(
 echo '</div>'; // .entry-content
 echo '</article>'; // '#post-'the_ID();
 
-// show_hidden_span_with_print_r($prev_next['prev']);
+
+$all_pets = get_posts(
+  array(
+    'posts_per_page' => -1,
+    'post_type' => 'pets',
+    'orderby' => 'menu_order',
+    'order' => 'ASC',
+  )
+);
+if(isset($all_pets)) {
+	$prev_next = find_previous_and_next_posts($all_pets, $this_post->ID);
+}
+
 if (isset($prev_next) && $prev_next !== '') {
 
 	echo '<nav class="navigation post-navigation" role="navigation">';

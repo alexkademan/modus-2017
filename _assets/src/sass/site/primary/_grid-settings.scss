@@ -6,7 +6,7 @@ $grid-margin-main: 1.5rem;
 $width-medium: pem(641);
 $width-small:  pem(640);
 
-$max-width: pem(1240);
+$max-width: pem(1500);
 $small-size: pem(720);
 $large-size: pem(1140);
 
@@ -20,11 +20,6 @@ $wordpress-large-size: 'min-width: 783px';
 $main-layout-grid: (
   columns: 2,
   gutter: $grid-margin-main,
-);
-$main-layout-grid-footer: (
-  columns: 2,
-  gutter: $grid-margin-main,
-  media: $size-phone-up,
 );
 
 body {
@@ -45,8 +40,12 @@ body {
   @include grid-container;
   display: block;
   clear: both;
-  max-width: pem(1200);
+  max-width: $max-width;
   margin: 0 auto;
+}
+
+.no-padding {
+  padding: 0;
 }
 
 .centered-single-column {
@@ -65,28 +64,6 @@ body {
 .entry-header,
 .entry-content {
   @include grid-column(2, $main-layout-grid);
-}
-
-.site-footer {
-
-  padding: $grid-margin-main 0;
-
-  .company-info,
-  .copyright {
-    @include grid-media($main-layout-grid-footer) {
-      @include grid-column(1);
-      text-align: left;
-    }
-    @include grid-column(2, $main-layout-grid);
-    text-align: center;
-    padding-bottom: $grid-margin-main;
-  }
-
-  .company-info {
-    @include grid-media($main-layout-grid-footer) {
-      text-align: right;
-    }
-  }
 }
 
 .post-navigation {
