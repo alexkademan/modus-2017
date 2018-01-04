@@ -1,19 +1,27 @@
 .header-image {
-  display: block;
-  float: left;
-  clear: both;
+  position: fixed;
+  left: 0;
+  top: 0;
   width: 100%;
-  position: relative;
+  // position: relative;
   background: $modus-orange;
   margin: 0;
   padding: 0;
+  overflow: hidden;
+
+  & > span {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
 
   img {
     width: 100%;
     margin: 0;
     padding: 0;
     display: block;
-
+    object-fit: cover;
+    mask: url('#mask-pattern');
   }
 
   .placeholder {
@@ -29,6 +37,6 @@
     height: 100%;
     margin: 0;
     padding: 0;
-    opacity: .4;
+    opacity: 1;
   }
 }
