@@ -2,6 +2,8 @@
 $base-font-family: 'Roboto Slab', sans-serif;
 $heading-font-family: $base-font-family;
 
+$font-sans-serif: 'helvetica', arial, sans-serif;
+
 // Line height
 $base-line-height: 1.5;
 $heading-line-height: 1.2;
@@ -13,7 +15,7 @@ $small-spacing: $base-spacing / 2;
 $base-z-index: 0;
 
 // Colors
-$blue: #1565c0;
+// $blue: #1565c0;
 $gray: #ccc;
 $dark-gray: #333;
 $medium-gray: #999;
@@ -22,16 +24,25 @@ $black: #000;
 $white: #fff;
 $ugly-pink: #fcf;
 
+$page-bg-color: lighten($light-gray, 8%);
+$page-bg-color:  rgb(0, 0, 0);
+// $page-bg-color: transparent;
+
 $modus-orange: rgb(241, 93, 34);
 $orange: $modus-orange;
 $modus-brown: rgb(84, 48, 26);
 $brown: $modus-brown;
 
+$modus-blue: rgb(29, 142, 172);
+$blue: $modus-blue;
+$modus-yellow: rgb(254, 221, 0);
+$yellow: $modus-yellow;
+
 $gray-opaque: rgba(0, 0, 0, .1);
 $gray-opaque-darker: rgba(0, 0, 0, .7);
 
 $color-modal-background: rgba(0, 0, 0, .85);
-$color-modal-main-nav: rgba(241, 93, 34, .95);
+$color-modal-main-nav: rgba(241, 93, 34, 1);
 $color-dog-modal: rgba(255, 255, 255, .95);
 
 // Font Colors

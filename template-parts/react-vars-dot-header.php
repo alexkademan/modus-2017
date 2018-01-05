@@ -16,3 +16,7 @@ function modus_get_dot_image($custom_fields) {
 
   return $dot_header;
 }
+
+function modus_get_welcome_vars() {
+  return 'linkthecat';
+}

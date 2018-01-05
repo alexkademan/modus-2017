@@ -23,16 +23,25 @@ $main-layout-grid: (
 );
 
 body {
-  background-color: lighten($light-gray, 8%);
+  background-color: $page-bg-color;
 }
 
-.site {
+.site,
+.footer-bg,
+.header-bg {
   display: block;
   position: relative;
   clear: both;
   float: left;
   width: 100%;
+}
+
+.site {
   background-color: $white;
+}
+
+.footer-bg {
+  background: $page-bg-color;
 }
 
 .centered-section,

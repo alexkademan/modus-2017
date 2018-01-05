@@ -30,51 +30,23 @@
 
 	?>
 <div id="page" class="whole-layout">
+
+	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', '_s' ); ?></a>
+
+	<?php
+		switch (get_the_ID()) {
+			case 2:
+				get_template_part('header', 'welcome');
+				break;
+
+			default:
+				get_template_part('header', 'common');
+				break;
+		}
+	?>
+
+
+
+
 	<div class="site">
-		<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', '_s' ); ?></a>
-		<span class="centered-section">
-			<header id="masthead" class="site-header">
-				<?php
-					echo '<h1 class="hid">';
-					echo get_bloginfo('name');
-					echo '</h1>';
-				?>
-				<span class="site-branding">
-					<?php
-
-					// the_custom_logo();
-
-					echo '<a href="' .  esc_url(home_url('/')) . '" class="logo" rel="home">';
-					// bloginfo( 'name' );
-					echo '<img ';
-					echo 	'src="' . get_bloginfo('template_url') . '/images/modus-logo.svg" ';
-					echo 	'title="' . get_bloginfo('name') . '" ';
-					echo 	'itemprop="logo"';
-					echo 	'class="site-logo"';
-					echo '>';
-					// echo file_get_contents(get_bloginfo('template_url') . '/images/modus-logo.svg');
-					echo '</a>';
-
-					$description = get_bloginfo( 'description', 'display' );
-					if ( $description || is_customize_preview() ) : ?>
-						<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
-					<?php
-					endif; ?>
-				</span><!-- .site-branding -->
-
-				<nav id="site-navigation" class="main-navigation hid">
-					<h1 class="hid">Site Navigation</h1>
-					<?php
-						wp_nav_menu( array(
-							'theme_location' => 'menu-1',
-							'menu_id'        => 'primary-menu',
-							'exclude'				 => 2,
-						) );
-					?>
-				</nav><!-- #site-navigation -->
-				<?php // get_search_form(); ?>
-			</header><!-- #masthead -->
-		</span>
-		<div id="page-header-image"></div>
-
 		<div id="content" class="site-content">

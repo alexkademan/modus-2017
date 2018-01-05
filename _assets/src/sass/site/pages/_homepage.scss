@@ -1,10 +1,59 @@
+.home-header {
+  height: 100vh;
+  color: $white;
+  text-align: center;
+
+  h1 {
+    width: 100%;
+    color: $yellow;
+    margin-bottom: .5em;
+    font-size: 2.5em;
+    line-height: .9em;
+
+    @media($medium-breakpoint) {
+      font-size: 3.5em;
+    }
+
+    @media($large-breakpoint) {
+      font-size: 5em;
+    }
+  }
+
+  p {
+    font-size: 1.5em;
+    font-family: $font-sans-serif;
+    font-weight: normal;
+    line-height: .75em;
+
+    @media($medium-breakpoint) {
+      font-size: 2em;
+    }
+
+    @media($large-breakpoint) {
+      font-size: 3.5em;
+    }
+  }
+
+  .subhead {
+    position: absolute;
+    left: 0;
+    top: 34vh;
+    float: left;
+    clear: none;
+    width: 100%;
+    padding: 0 2em;
+  }
+
+}
+
+.page-header-image,
 .header-image {
   position: fixed;
   left: 0;
   top: 0;
   width: 100%;
-  // position: relative;
-  background: $modus-orange;
+  height: 100vh;
+  background: $black;
   margin: 0;
   padding: 0;
   overflow: hidden;

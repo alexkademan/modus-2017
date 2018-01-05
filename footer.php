@@ -11,6 +11,7 @@
 
 echo '</div>'; // #content
 // echo '<div id="gooey-ui" class="gooey-ui"></div>';
+echo '<div class="footer-bg">';
 echo '<div class="centered-section">';
 echo '<div id="gooey-ui" class="gooey-ui"></div>';
 echo '<footer id="colophon" class="site-footer">';
@@ -35,6 +36,7 @@ echo	 '</div>';
 
 echo  '</footer>'; // #colophon
 echo '</div>'; // #centered-section
+echo '</div>'; // #footer-bg
 echo '</div>'; // #page
 echo '</div>'; // #whole-layout
 

@@ -15,6 +15,7 @@ const reactDiv = document.getElementById('react-div');
 const wholeLayout = document.getElementById('page');
 const gooey = document.getElementById('gooey-ui');
 const headerImg = document.getElementById('page-header-image');
+const masthead = document.getElementById('masthead');
 
 let phpVars = false;
 
@@ -42,6 +43,9 @@ if (gooey && phpVars.dogs) {
   ReactDOM.render(<Gooey phpVars={phpVars.dogs} />, gooey);
 }
 
-if (headerImg && phpVars.dot_header_image) {
-  ReactDOM.render(<HeaderImg imgInfo={phpVars.dot_header_image} />, headerImg);
+if (headerImg && masthead && phpVars.dot_header_image && phpVars.welcome) {
+  ReactDOM.render(
+    <HeaderImg imgInfo={phpVars.dot_header_image} welcome={phpVars.welcome} />,
+    headerImg,
+  );
 }
