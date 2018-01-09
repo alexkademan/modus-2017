@@ -19,11 +19,6 @@ $work-items-grid-tablet-up: (
 
   li {
     @include grid-column(1, $work-items-grid);
-
-    // img {
-    //   border-radius: 0 30% 0 0;
-    //   border: $ugly-pink 4px solid;
-    // }
   }
 
   @include grid-media($work-items-grid-phone-up) {

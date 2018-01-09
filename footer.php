@@ -8,38 +8,44 @@
  *
  * @package _s
  */
+?>
+</div><?php // #content ?>
 
-echo '</div>'; // #content
-// echo '<div id="gooey-ui" class="gooey-ui"></div>';
-echo '<div class="footer-bg">';
-echo '<div class="centered-section">';
-echo '<div id="gooey-ui" class="gooey-ui"></div>';
-echo '<footer id="colophon" class="site-footer">';
+<div class="footer-bg">
+  <div class="centered-section">
+    <div id="gooey-ui" class="gooey-ui"></div>
+      <footer id="colophon" class="site-footer">
 
-echo	 '<div class="left-col">';
-echo	   '<div class="gooey-placeholder"></div>';
+        <div class="left-col">
+          <div class="gooey-placeholder"></div>
+        </div>
 
-echo	 '</div>';
-
-echo	 '<div class="right-col">';
-get_template_part( 'template-parts/info', 'address' );
-
-echo	 '<div class="copyright">';
+        <div class="right-col">
+          <?php
+            get_template_part( 'template-parts/info', 'address' );
+          ?>
+        </div>
+        <div class="copyright">
+        <?php
 echo '&copy; ' . date("Y");
 $company_name = func_get_single_custom_post('company_info', 'name');
 if(is_object($company_name) && $company_name->post_content !== '') {
   echo ' ' . $company_name->post_content;
 }
-echo	 '</div>';
+?>
+        </div>
+      </footer>
+    </div> <?php // #centered-section ?>
+  </div>
 
-echo	 '</div>';
 
-echo  '</footer>'; // #colophon
-echo '</div>'; // #centered-section
-echo '</div>'; // #footer-bg
-echo '</div>'; // #page
-echo '</div>'; // #whole-layout
 
+
+</div> <?php // .site-content ?>
+</div> <?php // .site ?>
+</div> <?php // .whole-layout ?>
+
+<?php
 get_template_part( 'template-parts/react', 'diagnostic' );
 wp_footer();
 

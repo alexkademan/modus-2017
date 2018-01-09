@@ -1,5 +1,5 @@
 
-<div class="header-bg">
+<div class="header-bg header-common">
 	<span class="centered-section">
 		<header id="masthead" class="site-header">
 			<?php

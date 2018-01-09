@@ -17,6 +17,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
 	<?php
 	wp_head();
 	$main_css = get_webkit_asset('css', 'main');
@@ -44,9 +45,5 @@
 				break;
 		}
 	?>
-
-
-
-
 	<div class="site">
 		<div id="content" class="site-content">

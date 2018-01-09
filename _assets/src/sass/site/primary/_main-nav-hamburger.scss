@@ -30,6 +30,16 @@ $hamburger-spacing: 8px;
     top: -60px;
   }
 
+  @media($medium-breakpoint) {
+    top: 22px;
+    right: 16px;
+  }
+
+  @media($large-breakpoint) {
+    top: 40px;
+    right: 20px;
+  }
+
   @media($wordpress-large-size) {
     .admin-bar & {
       top: 40px;

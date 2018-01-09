@@ -121,6 +121,7 @@ class Gooey extends React.Component {
               <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
               <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
               <feGaussianBlur in="goo" stdDeviation="3" result="shadow" />
+              <feComposite in2="goo" in="SourceGraphic" result="mix" />
             </filter>
           </defs>
         </svg>

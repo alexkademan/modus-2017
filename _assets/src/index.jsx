@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import ReactStuff from './react-stuff';
 import Gooey from './components/Gooey';
 import HeaderImg from './components/HeaderImg';
+import WelcomeMat from './components/WelcomeMat';
 
 import DocumentStatus from './documentStats';
 import DocumentStore from './flux/documentStore';
@@ -45,7 +46,11 @@ if (gooey && phpVars.dogs) {
 
 if (headerImg && masthead && phpVars.dot_header_image && phpVars.welcome) {
   ReactDOM.render(
-    <HeaderImg imgInfo={phpVars.dot_header_image} welcome={phpVars.welcome} />,
+    <HeaderImg imgInfo={phpVars.dot_header_image} />,
     headerImg,
+  );
+  ReactDOM.render(
+    <WelcomeMat parent={masthead} phpVars={phpVars.welcome} />,
+    masthead,
   );
 }

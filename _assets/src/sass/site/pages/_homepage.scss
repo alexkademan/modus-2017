@@ -20,17 +20,30 @@
   }
 
   p {
-    font-size: 1.5em;
-    font-family: $font-sans-serif;
-    font-weight: normal;
+    font-size: 1.2em;
     line-height: .75em;
 
     @media($medium-breakpoint) {
-      font-size: 2em;
+      font-size: 1.8em;
     }
 
     @media($large-breakpoint) {
-      font-size: 3.5em;
+      font-size: 3em;
+    }
+  }
+
+  i {
+    font-size: 2.5em;
+    opacity: .6;
+    transition: .2s ease;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    @media($large-breakpoint) {
+      font-size: 3em;
     }
   }
 
@@ -42,6 +55,16 @@
     clear: none;
     width: 100%;
     padding: 0 2em;
+    // filter: blur(0);
+
+    .fade {
+      transition: .7s ease;
+    }
+
+    .invisible {
+      opacity: 0;
+      // filter: blur(5px);
+    }
   }
 
 }
@@ -88,4 +111,11 @@
     padding: 0;
     opacity: 1;
   }
+}
+
+.welcome-2 {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  background: $white;
 }

@@ -1,19 +1,27 @@
-.site-header {
-  .logo {
-    display: block;
-    float: left;
-    clear: none;
-    min-width: pem(250);
-    max-width: pem(350);
-
-    img {
-      width: 100%;
-    }
-  }
-
+.header-common {
   .site-description {
     display: block;
     float: left;
     clear: both;
+  }
+}
+
+.site-branding {
+  .logo {
+    position: absolute;
+    left: .6em;
+    top: .3em;
+    width: 70%;
+    max-width: pem(200);
+
+    @media($medium-breakpoint) {
+      left: .7em;
+      max-width: pem(300);
+    }
+
+    @media($large-breakpoint) {
+      left: .8em;
+      max-width: pem(400);
+    }
   }
 }

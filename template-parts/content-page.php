@@ -17,7 +17,10 @@ $this_ID = get_the_id();
 	</span>
 <?php
 
-if($this_ID === 10) {
+if ($this_ID === 2) {
+	get_template_part( 'template-parts/page', 'home' );
+
+} elseif ($this_ID === 10) {
 	// 'work' page:
 	get_template_part( 'template-parts/page', 'work' );
 
@@ -30,19 +33,14 @@ if($this_ID === 10) {
 
 	$user = wp_get_current_user();
 
-	if (current_user_can('administrator')) {
-		$user = wp_get_current_user();
-		if($user->user_email == 'alex@designbymodus.com') {
-
-		};
-	}
+	// if (current_user_can('administrator')) {
+	// 	$user = wp_get_current_user();
+	// 	if($user->user_email == 'alex@designbymodus.com') {
+  //
+	// 	};
+	// }
 
 	the_content();
-	// if (get_the_ID() == 2) {
-	// 	for ($i = 1; $i <= 10; $i++) {
-	//     echo '<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>';
-	// 	}
-	// };
 	echo '</div>';
 	echo '</span>';
 

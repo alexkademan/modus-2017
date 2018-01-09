@@ -14,7 +14,6 @@ class HeaderImg extends React.Component {
       imgHeightOrig: props.imgInfo.height,
       dotsWide: props.imgInfo.dots_wide,
       headerColor: props.imgInfo.header_color,
-      masthead: document.getElementById('masthead'),
     };
   }
 
@@ -89,6 +88,10 @@ class HeaderImg extends React.Component {
     });
   }
 
+  handleImageLoaded() {
+    DocumentStore.sectionLoad(this);
+  }
+
   render() {
     const circleCenter = this.state.patternWidth / 2;
     const bgStyle = {
@@ -102,8 +105,6 @@ class HeaderImg extends React.Component {
       left: this.state.bgLeftMargin,
       top: this.state.bgTopMargin,
     };
-
-    this.state.masthead.style.height = `${this.state.pageHeight}px`;
 
     return (
       <div
@@ -159,6 +160,7 @@ class HeaderImg extends React.Component {
               height={this.state.imgHeight}
               mask="url(#mask-pattern)"
               // x={this.state.bgLeftMargin}
+              onLoad={this.handleImageLoaded()}
             />
           </svg>
         </span>

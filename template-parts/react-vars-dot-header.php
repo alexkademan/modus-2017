@@ -18,5 +18,11 @@ function modus_get_dot_image($custom_fields) {
 }
 
 function modus_get_welcome_vars() {
-  return 'linkthecat';
+  $welcome = [
+    'headline1' => 'Good Business',
+    'headline2' => 'By Design.',
+    'subhead1' => 'We\'re Cool.',
+  ];
+
+  return $welcome;
 }

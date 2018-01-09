@@ -12,6 +12,7 @@ let pagesArray = false; // array for page navigation.
 let pageStatus = false;
 let randomDog = 0;
 let reactDogs;
+let sectionLoad = 0;
 const emitter = new EventEmitter();
 
 const DocumentStore = {
@@ -111,6 +112,15 @@ const DocumentStore = {
 
     windowStats = newWindowInfo;
     emitter.emit('change');
+  },
+
+  sectionLoad() {
+    sectionLoad += 1;
+    emitter.emit('sectionLoaded');
+  },
+
+  getSectionCount() {
+    return sectionLoad;
   },
 
   getWindowSize(): Array<Object> {
