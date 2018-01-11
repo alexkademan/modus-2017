@@ -1,12 +1,37 @@
 .site-footer {
   display: block;
-  // float: left;
-  // clear: both;
+  float: left;
+  clear: both;
   width: 100%;
-  padding: ($grid-margin-main * .5) $grid-margin-main;
+  // min-height: pem(250);
+  padding: $grid-margin-main $grid-margin-main 4em;
+
+  color: darken($light-gray, 35%);
 
   .right-col {
     text-align: right;
+  }
+
+  a,
+  p,
+  .copyright {
+    display: block;
+    float: right;
+    clear: right;
+    text-decoration: none;
+  }
+
+  a {
+    color: darken($light-gray, 35%);
+    transition: color .2s ease;
+
+    &:hover {
+      color: $light-gray;
+    }
+  }
+
+  .copyright {
+    padding-top: 1em;
   }
 
   p {

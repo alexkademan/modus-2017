@@ -1,21 +1,4 @@
-$size-phone-up: '(min-width: 450px)';
-$size-tablet-up: '(min-width: 768px)';
-$grid-margin-main: 1.5rem;
 
-// Breakpoints
-$width-medium: pem(641);
-$width-small:  pem(640);
-
-$max-width: pem(1500);
-$small-size: pem(720);
-$large-size: pem(1140);
-
-$col-reading-width: pem(580);
-
-$medium-breakpoint: 'min-width: ' + $small-size;
-$large-breakpoint: 'min-width: ' + $large-size;
-$wordpress-small-size: 'max-width: 782px';
-$wordpress-large-size: 'min-width: 783px';
 
 $main-layout-grid: (
   columns: 2,
@@ -42,14 +25,11 @@ body {
   padding-bottom: 0;
 }
 
-.footer-bg {
-  background: $page-bg-color;
-}
-
 .centered-section,
 .centered-single-column {
   @include grid-container;
   display: block;
+  position: relative;
   clear: both;
   max-width: $max-width;
   margin: 0 auto;
@@ -71,10 +51,21 @@ body {
   margin: 0 auto;
 }
 
-.site-header,
 .entry-header,
 .entry-content {
   @include grid-column(2, $main-layout-grid);
+}
+
+.footer-bg {
+  display: block;
+  float: left;
+  clear: both;
+  width: 100%;
+  background: $page-bg-color;
+}
+
+.entry-header {
+  padding: 1em 0 0;
 }
 
 .post-navigation {

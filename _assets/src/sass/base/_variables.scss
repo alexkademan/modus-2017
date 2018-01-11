@@ -1,11 +1,30 @@
 // Typography
 $base-font-family: 'Roboto Slab', sans-serif;
 $heading-font-family: $base-font-family;
-
 $font-sans-serif: 'Roboto', sans-serif;
 
+// grid stuff
+$size-phone-up: '(min-width: 450px)';
+$size-tablet-up: '(min-width: 768px)';
+$grid-margin-main: 1rem;
+
+// Breakpoints
+$width-medium: pem(641);
+$width-small:  pem(640);
+
+$max-width: pem(1500);
+$small-size: pem(720);
+$large-size: pem(1140);
+
+$col-reading-width: pem(580);
+
+$medium-breakpoint: 'min-width: ' + $small-size;
+$large-breakpoint: 'min-width: ' + $large-size;
+$wordpress-small-size: 'max-width: 782px';
+$wordpress-large-size: 'min-width: 783px';
+
 // Line height
-$base-line-height: 1.5;
+$base-line-height: 1.8;
 $heading-line-height: 1.2;
 
 // Other Sizes

@@ -11,7 +11,7 @@ $work-items-grid-phone-up: (
 
 $work-items-grid-tablet-up: (
   columns: 3,
-  gutter: 1.5rem,
+  gutter: $grid-margin-main,
   media: $size-tablet-up,
 );
 

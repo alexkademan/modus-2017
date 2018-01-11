@@ -3,50 +3,6 @@
   color: $white;
   text-align: center;
 
-  h1 {
-    width: 100%;
-    color: $yellow;
-    margin-bottom: .5em;
-    font-size: 2.5em;
-    line-height: .9em;
-
-    @media($medium-breakpoint) {
-      font-size: 3.5em;
-    }
-
-    @media($large-breakpoint) {
-      font-size: 5em;
-    }
-  }
-
-  p {
-    font-size: 1.2em;
-    line-height: .75em;
-
-    @media($medium-breakpoint) {
-      font-size: 1.8em;
-    }
-
-    @media($large-breakpoint) {
-      font-size: 3em;
-    }
-  }
-
-  i {
-    font-size: 2.5em;
-    opacity: .6;
-    transition: .2s ease;
-    cursor: pointer;
-
-    &:hover {
-      opacity: 1;
-    }
-
-    @media($large-breakpoint) {
-      font-size: 3em;
-    }
-  }
-
   .subhead {
     position: absolute;
     left: 0;
@@ -63,7 +19,7 @@
 
     .invisible {
       opacity: 0;
-      // filter: blur(5px);
+      filter: blur(5px);
     }
   }
 

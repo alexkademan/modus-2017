@@ -15,7 +15,7 @@
 				echo '<a href="' .  esc_url(home_url('/')) . '" class="logo" rel="home">';
 				// bloginfo( 'name' );
 				echo '<img ';
-				echo 	'src="' . get_bloginfo('template_url') . '/images/modus-logo.svg" ';
+				echo 	'src="' . get_bloginfo('template_url') . '/images/modus-logo-reverse.svg" ';
 				echo 	'title="' . get_bloginfo('name') . '" ';
 				echo 	'itemprop="logo"';
 				echo 	'class="site-logo"';

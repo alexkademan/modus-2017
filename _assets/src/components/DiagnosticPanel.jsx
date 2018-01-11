@@ -8,7 +8,8 @@ class DiagnosticPanel extends React.Component {
 
     this.state = {
       window: DocumentStore.getWindowSize(),
-      showPanel: false,
+      diagnostic: false, // false to disable entirely.
+      showPanel: false, // false === closed, true === open
       modal: DocumentStore.getModalState(),
       modalName: DocumentStore.getModalTitle(),
     };
@@ -106,10 +107,13 @@ class DiagnosticPanel extends React.Component {
   }
 
   render() {
-    if (this.state.showPanel) {
-      return this.renderPanel();
+    if (this.state.diagnostic) {
+      if (this.state.showPanel) {
+        return this.renderPanel();
+      }
+      return this.renderPanelOff();
     }
-    return this.renderPanelOff();
+    return false;
   }
 }
 

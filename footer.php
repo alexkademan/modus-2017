@@ -26,13 +26,13 @@
           ?>
         </div>
         <div class="copyright">
-        <?php
+          <p><?php
 echo '&copy; ' . date("Y");
 $company_name = func_get_single_custom_post('company_info', 'name');
 if(is_object($company_name) && $company_name->post_content !== '') {
   echo ' ' . $company_name->post_content;
 }
-?>
+?></p>
         </div>
       </footer>
     </div> <?php // #centered-section ?>

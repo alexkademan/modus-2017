@@ -17,7 +17,7 @@ if(is_object($company_name) or
 	echo '<div class="address">';
 
 	if(is_object($company_name) && $company_name->post_content !== '') {
-		echo $company_name->post_content . '<br />';
+		echo '<p>' . $company_name->post_content . '</p>';
 	}
 	if(is_object($company_address) && $company_address->post_content !== '') {
 		if($company_address->optional_url !== '') {

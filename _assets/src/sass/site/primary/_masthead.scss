@@ -1,27 +1,94 @@
-.header-common {
-  .site-description {
-    display: block;
-    float: left;
-    clear: both;
-  }
+.site-description {
+  display: none;
 }
 
 .site-branding {
   .logo {
-    position: absolute;
-    left: .6em;
-    top: .3em;
+    margin-left: $grid-margin-main;
+    margin-top: .3em;
     width: 70%;
     max-width: pem(200);
 
     @media($medium-breakpoint) {
-      left: .7em;
-      max-width: pem(300);
+      max-width: pem(250);
     }
 
     @media($large-breakpoint) {
-      left: .8em;
-      max-width: pem(400);
+      max-width: pem(300);
+    }
+
+    .home-header & {
+      @media($medium-breakpoint) {
+        max-width: pem(300);
+      }
+
+      @media($large-breakpoint) {
+        max-width: pem(400);
+      }
+    }
+  }
+}
+
+.home-header {
+  .site-branding {
+    .logo {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  h1 {
+    width: 100%;
+    color: $yellow;
+    margin-bottom: .5em;
+    font-size: 2.5em;
+    line-height: .9em;
+
+    @media($medium-breakpoint) {
+      font-size: 3.5em;
+    }
+
+    @media($large-breakpoint) {
+      font-size: 5em;
+    }
+  }
+
+  p {
+    font-size: 1.2em;
+    line-height: .75em;
+
+    @media($medium-breakpoint) {
+      font-size: 1.8em;
+    }
+
+    @media($large-breakpoint) {
+      font-size: 3em;
+    }
+  }
+
+  i {
+    font-size: 2.5em;
+    opacity: .6;
+    transition: .2s ease;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    @media($large-breakpoint) {
+      font-size: 3em;
+    }
+  }
+}
+
+.header-common {
+  .site-branding {
+    .logo {
+      display: block;
+      float: left;
+      clear: both;
     }
   }
 }
