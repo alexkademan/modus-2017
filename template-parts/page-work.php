@@ -10,7 +10,7 @@ $all_work = get_posts(
 );
 
 if(is_array($all_work)) {
-  echo '<span class="centered-section no-padding">';
+  echo '<div id="portfolio-section" class="centered-section no-padding">';
   echo '<ul class="work-items">';
 
   foreach ($all_work as $key => $job) {
@@ -36,9 +36,9 @@ if(is_array($all_work)) {
 
     echo '<hgroup>';
 
-    echo '<h3>';
+    echo '<h4>';
     print_r($job->post_title);
-    echo '</h3>';
+    echo '</h4>';
 
     if(isset($job->meta['subtitle'][0]) && $job->meta['subtitle'][0] != '') {
       echo '<h4>';
@@ -55,5 +55,5 @@ if(is_array($all_work)) {
 
 
   echo '</ul>';
-  echo '</span>';
+  echo '</div>';
 };

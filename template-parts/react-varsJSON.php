@@ -23,6 +23,11 @@ if (isset($this_page['$current_custom_fields']['header_image'])) {
   $react_stuff['dot_header_image'] = modus_get_dot_image($cf);
 }
 
+if ($this_id == 10) {
+  require_once($this_page['template_path'] . '/react-vars-work.php');
+  $react_stuff['work'] = modus_get_work();
+};
+
 echo '<script type="text/javascript">';
 echo 'window.reactData = ';
 print(json_encode($react_stuff));

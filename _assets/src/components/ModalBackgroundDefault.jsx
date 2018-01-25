@@ -3,8 +3,8 @@ import React from 'react';
 import DocumentStore from '../flux/documentStore';
 
 class ModalBackground extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       fadeInTime: 3,
       fadeOutTime: 300,

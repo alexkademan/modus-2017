@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import DiagnosticPanel from './components/DiagnosticPanel';
+// import DiagnosticPanel from './components/DiagnosticPanel';
 import DocumentStore from './flux/documentStore';
 // import './sass/diagnostic.scss';
 
@@ -83,15 +83,15 @@ class Diagnostic extends React.Component {
   }
 
   handleKeyboard(e) {
-    if (e.code === 'KeyM') {
-      DocumentStore.toggleModal('main-nav');
-    }
-    if (e.code === 'KeyP') {
-      DocumentStore.toggleModal('dog-modal');
-    }
-    if (e.code === 'KeyN') {
-      DocumentStore.toggleModal();
-    }
+    // if (e.code === 'KeyM') {
+    //   DocumentStore.toggleModal('main-nav');
+    // }
+    // if (e.code === 'KeyP') {
+    //   DocumentStore.toggleModal('dog-modal');
+    // }
+    // if (e.code === 'KeyN') {
+    //   DocumentStore.toggleModal();
+    // }
     if (this.state.modal && e.code === 'Escape') {
       DocumentStore.toggleModal();
     }
@@ -112,9 +112,9 @@ class Diagnostic extends React.Component {
   }
 
   render() {
-    if (this.state.isAdmin) {
-      return <DiagnosticPanel />;
-    }
+    // if (this.state.isAdmin) {
+    //   return <DiagnosticPanel />;
+    // }
     return false;
   }
 }

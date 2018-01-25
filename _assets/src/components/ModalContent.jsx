@@ -1,7 +1,8 @@
 import React from 'react';
 import DocumentStore from '../flux/documentStore';
-import DocumentActions from '../flux/documentActions';
+// import DocumentActions from '../flux/documentActions';
 import MainNav from './MainNav';
+import WorkModal from './WorkModal';
 import DogModal from './DogModal';
 
 class ModalController extends React.Component {
@@ -19,13 +20,9 @@ class ModalController extends React.Component {
       case 'main-nav':
         return <MainNav />;
       case 'dog-modal':
-        // const dogs = DocumentStore.getDogsArray();
-        return (
-          <DogModal
-            allPosts={DocumentStore.getDogsArray()}
-            currentPost={DocumentActions.randomNumber(DocumentStore.getDogsArray().length)}
-          />
-        );
+        return <DogModal />;
+      case 'work-modal':
+        return <WorkModal />;
       default:
         return (
           <div className="default-modal">

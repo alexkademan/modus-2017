@@ -11,13 +11,15 @@ class ReactStuff extends React.Component {
   constructor(props) {
     super(props);
 
+    // put all wordpress stuff from PHP into store:
+    DocumentStore.setPHPvars(props.phpVars);
+
     this.state = {
       isAdmin: props.user,
       wholeLayout: props.wholeLayout, // DOM element for size of page.
       siteInfo: props.phpVars,
       modalFadeState: DocumentStore.getModalFadeState(),
     };
-
     // pull in the JSON that I sent from WP's PHP templates
     if (
       this.state.siteInfo &&

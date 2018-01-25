@@ -54,6 +54,17 @@ class Modal extends React.Component {
     }
   }
 
+  renderBackground() {
+    switch (this.state.modalTitle) {
+    case 'main-nav':
+      return <ModalBackground />;
+    case 'work-modal':
+      return <ModalBackground />;
+    default:
+      return <ModalBackgroundDefault />;
+    }
+  }
+
   render() {
     const modalName = `site-modal-container ${this.state.modalTitle}`;
     const pageScroll = DocumentStore.getPageScrollPosition();
@@ -84,11 +95,7 @@ class Modal extends React.Component {
           ref={(modalNode) => { this.modalNode = modalNode; }}
           style={modalFaderStyle}
         >
-          {
-            this.state.modalTitle === 'main-nav' ?
-              <ModalBackground /> :
-              <ModalBackgroundDefault />
-          }
+          {this.renderBackground()}
           {this.state.modal ? <ModalContent /> : ''}
         </span>
       </div>

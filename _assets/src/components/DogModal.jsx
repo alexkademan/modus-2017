@@ -1,17 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import DocumentStore from '../flux/documentStore';
 import DocumentActions from '../flux/documentActions';
 
 class DogModal extends React.Component {
 
-  constructor(props) {
-    super(props);
-
+  constructor() {
+    super();
+    const dogsArray = DocumentStore.getDogsArray();
     this.state = {
       window: DocumentStore.getWindowSize(),
-      allPosts: props.allPosts,
-      currentPost: props.currentPost,
+      allPosts: dogsArray,
+      currentPost: DocumentActions.randomNumber(dogsArray.length),
     };
 
     this.onResize = this.onResize.bind(this);
@@ -125,15 +124,5 @@ class DogModal extends React.Component {
     );
   }
 }
-
-DogModal.propTypes = {
-  allPosts: PropTypes.arrayOf(PropTypes.shape({})),
-  currentPost: PropTypes.number,
-};
-
-DogModal.defaultProps = {
-  allPosts: '',
-  currentPost: 0,
-};
 
 export default DogModal;

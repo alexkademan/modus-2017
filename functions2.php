@@ -108,3 +108,8 @@ function get_webkit_asset($dir, $filename) {
 
   return $this_file;
 }
+
+function get_modus_portfolio_img($img_id) {
+  $img_info = get_post($img_id);
+  return $img_info;
+}

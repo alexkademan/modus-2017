@@ -80,5 +80,9 @@
 
   .pattern-circle {
     fill: $color-modal-main-nav;
+
+    .work-modal & {
+      fill: $white;
+    }
   }
 }

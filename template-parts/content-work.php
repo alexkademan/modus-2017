@@ -6,13 +6,52 @@
  *
  * @package _s
  */
+
+// $query = new WP_Query(array(
+//   'post_type' => 'work',
+//   'post_status' => 'publish',
+//   'posts_per_page' => -1,
+// ));
+//
+//
+// while ($query->have_posts()) {
+//   $query->the_post();
+//   $post_id = get_the_ID();
+//   print_r($query->posts);
+//   echo $post_id;
+//   echo "<br>";
+// }
+//
+// wp_reset_query();
+
+
 $this_ID = get_the_ID();
 $this_post = get_post($this_ID);
 $this_post->meta = get_post_meta($this_ID);
 
+// print_r($this_post);
+
 if (isset($this_post->meta['hero_image'])) {
   $hero_ID = $this_post->meta['hero_image'][0];
   $this_post->hero_image = wp_get_attachment_image_src($hero_ID, 'full');
+}
+
+if(
+  isset($this_post->meta['portfolio_a'][0]) OR
+  isset($this_post->meta['portfolio_b'][0]) OR
+  isset($this_post->meta['portfolio_c'][0])
+) {
+  $this_post->images = [];
+}
+
+if (isset($this_post->meta['portfolio_a'][0])) {
+  array_push($this_post->images, get_post($this_post->meta['portfolio_a'][0]));
+}
+if (isset($this_post->meta['portfolio_b'][0])) {
+  array_push($this_post->images, get_post($this_post->meta['portfolio_b'][0]));
+}
+if (isset($this_post->meta['portfolio_c'][0])) {
+  array_push($this_post->images, get_post($this_post->meta['portfolio_c'][0]));
 }
 
 $all_work = get_posts(
@@ -44,9 +83,26 @@ echo '</span>';
 echo '<span class="centered-section">';
 echo '<div class="entry-content">';
 
-if (isset($this_post->hero_image)) {
-  echo '<img src="' . $this_post->hero_image[0] . '" alt="' . $this_post->post_title . '" />';
+
+if (isset($this_post->images)) {
+  // print_r($this_post->images);
+  ?>
+
+  <div id="portfolio-images" class="portfolio-images">
+    <?php
+      foreach ($this_post->images as $key => $image) {
+        print_r($image->guid);
+        echo '<img src="' . $image->guid . '" />';
+      };
+    ?>
+  </div>
+
+  <?php
 }
+
+// if (isset($this_post->hero_image)) {
+//   echo '<img src="' . $this_post->hero_image[0] . '" alt="' . $this_post->post_title . '" />';
+// }
 
 the_content( sprintf(
 	wp_kses(

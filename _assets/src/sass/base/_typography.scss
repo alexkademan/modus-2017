@@ -23,58 +23,54 @@ h6 {
 }
 
 h1 {
-  font-size: 2em;
-  @media($medium-breakpoint) {
-    font-size: 2.4em;
-  }
+  font-size: 1.4em;
+  @media($medium-breakpoint) { font-size: 1.5em; }
+  @media($large-breakpoint) { font-size: 1.6em; }
+  @media($extra-large-breakpoint) { font-size: 1.7em; }
 }
 
 h2 {
-  font-size: 1.8em;
-  @media($medium-breakpoint) {
-    font-size: 2.2em;
-  }
+  font-size: 1.3em;
+  @media($medium-breakpoint) { font-size: 1.4em; }
+  @media($large-breakpoint) { font-size: 1.5em; }
+  @media($extra-large-breakpoint) { font-size: 1.6em; }
 }
 
 h3 {
-  font-size: 1.6em;
-  @media($medium-breakpoint) {
-    font-size: 2em;
-  }
+  font-size: 1.2em;
+  @media($medium-breakpoint) { font-size: 1.3em; }
+  @media($large-breakpoint) { font-size: 1.4em; }
+  @media($extra-large-breakpoint) { font-size: 1.5em; }
 }
 
 h4 {
-  font-size: 1.4em;
+  font-size: 1.1em;
   font-weight: normal;
-  @media($medium-breakpoint) {
-    font-size: 1.8em;
-  }
+  @media($medium-breakpoint) { font-size: 1.2em; }
+  @media($large-breakpoint) { font-size: 1.3em; }
+  @media($extra-large-breakpoint) { font-size: 1.4em; }
 }
 
-h5 {
-  font-size: 1.2em;
-  font-weight: normal;
-  @media($medium-breakpoint) {
-    font-size: 1.6em;
-  }
-}
-
+h5,
 h6 {
   font-size: 1em;
   font-weight: normal;
-  @media($medium-breakpoint) {
-    font-size: 1.4em;
-  }
+  @media($medium-breakpoint) { font-size: 1.1em; }
+  @media($large-breakpoint) { font-size: 1.2em; }
+  @media($extra-large-breakpoint) { font-size: 1.3em; }
+}
+
+h6 {
+  font-style: italic;
 }
 
 p {
   font-family: $font-sans-serif;
   margin: 0 0 $small-spacing;
   font-size: 1em;
-  // max-width: pem(650);
-  @media($medium-breakpoint) {
-    font-size: 1.2em;
-  }
+  @media($medium-breakpoint) { font-size: 1.1em; }
+  @media($large-breakpoint) { font-size: 1.2em; }
+  @media($extra-large-breakpoint) { font-size: 1.3em; }
 }
 
 a {
@@ -101,7 +97,7 @@ hr {
 }
 
 .site-footer {
-  
+
   p {
     font-family: $base-font-family;
     line-height: 1.4em;

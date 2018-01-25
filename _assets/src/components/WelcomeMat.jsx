@@ -17,6 +17,7 @@ class WelcomeMat extends React.Component {
       parent: props.parent,
     };
   }
+
   componentDidMount() {
     this.state.emitter = DocumentStore.addListener('sectionLoaded', () => {
       this.checkUserStatus();
@@ -33,6 +34,7 @@ class WelcomeMat extends React.Component {
 
   componentWillUnmount() {
     this.state.emitter.remove();
+    document.removeEventListener('click', this.handleClick);
   }
 
   handleClick(e) {

@@ -4,6 +4,7 @@ import ReactStuff from './react-stuff';
 import Gooey from './components/Gooey';
 import HeaderImg from './components/HeaderImg';
 import WelcomeMat from './components/WelcomeMat';
+import WorkLayout from './components/WorkLayout';
 
 import DocumentStatus from './documentStats';
 import DocumentStore from './flux/documentStore';
@@ -17,6 +18,7 @@ const wholeLayout = document.getElementById('page');
 const gooey = document.getElementById('gooey-ui');
 const headerImg = document.getElementById('page-header-image');
 const masthead = document.getElementById('masthead');
+const portfolio = document.getElementById('portfolio-section');
 
 let phpVars = false;
 
@@ -53,4 +55,8 @@ if (headerImg && masthead && phpVars.dot_header_image && phpVars.welcome) {
     <WelcomeMat parent={masthead} phpVars={phpVars.welcome} />,
     masthead,
   );
+}
+
+if (portfolio && phpVars.work) {
+  ReactDOM.render(<WorkLayout />, portfolio);
 }

@@ -1,0 +1,13 @@
+.work-modal {
+  position: relative;
+
+  .thumbs {
+    button {
+      background: $light-gray;
+
+      &.selected {
+        background: $dark-gray;
+      }
+    }
+  }
+}

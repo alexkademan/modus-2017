@@ -4,12 +4,15 @@ import DocumentActions from './documentActions';
 
 let windowStats;
 let toggleModal = false; // show or hide modal
+let wordpress = false;
 let pageScrollPosition = 0;
 let modalScrollPosition = 0;
 let modalTitle = false; // name of modal parent.
 let modalFadeState = 0;
 let pagesArray = false; // array for page navigation.
 let pageStatus = false;
+let workModal = false; // ID of selected post at work page.
+let selectedSlide = 0;
 let randomDog = 0;
 let reactDogs;
 let sectionLoad = 0;
@@ -19,6 +22,10 @@ const DocumentStore = {
 
   init(stats: Array<Object>) {
     windowStats = stats;
+  },
+
+  setPHPvars(phpVars) {
+    wordpress = phpVars;
   },
 
   toggleModal(modalName = 'default') {
@@ -135,6 +142,10 @@ const DocumentStore = {
     return pagesArray;
   },
 
+  getWorkVars(): Array<Object> {
+    return wordpress.work;
+  },
+
   setPageNavigation(newPagesArray) {
     pagesArray = newPagesArray;
     emitter.emit('nav-change');
@@ -158,6 +169,24 @@ const DocumentStore = {
 
   getPageScrollPosition() {
     return pageScrollPosition;
+  },
+
+  setWorkModal(count) {
+    workModal = count;
+    emitter.emit('workModal');
+  },
+
+  getWorkModalCount() {
+    return workModal;
+  },
+
+  setWorkSlide(count) {
+    selectedSlide = count;
+    emitter.emit('workSlide');
+  },
+
+  getWorkSlide() {
+    return selectedSlide;
   },
 
   setModalScrollPosition(position) { modalScrollPosition = position; },
