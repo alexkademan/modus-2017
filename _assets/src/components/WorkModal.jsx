@@ -9,12 +9,10 @@ class WorkModal extends React.Component {
   constructor() {
     super();
     this.state = {
-      window: DocumentStore.getWindowSize(),
       allWork: DocumentStore.getWorkVars(),
       currentPost: DocumentStore.getWorkModalCount(),
       selectedImage: 0,
     };
-    this.onResize = this.onResize.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleKeyboard = this.handleKeyboard.bind(this);
   }
@@ -23,20 +21,14 @@ class WorkModal extends React.Component {
     this.state.emitter = DocumentStore.addListener('workModal', () => {
       this.setState({ currentPost: DocumentStore.getWorkModalCount() });
     });
-    window.addEventListener('resize', this.onResize);
     document.addEventListener('click', this.handleClick);
     document.addEventListener('keyup', this.handleKeyboard);
   }
 
   componentWillUnmount() {
     this.state.emitter.remove();
-    window.removeEventListener('resize', this.onResize);
     document.removeEventListener('click', this.handleClick);
     document.removeEventListener('keyup', this.handleKeyboard);
-  }
-
-  onResize() {
-    this.setState({ window: DocumentStore.getWindowSize() });
   }
 
   handleClick(e) {
@@ -87,20 +79,27 @@ class WorkModal extends React.Component {
   render() {
     const post = this.state.allWork[this.state.currentPost];
     return (
-      <div className="work-modal" ref={(node) => { this.node = node; }}>
-        <h1>
-          {post.post_title}
-        </h1>
-        {post.images ? <WorkSlideShow post={post} count={this.state.currentPost} /> : ''}
-
-        <p>
-          {post.post_content}
-        </p>
-
-
+      <div>
+        <div className="work-modal" ref={(node) => { this.node = node; }}>
+          <div className="modal-main">
+            <span className="modal-content">
+              <h1>
+                {post.post_title}
+              </h1>
+              {
+                post.images ?
+                  <WorkSlideShow post={post} count={this.state.currentPost} /> :
+                  ''
+              }
+              <p>
+                {post.post_content}
+              </p>
+            </span>
+          </div>
+        </div>
+        <button type="button" className="close-modal" />
         <i className="fa fa-chevron-left prev" />
         <i className="fa fa-chevron-right next" />
-        <button type="button" className="close-modal" />
       </div>
     );
   }

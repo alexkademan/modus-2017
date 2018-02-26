@@ -1,0 +1,26 @@
+.contact {
+  display: block;
+  padding: 2em;
+}
+
+.contact-form {
+  // background: $ugly-pink;
+  // input['submit'] {
+  input {
+    &[type='submit'] {
+      display: block;
+      margin: 0 auto;
+      background: $modus-blue;
+      color: $white;
+			transition: .2s ease;
+
+			&:hover {
+				background: darken($modus-blue, 15%);
+			}
+		}
+	}
+
+  strong {
+    color: $modus-orange;
+	}
+}

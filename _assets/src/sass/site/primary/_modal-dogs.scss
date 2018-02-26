@@ -82,15 +82,7 @@ $button-size-medium: 60px;
       &::before,
       &::after, {
         right: 35%;
-        // transition: right .125s ease-in-out;
       }
-
-      // &:hover {
-      //   &::before,
-      //   &::after, {
-      //     right: 44%;
-      //   }
-      // }
     }
 
     .next {
@@ -107,15 +99,7 @@ $button-size-medium: 60px;
       &::before,
       &::after, {
         left: 35%;
-        // transition: left .125s ease-in-out;
       }
-
-      // &:hover {
-      //   &::before,
-      //   &::after, {
-      //     left: 44%;
-      //   }
-      // }
     }
   }
 

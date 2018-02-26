@@ -19,9 +19,10 @@ echo '<main id="main" class="site-main">';
 
 
 while ( have_posts() ) : the_post();
-
 	if (get_the_ID() == 2) {
 		get_template_part( 'template-parts/page', 'home' );
+	} elseif (get_the_ID() == 7) {
+		get_template_part( 'template-parts/page', 'contact' );
 	} else {
 		get_template_part( 'template-parts/content', 'page' );
 	}

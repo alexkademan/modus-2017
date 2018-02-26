@@ -228,9 +228,6 @@ module.exports = {
           fallback: [
             {
               loader: 'style-loader',
-              query: {
-                sourceMap: true,
-              },
             },
           ],
           use: [
@@ -290,6 +287,11 @@ module.exports = {
       inject: true,
       template: paths.portfolioHtml,
       filename: 'portfolio.html',
+    }),
+    new HtmlWebpackPlugin({
+      inject: true,
+      template: paths.styleGuideHtml,
+      filename: 'styleguide.html',
     }),
     // Add module names to factory functions so they appear in browser profiler.
     new webpack.NamedModulesPlugin(),

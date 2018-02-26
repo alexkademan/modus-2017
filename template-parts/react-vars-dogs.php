@@ -6,7 +6,7 @@ function modus_get_dogs() {
     'post_type'=> 'Pets',
     'order'    => 'ASC'
   );
-  
+
   $dogs = new WP_Query( $pets_args );
   $dogs_page = get_bloginfo('wpurl') . '/pets';
 

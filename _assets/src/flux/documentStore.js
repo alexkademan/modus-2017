@@ -16,6 +16,7 @@ let selectedSlide = 0;
 let randomDog = 0;
 let reactDogs;
 let sectionLoad = 0;
+let homeDots = 'hidden';
 const emitter = new EventEmitter();
 
 const DocumentStore = {
@@ -187,6 +188,15 @@ const DocumentStore = {
 
   getWorkSlide() {
     return selectedSlide;
+  },
+
+  setHomeDotsIntro(count) {
+    homeDots = count;
+    emitter.emit('homeDots');
+  },
+
+  getHomeDotsIntro() {
+    return homeDots;
   },
 
   setModalScrollPosition(position) { modalScrollPosition = position; },

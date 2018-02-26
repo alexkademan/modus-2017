@@ -7,11 +7,9 @@ class WorkSlide extends React.Component {
     super(props);
     this.handleClicker = this.handleClicker.bind(this);
     this.state = {
-      // entry: props.entry,
       thisImageCount: props.thisImageCount,
       selectedThumb: 0,
     };
-    console.log(this.state.thisImageCount);
   }
 
   componentDidMount() {
@@ -30,7 +28,6 @@ class WorkSlide extends React.Component {
     this.setState({
       selectedThumb: DocumentStore.getWorkSlide(),
     });
-    console.log(this.state);
   }
 
   handleClicker(e) {
@@ -42,14 +39,14 @@ class WorkSlide extends React.Component {
   render() {
     let buttonClass = 'thumb';
     if (this.state.thisImageCount === this.state.selectedThumb) {
-      buttonClass = 'selected';
+      buttonClass = 'thumb selected';
     }
     return (
       <button
         className={buttonClass}
         ref={(node) => { this.node = node; }}
       >
-        slide - {this.state.thisImageCount}
+        slide
       </button>
     );
   }

@@ -5,6 +5,8 @@ import Gooey from './components/Gooey';
 import HeaderImg from './components/HeaderImg';
 import WelcomeMat from './components/WelcomeMat';
 import WorkLayout from './components/WorkLayout';
+import HomeBlurbs from './components/HomeBlurbs';
+import ContactForm from './components/ContactForm';
 
 import DocumentStatus from './documentStats';
 import DocumentStore from './flux/documentStore';
@@ -17,15 +19,16 @@ const reactDiv = document.getElementById('react-div');
 const wholeLayout = document.getElementById('page');
 const gooey = document.getElementById('gooey-ui');
 const headerImg = document.getElementById('page-header-image');
+const homeBlurb = document.getElementById('home-blurb');
 const masthead = document.getElementById('masthead');
 const portfolio = document.getElementById('portfolio-section');
+const contact = document.getElementById('contact-form');
 
 let phpVars = false;
 
 if (window.reactData) {
   // collect the variables that I've sent over from PHP.
   phpVars = window.reactData;
-  // console.log(phpVars);
 }
 
 if (reactDiv) {
@@ -55,8 +58,15 @@ if (headerImg && masthead && phpVars.dot_header_image && phpVars.welcome) {
     <WelcomeMat parent={masthead} phpVars={phpVars.welcome} />,
     masthead,
   );
+
+  if (homeBlurb && phpVars.home_content) {
+    ReactDOM.render(<HomeBlurbs info={phpVars.home_content} />, homeBlurb);
+  }
 }
 
 if (portfolio && phpVars.work) {
   ReactDOM.render(<WorkLayout />, portfolio);
+}
+if (contact) {
+  ReactDOM.render(<ContactForm />, contact);
 }

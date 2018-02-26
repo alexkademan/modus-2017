@@ -1,13 +1,26 @@
 .work-modal {
   position: relative;
 
+  .modal-main {
+    display: block;
+    clear: none;
+  }
+
+  .modal-content {
+    display: block;
+    clear: none;
+    margin: 5vh auto 3em;
+    width: pem(1000);
+    max-width: 90%;
+  }
+
   .thumbs {
     button {
       background: $light-gray;
+    }
 
-      &.selected {
-        background: $dark-gray;
-      }
+    .selected {
+      background: $dark-gray;
     }
   }
 }

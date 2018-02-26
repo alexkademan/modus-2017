@@ -34,12 +34,13 @@ class WelcomeMat extends React.Component {
 
   componentWillUnmount() {
     this.state.emitter.remove();
+    this.state.emitterPageSize.remove();
     document.removeEventListener('click', this.handleClick);
   }
 
   handleClick(e) {
     if (this.node.contains(e.target)) {
-      if (e.target.classList.contains('fa')) {
+      if (e.target.classList.contains('down-arrow')) {
         this.setState({
           lastScrollPosition: DocumentStore.getWindowSize().scrollY,
         });
@@ -112,7 +113,7 @@ class WelcomeMat extends React.Component {
   render() {
     this.state.parent.style.height = `${this.state.componentHeight}px`;
     return (
-      <span
+      <div
         ref={(node) => { this.node = node; }}
         className="subhead"
       >
@@ -136,15 +137,17 @@ class WelcomeMat extends React.Component {
         <span
           className={
             this.state.nextButtonVisibility ?
-              'fade' : 'fade invisible'
+              'fade bottom' : 'fade bottom invisible'
           }
         >
-          <i
-            className="fa fa-chevron-circle-down"
-            aria-hidden="true"
-          />
+          <span className="circle">
+            <svg className="down-arrow" viewBox="0 0 150 150">
+              <path className="a" d="M106.48 75.74L77.92 104.3V35.65a2.92 2.92 0 1 0-5.84 0v68.65L43.53 75.74a2.93 2.93 0 0 0-4.14 4.14l33.54 33.54 2.07 2.06 2.07-2.06 33.54-33.54a2.92 2.92 0 0 0-4.13-4.14z" />
+              <path className="a" d="M75 0a75 75 0 1 0 75 75A75.09 75.09 0 0 0 75 0zm0 144.15A69.16 69.16 0 1 1 144.16 75 69.24 69.24 0 0 1 75 144.15z" />
+            </svg>
+          </span>
         </span>
-      </span>
+      </div>
     );
   }
 }

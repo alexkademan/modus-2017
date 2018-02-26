@@ -40,8 +40,6 @@ function modus_get_post_sample_image($this_meta) {
 
 function modus_get_work_images($this_meta) {
   $images = false;
-  // $this_meta = get_post_meta($post_id);
-
   if (
     isset($this_meta['portfolio_a']) OR
     isset($this_meta['portfolio_b']) OR
@@ -53,18 +51,27 @@ function modus_get_work_images($this_meta) {
   if (
     isset($this_meta['portfolio_a'][0]) && $this_meta['portfolio_a'][0] != ''
   ) {
-    array_push($images, get_post($this_meta['portfolio_a'][0]));
+    $this_image = modus_get_image_info($this_meta['portfolio_a'][0]);
+    array_push($images, $this_image);
   }
   if (
     isset($this_meta['portfolio_b'][0]) && $this_meta['portfolio_b'][0] != ''
   ) {
-    array_push($images, get_post($this_meta['portfolio_b'][0]));
+    $this_image = modus_get_image_info($this_meta['portfolio_b'][0]);
+    array_push($images, $this_image);
   }
   if (
     isset($this_meta['portfolio_c'][0]) && $this_meta['portfolio_c'][0] != ''
   ) {
-    array_push($images, get_post($this_meta['portfolio_c'][0]));
+    $this_image = modus_get_image_info($this_meta['portfolio_c'][0]);
+    array_push($images, $this_image);
   }
 
   return $images;
+}
+
+function modus_get_image_info($imageID) {
+  $post_obj = get_post($imageID);
+  $post_obj->img = wp_get_attachment_image_src($imageID, 'original');
+  return get_post($post_obj);
 }
