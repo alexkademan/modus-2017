@@ -1,12 +1,21 @@
+.footer-bg {
+  position: fixed;
+  bottom: 0;
+  z-index: 0;
+}
+
 .site-footer {
   display: block;
   float: left;
   clear: both;
   width: 100%;
-  // min-height: pem(250);
-  padding: $grid-margin-main $grid-margin-main 4em;
-
+  padding: $grid-margin-main;
   color: darken($light-gray, 35%);
+
+  h1 {
+    text-align: center;
+    color: $modus-orange;
+  }
 
   .right-col {
     text-align: right;

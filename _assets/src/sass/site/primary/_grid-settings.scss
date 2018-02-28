@@ -9,14 +9,16 @@ body {
   background-color: $page-bg-color;
 }
 
+
+.header-bg,
 .site,
-.footer-bg,
-.header-bg {
+.footer-bg {
   display: block;
   position: relative;
   clear: both;
   float: left;
   width: 100%;
+  z-index: 1;
 }
 
 .site {

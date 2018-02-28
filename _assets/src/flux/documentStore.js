@@ -29,6 +29,13 @@ const DocumentStore = {
     wordpress = phpVars;
   },
 
+  getPHPvars(key = null) {
+    if (key === null) {
+      return wordpress;
+    }
+    return wordpress[key];
+  },
+
   toggleModal(modalName = 'default') {
     if (modalName === 'dog-modal') { randomDog = this.randomizedDog(); }
     if (modalFadeState !== 1 && modalFadeState !== 3) {

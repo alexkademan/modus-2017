@@ -26,3 +26,4 @@ bin/vendor
 bin/mail_config.php
 bin/vendor/phpmailer/phpmailer/get_oauth_token.php
 bin/get_oauth_token.php
+bin/mailer/header_check.php

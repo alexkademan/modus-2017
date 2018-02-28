@@ -126,11 +126,7 @@ class ModalBackground extends React.Component {
   }
 
   render() {
-    // this.calcValues(50);
-    // if (this.state.modalTitle === 'main-nav') {
     return this.mainNavPolkaDots();
-    // }
-    // return false;
   }
 }
 

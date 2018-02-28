@@ -1,9 +1,11 @@
 <?php
 // Variables that I have to send to my react app directly from the server:
 $this_id = get_the_ID();
+$template_directory = get_template_directory();
 $this_page = [
   'ID' => get_the_ID(),
-  'template_path' => get_template_directory() . '/template-parts',
+  'template_directory' => $template_directory,
+  'template_path' => $template_directory . '/template-parts',
   '$current_custom_fields' => get_post_meta($this_id),
 ];
 
@@ -15,6 +17,13 @@ require_once($this_page['template_path'] . '/react-vars-dogs.php');
 require_once($this_page['template_path'] . '/react-vars-dot-header.php');
 require_once($this_page['template_path'] . '/react-vars-home-page.php');
 
+// echo get_bloginfo('template_url');
+
+$react_stuff['pageInfo'] = [
+  'templatePath' => $this_page['template_directory'],
+  'currentPageID' => $this_page['ID'],
+  'templateURL' => get_bloginfo('template_url'),
+];
 $react_stuff['mainnav'] = modus_main_nav();
 $react_stuff['dogs'] = modus_get_dogs();
 
@@ -28,7 +37,7 @@ if (isset($this_page['$current_custom_fields']['header_image'])) {
 }
 
 if ($this_id == 2) {
-  // stuff for the home page: 
+  // stuff for the home page:
   $react_stuff['home_content'] = modus_get_home_blurbs($cf);
 }
 

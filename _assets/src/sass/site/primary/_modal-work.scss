@@ -23,4 +23,11 @@
       background: $dark-gray;
     }
   }
+
+  .close-modal {
+    &::before,
+    &::after {
+      background: $black;
+    }
+  }
 }

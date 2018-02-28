@@ -11,7 +11,7 @@
 ?>
 </div><?php // #content ?>
 
-<div class="footer-bg">
+<div id="site-footer" class="footer-bg">
   <div class="centered-section">
     <div id="gooey-ui" class="gooey-ui"></div>
       <footer id="colophon" class="site-footer">

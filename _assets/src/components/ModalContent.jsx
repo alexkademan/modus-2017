@@ -4,6 +4,7 @@ import DocumentStore from '../flux/documentStore';
 import MainNav from './MainNav';
 import WorkModal from './WorkModal';
 import DogModal from './DogModal';
+import MailModal from './MailModal';
 
 class ModalController extends React.Component {
   constructor() {
@@ -23,6 +24,8 @@ class ModalController extends React.Component {
         return <DogModal />;
       case 'work-modal':
         return <WorkModal />;
+      case 'mail-sent':
+        return <MailModal />;
       default:
         return (
           <div className="default-modal">

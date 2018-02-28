@@ -60,6 +60,8 @@ class Modal extends React.Component {
       return <ModalBackground />;
     case 'work-modal':
       return <ModalBackground />;
+    case 'mail-sent':
+      return <ModalBackground />;
     default:
       return <ModalBackgroundDefault />;
     }

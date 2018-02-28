@@ -85,47 +85,49 @@ class Gooey extends React.Component {
     const linkInstaGram = 'https://www.instagram.com/explore/locations/301868796/modus-design-inc/';
 
     return (
-      <nav
-        ref={(node) => { this.node = node; }}
-        className={this.state.menuVisible ? 'menu visible' : 'menu'}
-      >
-        <a className="toggle-nav">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 27.2 56.6"
-            className="toggle-nav-svg"
-          >
-            <path
-              className="st0"
-              d="M12.5.2s-2.7 10 5.5 19.6C28.7 32.2 28.8 41.1 24.7 48c-5.6 9.7-18 13.2-24.1-.8 0 0-3-8.9 4.1-18.3 0 0-3.8 23.1 10 19.9 2.5-.6 10-9.4 2.1-19.9C11.9 22.3 1.4 13.1 12.5.2z"
-            />
+      <div className="gooey-ui">
+        <nav
+          ref={(node) => { this.node = node; }}
+          className={this.state.menuVisible ? 'menu visible' : 'menu'}
+        >
+          <a className="toggle-nav">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 27.2 56.6"
+              className="toggle-nav-svg"
+            >
+              <path
+                className="st0"
+                d="M12.5.2s-2.7 10 5.5 19.6C28.7 32.2 28.8 41.1 24.7 48c-5.6 9.7-18 13.2-24.1-.8 0 0-3-8.9 4.1-18.3 0 0-3.8 23.1 10 19.9 2.5-.6 10-9.4 2.1-19.9C11.9 22.3 1.4 13.1 12.5.2z"
+              />
+            </svg>
+          </a>
+
+          <a className="menu-item" href={linkFB}>
+            <i className={this.state.fbClassName} />
+          </a>
+          <a className="menu-item" href={linkLinkedin}>
+            <i className={this.state.linkedinClassName} />
+          </a>
+          <a className="menu-item" href={linkInstaGram}>
+            <i className={this.state.instaClassName} />
+          </a>
+          <a className="menu-item">
+            <i className={this.state.pawClassName} />
+          </a>
+
+          <svg version="1.1" className="gooey-filter">
+            <defs>
+              <filter id="shadowed-goo">
+                <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+                <feGaussianBlur in="goo" stdDeviation="3" result="shadow" />
+                <feComposite in2="goo" in="SourceGraphic" result="mix" />
+              </filter>
+            </defs>
           </svg>
-        </a>
-
-        <a className="menu-item" href={linkFB}>
-          <i className={this.state.fbClassName} />
-        </a>
-        <a className="menu-item" href={linkLinkedin}>
-          <i className={this.state.linkedinClassName} />
-        </a>
-        <a className="menu-item" href={linkInstaGram}>
-          <i className={this.state.instaClassName} />
-        </a>
-        <a className="menu-item">
-          <i className={this.state.pawClassName} />
-        </a>
-
-        <svg version="1.1" className="gooey-filter">
-          <defs>
-            <filter id="shadowed-goo">
-              <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
-              <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
-              <feGaussianBlur in="goo" stdDeviation="3" result="shadow" />
-              <feComposite in2="goo" in="SourceGraphic" result="mix" />
-            </filter>
-          </defs>
-        </svg>
-      </nav>
+        </nav>
+      </div>
     );
   }
 }

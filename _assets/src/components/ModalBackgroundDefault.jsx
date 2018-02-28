@@ -2,7 +2,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import DocumentStore from '../flux/documentStore';
 
-class ModalBackground extends React.Component {
+class ModalBackgroundDefault extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -12,6 +12,7 @@ class ModalBackground extends React.Component {
   }
 
   componentDidMount() {
+    console.log('ModalBackgroundDefault');
     this.state.emitter = DocumentStore.addListener('modalFadeState', () => {
       this.listener();
     });
@@ -38,4 +39,4 @@ class ModalBackground extends React.Component {
   }
 }
 
-export default ModalBackground;
+export default ModalBackgroundDefault;

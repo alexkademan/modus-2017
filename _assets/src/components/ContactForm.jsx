@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import DocumentStore from '../flux/documentStore';
 import axios from 'axios';
 import querystring from 'querystring';
+import DocumentStore from '../flux/documentStore';
 
 class ContactForm extends React.Component {
   constructor() {
@@ -19,6 +19,8 @@ class ContactForm extends React.Component {
       }),
       submitted: false, // submit button has been clicked
       formReady: false, // form has passed validation
+      phpVars: DocumentStore.getPHPvars('pageInfo'),
+      messageStatus: 'standby',
     };
   }
 
@@ -34,8 +36,10 @@ class ContactForm extends React.Component {
     if (this.submit.contains(e.target)) {
       // clicked on the send button:
       e.preventDefault();
-      // this.validateFields();
-      this.submitForm();
+
+      if (this.state.messageStatus === 'standby') {
+        this.submitForm();
+      }
     }
   }
 
@@ -46,15 +50,15 @@ class ContactForm extends React.Component {
     const emailRegEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     if (this.first.value === '') {
-      first = ' please enter your first name';
+      first = ' required';
     }
     if (this.email.value === '') {
-      email = ' please enter your email address';
+      email = ' required';
     } else if (!emailRegEx.test(this.email.value)) {
-      email = ' please enter a valid email address';
+      email = ' required';
     }
     if (this.message.value === '') {
-      message = ' please write us a message';
+      message = ' required';
     }
 
     if (first === false && email === false && message === false) {
@@ -64,11 +68,7 @@ class ContactForm extends React.Component {
     }
 
     this.setState({
-      error: ({
-        first,
-        email,
-        message,
-      }),
+      error: ({ first, email, message }),
     });
   }
 
@@ -81,19 +81,24 @@ class ContactForm extends React.Component {
       this.state.error.message === false
     ) {
       this.sendMessage();
-    } else {
-      console.log('fix your message.');
     }
   }
 
   sendMessage() {
+    this.setState({ messageStatus: 'submitting' });
     axios.post(
-      'https://formspree.io/alex@designbymodus.com',
+      `${this.state.phpVars.templateURL}/bin/mailer/modus_contact.php`,
       querystring.stringify(this.state.input),
-      // ({ json: true }),
+      ({ json: true }),
     )
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
+        if (response.data === 'success') {
+          this.setState({ messageStatus: 'sent' });
+          DocumentStore.toggleModal('mail-sent');
+        } else {
+          this.setState({ messageStatus: 'standby' });
+        }
       })
       .catch((error) => {
         console.log('error');
@@ -102,6 +107,10 @@ class ContactForm extends React.Component {
   }
 
   updateInputValue() {
+    if (this.state.messageStatus === 'sent') {
+      this.setState({ messageStatus: 'standby' });
+    }
+
     this.setState({
       input: ({
         first: this.first.value,
@@ -114,99 +123,117 @@ class ContactForm extends React.Component {
   }
 
   renderButton() {
-    if (this.state.formReady) {
-      return (
-        <input
-          ref={(submit) => { this.submit = submit; }}
-          type="submit"
-          value="Send"
-        />
-      );
+    let inputValue = 'Send';
+    let className = 'send';
+
+    if (this.state.messageStatus === 'submitting') {
+      inputValue = 'Sending';
+    } else if (this.state.messageStatus === 'sent') {
+      inputValue = 'Thank you!';
     }
+
+    if (
+      this.state.formReady &&
+      this.state.messageStatus === 'standby'
+    ) {
+      className = 'send-ready';
+    }
+    if (this.state.messageStatus === 'sent') {
+      className = 'sent';
+    }
+
     return (
-      <div ref={(submit) => { this.submit = submit; }}>derp</div>
+      <input
+        ref={(submit) => { this.submit = submit; }}
+        type="submit"
+        value={inputValue}
+        className={className}
+      />
     );
   }
 
   render() {
-    // console.log(this.state.error.last);
-    // console.log(this.state.submitted);
+    // const sendURL = `${this.state.phpVars.templateURL}/bin/gmail2.php`;
+
     return (
-      <form
-        className="contact-form"
-        action="https://formspree.io/alex@designbymodus.com"
-        method="POST"
-      >
-        <label htmlFor="form-first">
-          First
-          <strong>
-            {
-              this.state.error.first && this.state.submitted ?
-              this.state.error.first : ''
-            }
-          </strong>
-        </label>
-        <input
-          id="form-first"
-          type="text"
-          name="First-Name"
-          ref={(first) => { this.first = first; }}
-          onChange={() => this.updateInputValue()}
-          onBlur={() => this.updateInputValue()}
-        />
+      <div className="form-column">
+        <form
+          className="contact-form"
+          method="POST"
+        >
+          <span className="first">
+            <label htmlFor="form-first">
+              First
+              <strong>
+                {
+                  this.state.error.first && this.state.submitted ?
+                  this.state.error.first : ''
+                }
+              </strong>
+            </label>
+            <input
+              id="form-first"
+              type="text"
+              name="First-Name"
+              ref={(first) => { this.first = first; }}
+              onChange={() => this.updateInputValue()}
+              onBlur={() => this.updateInputValue()}
+            />
+          </span>
+          <span className="last">
+            <label htmlFor="form-last">
+              Last
+            </label>
+            <input
+              id="form-last"
+              type="text"
+              name="Last-Name"
+              ref={(last) => { this.last = last; }}
+              onChange={() => this.updateInputValue()}
+              onBlur={() => this.updateInputValue()}
+            />
+          </span>
 
-        <label htmlFor="form-last">
-          Last
-        </label>
-        <input
-          id="form-last"
-          className="last"
-          type="text"
-          name="Last-Name"
-          ref={(last) => { this.last = last; }}
-          onChange={() => this.updateInputValue()}
-          onBlur={() => this.updateInputValue()}
-        />
+          <label htmlFor="form-email">
+            Email
+            <strong>
+              {
+                this.state.error.email && this.state.submitted ?
+                this.state.error.email : ''
+              }
+            </strong>
+          </label>
+          <input
+            id="form-email"
+            type="email"
+            name="Email"
+            ref={(email) => { this.email = email; }}
+            onChange={() => this.updateInputValue()}
+            onBlur={() => this.updateInputValue()}
+          />
 
-        <label htmlFor="form-email">
-          Email
-          <strong>
-            {
-              this.state.error.email && this.state.submitted ?
-              this.state.error.email : ''
-            }
-          </strong>
-        </label>
-        <input
-          id="form-email"
-          type="email"
-          name="Email"
-          ref={(email) => { this.email = email; }}
-          onChange={() => this.updateInputValue()}
-          onBlur={() => this.updateInputValue()}
-        />
-
-        <label htmlFor="form-message">
-          Message
-          <strong>
-            {
-              this.state.error.message && this.state.submitted ?
-              this.state.error.message : ''
-            }
-          </strong>
-        </label>
-        <textarea
-          id="form-message"
-          cols="40"
-          rows="10"
-          name="Message"
-          aria-invalid="false"
-          ref={(message) => { this.message = message; }}
-          onChange={() => this.updateInputValue()}
-          onBlur={() => this.updateInputValue()}
-        />
-        {this.renderButton()}
-      </form>
+          <label htmlFor="form-message">
+            Message
+            <strong>
+              {
+                this.state.error.message && this.state.submitted ?
+                this.state.error.message : ''
+              }
+            </strong>
+          </label>
+          <textarea
+            id="form-message"
+            cols="40"
+            rows="10"
+            name="Message"
+            aria-invalid="false"
+            ref={(message) => { this.message = message; }}
+            onChange={() => this.updateInputValue()}
+            onBlur={() => this.updateInputValue()}
+          />
+          {this.renderButton()}
+        </form>
+      </div>
     );
   }
 }
