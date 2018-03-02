@@ -6,12 +6,6 @@ class DogModal extends React.Component {
 
   constructor() {
     super();
-    // const dogsArray = DocumentStore.getDogsArray();
-    // this.state = {
-    //   window: DocumentStore.getWindowSize(),
-    //   allPosts: dogsArray,
-    //   currentPost: DocumentActions.randomNumber(dogsArray.length),
-    // };
 
     this.onResize = this.onResize.bind(this);
     this.handleClick = this.handleClick.bind(this);

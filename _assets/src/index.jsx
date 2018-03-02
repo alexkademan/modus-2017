@@ -20,7 +20,7 @@ DocumentStore.init(DocumentStatus);
 const reactDiv = document.getElementById('react-div');
 const wholeLayout = document.getElementById('page');
 const footer = document.getElementById('site-footer');
-const gooey = document.getElementById('gooey-ui');
+// const gooey = document.getElementById('gooey-ui');
 const headerImg = document.getElementById('page-header-image');
 const homeBlurb = document.getElementById('home-blurb');
 const masthead = document.getElementById('masthead');
@@ -49,9 +49,9 @@ if (reactDiv) {
   );
 }
 
-if (gooey && phpVars.dogs) {
-  // ReactDOM.render(<Gooey />, gooey);
-}
+// if (gooey && phpVars.dogs) {
+//   ReactDOM.render(<Gooey />, gooey);
+// }
 
 if (footer) {
   ReactDOM.render(<Footer />, footer);

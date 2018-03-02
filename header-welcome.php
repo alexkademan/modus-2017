@@ -1,5 +1,5 @@
 <?php
-echo '<div id="page-header-image"></div>'
+echo '<div id="page-header-image" class="page-header-image"></div>'
 ?>
 <div class="header-bg home-header">
 	<span class="centered-section">
@@ -38,7 +38,7 @@ echo '<div id="page-header-image"></div>'
 				// 	echo '</h1>';
 				// }
 				echo '<h1>Good Business<br />By Design.</h1>';
-				echo '<p>We\'re cool.</p>';
+				echo '<p>We\'re cool</p>';
 				echo '</span>'; // .subhead
 			?>
 

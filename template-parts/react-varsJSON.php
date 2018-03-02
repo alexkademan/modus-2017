@@ -6,20 +6,21 @@ $this_page = [
   'ID' => get_the_ID(),
   'template_directory' => $template_directory,
   'template_path' => $template_directory . '/template-parts',
-  '$current_custom_fields' => get_post_meta($this_id),
+  'current_custom_fields' => get_post_meta($this_id),
+  'site_name' => get_bloginfo('name'),
 ];
 
-// print_r($this_page);
-$cf = $this_page['$current_custom_fields'];
+$cf = $this_page['current_custom_fields'];
 
 require_once($this_page['template_path'] . '/react-vars-mainnav.php');
 require_once($this_page['template_path'] . '/react-vars-dogs.php');
 require_once($this_page['template_path'] . '/react-vars-dot-header.php');
 require_once($this_page['template_path'] . '/react-vars-home-page.php');
 
-// echo get_bloginfo('template_url');
-
 $react_stuff['pageInfo'] = [
+  'siteName' => $this_page['site_name'],
+  'copyright' => '&copy; ' . date("Y") . $this_page['site_name'],
+  'siteDescription' => get_bloginfo('description'),
   'templatePath' => $this_page['template_directory'],
   'currentPageID' => $this_page['ID'],
   'templateURL' => get_bloginfo('template_url'),
@@ -31,8 +32,8 @@ if ($this_id == 2) {
   $react_stuff['welcome'] = modus_get_welcome_vars();
 }
 
-if (isset($this_page['$current_custom_fields']['header_image'])) {
-  // $cf = $this_page['$current_custom_fields'];
+if (isset($this_page['current_custom_fields']['header_image'])) {
+  // $cf = $this_page['current_custom_fields'];
   $react_stuff['dot_header_image'] = modus_get_dot_image($cf);
 }
 

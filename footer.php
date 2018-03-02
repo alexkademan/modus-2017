@@ -11,38 +11,35 @@
 ?>
 </div><?php // #content ?>
 
-<div id="site-footer" class="footer-bg">
+</div> <?php // .site-content ?>
+</div> <?php // .site ?>
+
+<div id="site-footer" class="footer">
   <div class="centered-section">
     <div id="gooey-ui" class="gooey-ui"></div>
-      <footer id="colophon" class="site-footer">
+    <footer id="colophon" class="site-footer">
 
-        <div class="left-col">
-          <div class="gooey-placeholder"></div>
-        </div>
-
-        <div class="right-col">
-          <?php
-            get_template_part( 'template-parts/info', 'address' );
-          ?>
-        </div>
-        <div class="copyright">
-          <p><?php
+      <div class="right-col">
+        <?php
+          get_template_part( 'template-parts/info', 'address' );
+        ?>
+      </div>
+      <div class="copyright">
+        <p><?php
 echo '&copy; ' . date("Y");
 $company_name = func_get_single_custom_post('company_info', 'name');
 if(is_object($company_name) && $company_name->post_content !== '') {
-  echo ' ' . $company_name->post_content;
+echo ' ' . $company_name->post_content;
 }
 ?></p>
-        </div>
-      </footer>
-    </div> <?php // #centered-section ?>
-  </div>
+      </div>
+    </footer>
+  </div> <?php // #centered-section ?>
+</div>
 
 
 
 
-</div> <?php // .site-content ?>
-</div> <?php // .site ?>
 </div> <?php // .whole-layout ?>
 
 <?php
