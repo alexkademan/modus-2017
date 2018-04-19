@@ -17,8 +17,16 @@ body {
   position: relative;
   clear: both;
   float: left;
-  width: 100%;
   z-index: 1;
+}
+
+.header-bg,
+.site {
+  width: 100%;
+}
+
+.header-bg {
+  background: $page-bg-color;
 }
 
 .site {
@@ -28,11 +36,14 @@ body {
 }
 
 .centered-section,
+.footer-bg,
+.site-footer,
 .centered-single-column {
   @include grid-container;
   display: block;
   position: relative;
   clear: both;
+  width: 100%;
   max-width: $max-width;
   margin: 0 auto;
 }
@@ -59,10 +70,6 @@ body {
 }
 
 .footer-bg {
-  display: block;
-  float: left;
-  clear: both;
-  width: 100%;
   background: $page-bg-color;
 }
 

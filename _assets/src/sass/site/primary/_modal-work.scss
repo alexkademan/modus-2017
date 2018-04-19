@@ -1,5 +1,9 @@
 .work-modal {
-  position: relative;
+
+  & .work-modal {
+    // whooops... the contents of the modal has the same class as the background...
+    position: relative;
+  }
 
   .modal-main {
     display: block;

@@ -1,34 +1,40 @@
+.footer {
+  display: block;
+  float: left;
+  clear: both;
+  width: 100%;
+}
+
 .footer-bg {
   position: fixed;
+  width: 100%;
   bottom: 0;
   z-index: 0;
 }
 
 .site-footer {
-  display: block;
-  float: left;
-  clear: both;
-  width: 100%;
   padding: $grid-margin-main;
   color: darken($light-gray, 35%);
+  display: block;
+  min-height: 120px;
 
   h1 {
     text-align: center;
     color: $modus-orange;
   }
 
-  .right-col {
-    text-align: right;
-  }
+  // .right-col {
+  //   text-align: center;
+  // }
 
-  a,
-  p,
-  .copyright {
-    display: block;
-    float: right;
-    clear: right;
-    text-decoration: none;
-  }
+  // a,
+  // p,
+  // .copyright {
+  //   display: block;
+  //   float: right;
+  //   clear: right;
+  //   text-decoration: none;
+  // }
 
   a {
     color: darken($light-gray, 35%);
@@ -40,7 +46,13 @@
   }
 
   .copyright {
-    padding-top: 1em;
+    display: block;
+    // clear: none;
+    // float: none;
+    margin: 0 auto;
+    padding-top: 2em;
+    text-align: center;
+    line-height: 4em;
   }
 
   p {

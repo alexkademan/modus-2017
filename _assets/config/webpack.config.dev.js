@@ -293,6 +293,11 @@ module.exports = {
       template: paths.styleGuideHtml,
       filename: 'styleguide.html',
     }),
+    new HtmlWebpackPlugin({
+      inject: true,
+      template: paths.contactHtml,
+      filename: 'contact.html',
+    }),
     // Add module names to factory functions so they appear in browser profiler.
     new webpack.NamedModulesPlugin(),
     // Makes some environment variables available to the JS code, for example:

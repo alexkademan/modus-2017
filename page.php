@@ -17,7 +17,6 @@ get_header();
 echo '<div id="primary" class="content-area">';
 echo '<main id="main" class="site-main">';
 
-
 while ( have_posts() ) : the_post();
 	if (get_the_ID() == 2) {
 		get_template_part( 'template-parts/page', 'home' );

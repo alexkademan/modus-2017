@@ -19,7 +19,7 @@ require_once($this_page['template_path'] . '/react-vars-home-page.php');
 
 $react_stuff['pageInfo'] = [
   'siteName' => $this_page['site_name'],
-  'copyright' => '&copy; ' . date("Y") . $this_page['site_name'],
+  'copyright' => date("Y") . ' ' . $this_page['site_name'],
   'siteDescription' => get_bloginfo('description'),
   'templatePath' => $this_page['template_directory'],
   'currentPageID' => $this_page['ID'],
@@ -28,8 +28,11 @@ $react_stuff['pageInfo'] = [
 $react_stuff['mainnav'] = modus_main_nav();
 $react_stuff['dogs'] = modus_get_dogs();
 
-if ($this_id == 2) {
-  $react_stuff['welcome'] = modus_get_welcome_vars();
+if (
+  $this_id == 2 &&
+  isset($this_page['current_custom_fields']['home_subhead'])
+) {
+  $react_stuff['welcome'] = modus_get_welcome_vars($cf);
 }
 
 if (isset($this_page['current_custom_fields']['header_image'])) {

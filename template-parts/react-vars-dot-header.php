@@ -17,11 +17,12 @@ function modus_get_dot_image($custom_fields) {
   return $dot_header;
 }
 
-function modus_get_welcome_vars() {
+function modus_get_welcome_vars($custom_fields) {
+  // print_r($custom_fields['home_subhead'][0]);
   $welcome = [
     'headline1' => 'Good Business',
     'headline2' => 'By Design.',
-    'subhead1' => 'We\'re Cool.',
+    'subhead1' => $custom_fields['home_subhead'][0],
   ];
 
   return $welcome;

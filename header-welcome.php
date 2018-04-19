@@ -38,7 +38,7 @@ echo '<div id="page-header-image" class="page-header-image"></div>'
 				// 	echo '</h1>';
 				// }
 				echo '<h1>Good Business<br />By Design.</h1>';
-				echo '<p>We\'re cool</p>';
+				echo '<p>Text to go here.</p>';
 				echo '</span>'; // .subhead
 			?>
 

@@ -1,19 +1,5 @@
  $bg-fade-time: .25s;
 
-// .whole-layout {
-//   transition: $bg-fade-time filter linear;
-// }
-//
-// .blur,
-// .modal-background {
-//   filter: blur(5px);
-//   transition: $bg-fade-time filter linear;
-// }
-//
-// .blur-out {
-//   transition: $bg-fade-time filter linear;
-// }
-
 .modal-bg {
   display: block;
   position: absolute;
@@ -57,10 +43,8 @@
 .site-modal,
 .site-modal-transparent-out {
   background-color: $color-modal-background;
-  // color: $white;
 
   .main-nav & {
-    // background-color: $color-modal-main-nav;
     background-color: transparent;
   }
 }

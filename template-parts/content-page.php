@@ -8,7 +8,6 @@
  */
 $this_ID = get_the_id();
 ?>
-
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<span class="centered-section">
 		<header class="entry-header">
@@ -50,7 +49,5 @@ if ($this_ID === 2) {
 	) );
 
 };
-echo '</div>';
 ?>
-
 </article><!-- #post-<?php the_ID(); ?> -->

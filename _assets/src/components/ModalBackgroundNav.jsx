@@ -35,9 +35,10 @@ class ModalBackground extends React.Component {
 
   fadeIn() {
     if (this.state.circleSize < this.state.circleMaxSize) {
+    // if (this.state.circleSize < (this.state.circleMaxSize * 0.5)) {
       setTimeout(() => {
         if (this.state.circleMaxSize > this.state.circleSize + 0.4) {
-          this.setState({ circleSize: this.state.circleSize + 0.4 });
+          this.setState({ circleSize: this.state.circleSize });
         } else {
           this.setState({ circleSize: this.state.circleMaxSize });
         }

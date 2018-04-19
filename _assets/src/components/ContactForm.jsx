@@ -26,7 +26,6 @@ class ContactForm extends React.Component {
 
   componentDidMount() {
     document.addEventListener('click', this.handleClick);
-    console.log(this.state.phpVars);
   }
 
   componentWillUnmount() {

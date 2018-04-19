@@ -1,8 +1,26 @@
-// .mail-sent {
-//   .close-modal {
-//     &::before,
-//     &::after {
-//       background: $black;
-//     }
-//   }
-// }
+.mail-sent-thanks {
+  position: relative;
+  z-index: 502;
+  padding: 10vh 0;
+
+  .message {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    padding: 1em;
+    background: $white;
+    width: 90%;
+    max-width: 50em;
+    position: relative;
+    z-index: 503;
+    border-radius: .5em;
+  }
+
+  svg {
+    display: block;
+    width: 100%;
+    max-width: 4em;
+    margin: 0 auto;
+    fill: $modus-orange;
+  }
+}

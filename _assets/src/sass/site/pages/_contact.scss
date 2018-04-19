@@ -1,0 +1,63 @@
+$contact-grid: (
+  columns: 2,
+  gutter: $grid-margin-main,
+);
+
+$contact-layout-grid: (
+  columns: 1,
+  gutter: $grid-margin-main,
+);
+
+$contact-layout-grid--tablet-up: (
+  columns: 6,
+  gutter: $grid-margin-main,
+  media: $size-tablet-up,
+);
+
+.post-7 {
+  @include grid-container;
+}
+
+.form,
+.address {
+  @include grid-column(1, $contact-layout-grid);
+
+  @include grid-media($contact-layout-grid--tablet-up) {
+    @include grid-column(4);
+  }
+  padding-bottom: $grid-margin-main;
+}
+
+
+.address {
+  @include grid-media($contact-layout-grid--tablet-up) {
+    @include grid-column(2);
+  }
+  // background: $ugly-pink;
+}
+
+.google-map {
+  width: 100%;
+  height: 350px;
+  cursor: none;
+
+  img {
+    width: 200px;
+  }
+
+  .content {
+    padding: 0 .5em 1em;
+  }
+
+  .firstHeading {
+    font-size: 1em;
+    font-weight: bold;
+    line-height: 1em;
+    margin: 0;
+  }
+
+  p {
+    font-size: 1em;
+    margin: 0;
+  }
+}

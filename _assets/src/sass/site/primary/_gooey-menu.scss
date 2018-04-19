@@ -32,19 +32,16 @@ $btn-padding-medium: $btn-diameter-medium * .125;
   position: relative;
   overflow: visible;
   width: 0;
-  height: 0;
+  height: $btn-diameter + ($btn-padding * 2);
   margin: 0;
-  // padding: $btn-padding;
-  // width: $btn-diameter + ($btn-padding * 2);
-  // height: $btn-diameter + ($btn-padding * 2);
 
   .menu { // nav
     filter: url('#shadowed-goo');
-    position: absolute;
-    left: 0;
-    top: 0;
-    margin: 0;
-    padding: $btn-padding;
+
+    display: block;
+    float: left;
+    clear: none;
+    // padding: $btn-padding; 
     width: $btn-diameter + ($btn-padding * 2);
     height: $btn-diameter + ($btn-padding * 2);
     box-sizing: border-box;

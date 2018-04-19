@@ -10,39 +10,21 @@
  */
 ?>
 </div><?php // #content ?>
-
 </div> <?php // .site-content ?>
-</div> <?php // .site ?>
-
-<div id="site-footer" class="footer">
-  <div class="centered-section">
-    <div id="gooey-ui" class="gooey-ui"></div>
-    <footer id="colophon" class="site-footer">
-
-      <div class="right-col">
-        <?php
-          get_template_part( 'template-parts/info', 'address' );
-        ?>
-      </div>
-      <div class="copyright">
-        <p><?php
-echo '&copy; ' . date("Y");
-$company_name = func_get_single_custom_post('company_info', 'name');
-if(is_object($company_name) && $company_name->post_content !== '') {
-echo ' ' . $company_name->post_content;
-}
-?></p>
-      </div>
-    </footer>
-  </div> <?php // #centered-section ?>
-</div>
-
-
-
-
-</div> <?php // .whole-layout ?>
 
 <?php
+// echo $the_ID();
+$this_page_id = get_the_id();
+
+?>
+<div class="centered-section">
+  <div id="site-footer" class="footer">
+  </div>
+<?php
+echo '</div>'; // .centered-section
+echo '</div>'; // .site
+echo '</div>'; // .whole-layout
+
 get_template_part( 'template-parts/react', 'diagnostic' );
 wp_footer();
 
@@ -52,6 +34,12 @@ $main_js = get_webkit_asset('js', 'main');
 if($main_js != '') {
   echo '<script type="text/javascript" src="' . $main_js . '"></script>';
 }
+
+if ($this_page_id == 7) {
+  get_template_part( 'template-parts/google', 'maps' );
+}
+
+
 
 echo  '</body>';
 echo '</html>';

@@ -5,8 +5,8 @@ import ReactStuff from './react-stuff';
 import HeaderImg from './components/HeaderImg';
 import WelcomeMat from './components/WelcomeMat';
 import WorkLayout from './components/WorkLayout';
-import HomeBlurbs from './components/HomeBlurbs';
-// import ContactForm from './components/ContactForm';
+// import HomeBlurbs from './components/HomeBlurbs';
+import ContactForm from './components/ContactForm';
 
 import Footer from './components/Footer';
 
@@ -22,10 +22,10 @@ const wholeLayout = document.getElementById('page');
 const footer = document.getElementById('site-footer');
 // const gooey = document.getElementById('gooey-ui');
 const headerImg = document.getElementById('page-header-image');
-const homeBlurb = document.getElementById('home-blurb');
+// const homeBlurb = document.getElementById('home-blurb');
 const masthead = document.getElementById('masthead');
 const portfolio = document.getElementById('portfolio-section');
-// const contact = document.getElementById('contact-form');
+const contact = document.getElementById('contact-form');
 
 let phpVars = false;
 
@@ -53,10 +53,6 @@ if (reactDiv) {
 //   ReactDOM.render(<Gooey />, gooey);
 // }
 
-if (footer) {
-  ReactDOM.render(<Footer />, footer);
-}
-
 if (headerImg && masthead && phpVars.dot_header_image && phpVars.welcome) {
   ReactDOM.render(
     <HeaderImg imgInfo={phpVars.dot_header_image} />,
@@ -67,14 +63,18 @@ if (headerImg && masthead && phpVars.dot_header_image && phpVars.welcome) {
     masthead,
   );
 
-  if (homeBlurb && phpVars.home_content) {
-    ReactDOM.render(<HomeBlurbs info={phpVars.home_content} />, homeBlurb);
-  }
+  // if (homeBlurb && phpVars.home_content) {
+  //   ReactDOM.render(<HomeBlurbs info={phpVars.home_content} />, homeBlurb);
+  // }
 }
 
 if (portfolio && phpVars.work) {
   ReactDOM.render(<WorkLayout />, portfolio);
 }
-// if (contact) {
-//   ReactDOM.render(<ContactForm />, contact);
-// }
+if (contact) {
+  ReactDOM.render(<ContactForm />, contact);
+}
+
+if (footer) {
+  ReactDOM.render(<Footer />, footer);
+}
