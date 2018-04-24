@@ -24,6 +24,7 @@ $react_stuff['pageInfo'] = [
   'templatePath' => $this_page['template_directory'],
   'currentPageID' => $this_page['ID'],
   'templateURL' => get_bloginfo('template_url'),
+  'site_url' => get_bloginfo('url'),
 ];
 $react_stuff['mainnav'] = modus_main_nav();
 $react_stuff['dogs'] = modus_get_dogs();

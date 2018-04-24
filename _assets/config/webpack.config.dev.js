@@ -261,7 +261,17 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        loader: require.resolve('react-svg-loader'),
+        use: [
+          {
+            loader: "babel-loader"
+          },
+          {
+            loader: "react-svg-loader",
+            options: {
+              jsx: true // true outputs JSX tags
+            }
+          }
+        ]
       },
       // ** STOP ** Are you adding a new loader?
       // Remember to add the new extension(s) to the "file" loader exclusion list.

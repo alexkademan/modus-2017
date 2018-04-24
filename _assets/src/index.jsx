@@ -34,6 +34,7 @@ if (window.reactData) {
   // collect the variables that I've sent over from PHP.
   phpVars = window.reactData;
   DocumentStore.setPHPvars(phpVars);
+  console.log(phpVars);
 }
 
 if (reactDiv) {
