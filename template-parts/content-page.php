@@ -16,10 +16,7 @@ $this_ID = get_the_id();
 	</span>
 <?php
 
-if ($this_ID === 2) {
-	get_template_part( 'template-parts/page', 'home' );
-
-} elseif ($this_ID === 10) {
+if ($this_ID === 10) {
 	// 'work' page:
 	get_template_part( 'template-parts/page', 'work' );
 

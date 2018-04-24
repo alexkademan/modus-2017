@@ -12,14 +12,32 @@ $this_ID = get_the_ID();
 ?>
 
 <div id="home-blurb" class="welcome-2">
-  <article id="post-<?php post_class() ?>">
-    <span class="centered-section">
-      <header class="entry-header">
-        <?php the_title( '<h1 class="entry-title">', '</h1>' ) ?>
-      </header>
-      <div class="entry-content hid">
-        <?php echo the_content() ?>
-      </div>
-    </span>
+  <article id="post-<?php post_class() ?>" class="centered-section centered-single-column">
+    <ul class="iconlist">
+      <li>
+        <img src="<?php bloginfo('stylesheet_directory') ?>/images/icons/cart.svg" alt="">
+        <h1>cart</h1>
+      </li>
+      <li>
+        <img src="<?php bloginfo('stylesheet_directory') ?>/images/icons/hands.svg" alt="">
+        <h1>hands</h1>
+      </li>
+      <li>
+        <img src="<?php bloginfo('stylesheet_directory') ?>/images/icons/heart.svg" alt="">
+        <h1>heart</h1>
+      </li>
+      <li>
+        <img src="<?php bloginfo('stylesheet_directory') ?>/images/icons/network.svg" alt="">
+        <h1>network</h1>
+      </li>
+      <li>
+        <img src="<?php bloginfo('stylesheet_directory') ?>/images/icons/sphere.svg" alt="">
+        <h1>sphere</h1>
+      </li>
+      <li>
+        <img src="<?php bloginfo('stylesheet_directory') ?>/images/icons/thumbprint.svg" alt="">
+        <h1>thumbprint</h1>
+      </li>
+    </ul>
   </article>
 </div>

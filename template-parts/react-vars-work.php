@@ -17,7 +17,9 @@ function modus_get_work() {
 
       $this_post->sample_image = modus_get_post_sample_image($this_meta);
       $this_post->images = modus_get_work_images($this_meta);
-
+      if (isset($this_meta['svg_icon'][0])) {
+        $this_post->svg_icon = $this_meta['svg_icon'][0];
+      }
       array_push($work, $this_post);
     }
   } else {

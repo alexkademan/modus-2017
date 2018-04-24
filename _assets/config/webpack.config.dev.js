@@ -146,6 +146,7 @@ module.exports = {
           /\.jpe?g$/,
           /\.png$/,
           /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+          /\.svg$/,
         ],
         loader: require.resolve('file-loader'),
         options: {
@@ -257,6 +258,10 @@ module.exports = {
           ]
 
         }),
+      },
+      {
+        test: /\.svg$/,
+        loader: require.resolve('react-svg-loader'),
       },
       // ** STOP ** Are you adding a new loader?
       // Remember to add the new extension(s) to the "file" loader exclusion list.

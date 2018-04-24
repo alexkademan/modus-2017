@@ -45,7 +45,8 @@ if ($this_id == 2) {
   $react_stuff['home_content'] = modus_get_home_blurbs($cf);
 }
 
-if ($this_id == 10) {
+if ($this_id == 10 || $this_id == 2) {
+  // print_r("$$$$$$$$$$$$$$$$$$$");
   require_once($this_page['template_path'] . '/react-vars-work.php');
   $react_stuff['work'] = modus_get_work();
 };

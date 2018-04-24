@@ -51,4 +51,54 @@ $work-items-grid-tablet-up: (
       }
     }
   }
+
+}
+
+.work-post {
+  .image-with-icon {
+    display: block;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .color {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: $modus-orange;
+    opacity: .4;
+    transition: .2s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  svg {
+    fill: $white;
+    // animation: rotation 2s infinite linear;
+    position: absolute;
+    top: 10%;
+    left: 25%;
+    width: 50%;
+    transition: .75s;
+
+    &:hover {
+      width: 51%;
+      top: 9.5%;
+      left: 24.5%;
+    }
+  }
+}
+
+@keyframes rotation {
+		from {
+				-webkit-transform: rotate(0deg);
+		}
+		to {
+				-webkit-transform: rotate(359deg);
+		}
 }

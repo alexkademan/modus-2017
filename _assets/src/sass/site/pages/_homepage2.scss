@@ -1,0 +1,44 @@
+// $home-grid: (
+//   columns: 2,
+//   gutter: $grid-margin-main,
+// );
+
+$home-layout-grid: (
+  columns: 1,
+  gutter: $grid-margin-main,
+);
+
+$home-layout-grid--tablet-up: (
+  columns: 3,
+  gutter: $grid-margin-main,
+  media: $size-tablet-up,
+);
+
+
+.welcome-2 {
+  // display: none;
+
+  ul {
+    @include grid-container;
+    @include grid-media($home-layout-grid--tablet-up) {
+      padding-top: 22vh;
+    }
+
+    img {
+      width: 100%;
+      max-width: 150px;
+    }
+  }
+
+  li {
+    @include grid-column(1, $home-layout-grid);
+
+    @include grid-media($home-layout-grid--tablet-up) {
+      @include grid-column(1);
+    }
+    padding-bottom: $grid-margin-main;
+    position: relative;
+    text-align: center;
+  }
+
+}
