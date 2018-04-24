@@ -13,7 +13,6 @@ class Footer extends React.Component {
       footerHeight: 0,
       phpVars: DocumentStore.getPHPvars('pageInfo'),
     };
-    console.log(this.state.phpVars);
     this.checkFooterHeight = this.checkFooterHeight.bind(this);
     DocumentStore.addListener('change', () => {
       this.checkFooterHeight();

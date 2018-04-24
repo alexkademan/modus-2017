@@ -6,6 +6,7 @@ import HeaderImg from './components/HeaderImg';
 import WelcomeMat from './components/WelcomeMat';
 import WorkLayout from './components/WorkLayout';
 // import HomeBlurbs from './components/HomeBlurbs';
+import HomeIcons from './components/HomeIcons';
 import ContactForm from './components/ContactForm';
 
 import Footer from './components/Footer';
@@ -22,7 +23,7 @@ const wholeLayout = document.getElementById('page');
 const footer = document.getElementById('site-footer');
 // const gooey = document.getElementById('gooey-ui');
 const headerImg = document.getElementById('page-header-image');
-// const homeBlurb = document.getElementById('home-blurb');
+const homeIcons = document.getElementById('home-icons');
 const masthead = document.getElementById('masthead');
 const portfolio = document.getElementById('portfolio-section');
 const contact = document.getElementById('contact-form');
@@ -63,9 +64,9 @@ if (headerImg && masthead && phpVars.dot_header_image && phpVars.welcome) {
     masthead,
   );
 
-  // if (homeBlurb && phpVars.home_content) {
-  //   ReactDOM.render(<HomeBlurbs info={phpVars.home_content} />, homeBlurb);
-  // }
+  if (homeIcons && phpVars.work && phpVars.pageInfo.currentPageID === 2) {
+    ReactDOM.render(<HomeIcons info={phpVars} />, homeIcons);
+  }
 }
 
 if (portfolio && phpVars.work) {

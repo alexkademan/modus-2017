@@ -11,8 +11,8 @@ $this_ID = get_the_ID();
 // $this_post->meta = get_post_meta($this_ID);
 ?>
 
-<div id="home-blurb" class="welcome-2">
-  <article id="post-<?php post_class() ?>" class="centered-section centered-single-column">
+<div class="welcome-2">
+  <article id="home-icons" class="centered-section centered-single-column">
     <ul class="iconlist">
       <li>
         <img src="<?php bloginfo('stylesheet_directory') ?>/images/icons/cart.svg" alt="">

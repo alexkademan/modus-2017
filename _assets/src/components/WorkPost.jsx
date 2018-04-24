@@ -1,13 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import DocumentStore from '../flux/documentStore';
-
-import CartIcon from '../icons/cart.svg';
-import HandsIcon from '../icons/hands.svg';
-import HeartIcon from '../icons/heart.svg';
-import NetworkIcon from '../icons/network.svg';
-import SphereIcon from '../icons/sphere.svg';
-import ThumbIcon from '../icons/thumbprint.svg';
+import WorkCategoryIcon from './WorkCategoryIcon';
 
 class WorkPost extends React.Component {
   constructor(props) {
@@ -36,26 +30,6 @@ class WorkPost extends React.Component {
     }
   }
 
-  renderSVG() {
-    console.log(this.state.entry.svg_icon);
-    switch (this.state.entry.svg_icon) {
-    case 'cart.svg':
-      return <CartIcon className="icon" />;
-    case 'hands.svg':
-      return <HandsIcon className="icon" />;
-    case 'heart.svg':
-      return <HeartIcon className="icon" />;
-    case 'network.svg':
-      return <NetworkIcon className="icon" />;
-    case 'sphere.svg':
-      return <SphereIcon className="icon" />;
-    case 'thumbprint.svg':
-      return <ThumbIcon className="icon" />;
-    default:
-      return false;
-    }
-  }
-
   render() {
     return (
       <li className="work-post">
@@ -70,7 +44,7 @@ class WorkPost extends React.Component {
               alt={this.state.entry.post_title}
             />
             <span className="color" />
-            {this.renderSVG()}
+            <WorkCategoryIcon icon={this.state.entry.svg_icon} />
           </span>
           <h4>
             {this.state.entry.post_title}
