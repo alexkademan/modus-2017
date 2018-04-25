@@ -110,8 +110,11 @@
   min-height: 100vh;
   background: $white;
 
-  & > article {
-    padding: 3em 0;
+  ul {
+    display: block;
+    float: left;
+    clear: both;
+    padding-bottom: 2em;
   }
 
   header {
@@ -119,50 +122,68 @@
     color: $modus-orange;
   }
 
-  .blurbs {
-    li {
-      display: block;
-      width: 100%;
-      max-width: pem(500);
-      margin: 0 auto pem(10);
-      padding: 4em 0 0 3em;
-      position: relative;
-      // background-fill: $modus-orange;
-      background-repeat: no-repeat;
-    }
+  li {
+    opacity: 1;
+    transition: 2s;
 
-    .blurb-circle {
-      position: absolute;
-      left: 0;
-      top: 0;
-      fill: $modus-orange;
-    }
-
-    h1,
-    p,
-    .highlight {
+    &.transparent {
       opacity: 0;
     }
 
-    h1 {
-      transition: opacity 1s ease;
+    svg {
+      fill: $red;
     }
 
-    p,
-    .highlight {
-      transition: opacity 2s ease;
-      // background: $white;
-      // padding: 0 0.125em;
-    }
-
-    .showing {
-      h1,
-      p,
-      .highlight {
-        opacity: 1;
-      }
+    a {
+      color: $red;
     }
   }
+
+
+  // .blurbs {
+  //   li {
+  //     display: block;
+  //     width: 100%;
+  //     max-width: pem(500);
+  //     margin: 0 auto pem(10);
+  //     padding: 4em 0 0 3em;
+  //     position: relative;
+  //     // background-fill: $modus-orange;
+  //     background-repeat: no-repeat;
+  //   }
+  //
+  //   .blurb-circle {
+  //     position: absolute;
+  //     left: 0;
+  //     top: 0;
+  //     fill: $modus-orange;
+  //   }
+  //
+  //   h1,
+  //   p,
+  //   .highlight {
+  //     opacity: 0;
+  //   }
+  //
+  //   h1 {
+  //     transition: opacity 1s ease;
+  //   }
+  //
+  //   p,
+  //   .highlight {
+  //     transition: opacity 2s ease;
+  //     // background: $white;
+  //     // padding: 0 0.125em;
+  //   }
+  //
+  //   .showing {
+  //     h1,
+  //     p,
+  //     .highlight {
+  //       opacity: 1;
+  //     }
+  //   }
+  // }
 
   @media($medium-breakpoint) {
     .blurbs {

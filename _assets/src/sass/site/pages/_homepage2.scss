@@ -19,10 +19,10 @@ $home-layout-grid--tablet-up: (
   // display: none;
 
   ul {
-    @include grid-container;
-    @include grid-media($home-layout-grid--tablet-up) {
-      padding-top: 22vh;
-    }
+    // @include grid-container;
+    // @include grid-media($home-layout-grid--tablet-up) {
+    //   padding-top: 22vh;
+    // }
 
     img {
       width: 100%;

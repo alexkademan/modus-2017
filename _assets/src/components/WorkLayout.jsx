@@ -9,7 +9,7 @@ class WorkLayout extends React.Component {
     this.state = {
       allImages: DocumentStore.getWorkVars(),
     };
-
+    console.log(this.state.allImages);
     this.state.allImages.sort((a, b) => {
       return a.menu_order - b.menu_order;
     });

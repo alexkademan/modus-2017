@@ -17,6 +17,7 @@ let randomDog = 0;
 let reactDogs;
 let sectionLoad = 0;
 let homeDots = 'hidden';
+let homeIconCount = '';
 const emitter = new EventEmitter();
 
 const DocumentStore = {
@@ -204,6 +205,15 @@ const DocumentStore = {
 
   getHomeDotsIntro() {
     return homeDots;
+  },
+
+  setHomeIconCount(count) {
+    homeIconCount = count;
+    emitter.emit('homeIcons');
+  },
+
+  getHomeIconCount() {
+    return homeIconCount;
   },
 
   setModalScrollPosition(position) { modalScrollPosition = position; },

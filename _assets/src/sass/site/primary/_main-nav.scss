@@ -8,13 +8,22 @@
     // width: 50em;
     // max-width: 80%;
     width: 100%;
+    position: relative;
 
     li,
-    a > span,
     a {
       display: block;
       float: left;
       clear: both;
+      width: 100%;
+    }
+
+    li {
+      &:not(:last-child) {
+        a {
+          padding-bottom: .5em;
+        }
+      }
     }
 
     ul {
@@ -26,12 +35,14 @@
     }
 
     a > span {
-      padding: 0 0 .25em;
-      margin: 0;
+      // display: block;
+      padding: 0;
+      margin: 0 auto;
       background: transparent;
+      // background: $ugly-pink;
       position: relative;
 
-      &:after {
+      &::after {
         content: '';
         position: absolute;
         left: 0;
@@ -44,22 +55,18 @@
       }
     }
 
-    li {
-      width: 100%;
-    }
-
     a {
-      width: 100%;
       color: $white;
       text-decoration: none;
+      text-align: center;
       font-size: 2.5em;
       padding: .25em 0;
       line-height: 1em;
 
       &:hover {
-        text-decoration: underline;
+        text-decoration: none;
 
-        span:after {
+        span::after {
           width: 100%;
         }
       }
